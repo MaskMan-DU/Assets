@@ -125,12 +125,12 @@ public class GameManager : MonoBehaviour
 
             foreach (var i in Group1Piece)
             {
-                i.GetComponent<PlayerContoller>().steps = group1MoveDice;
+                i.GetComponent<PlayerContoller>().steps = group1MoveDice + i.GetComponent<PieceProperties>().plusMovement;
             }
 
             foreach (var i in Group2Piece)
             {
-                i.GetComponent<PlayerContoller>().steps = group2MoveDice;
+                i.GetComponent<PlayerContoller>().steps = group2MoveDice + i.GetComponent<PieceProperties>().plusMovement;
             }
 
 

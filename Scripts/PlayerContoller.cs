@@ -31,6 +31,7 @@ public class PlayerContoller : MonoBehaviour
 
     TerrainGridSystem tgs;
     public GameManager gameManager;
+    public PieceProperties pieceProperties;
 
     public List<Color> rangeOriginalColor;
 
@@ -40,7 +41,7 @@ public class PlayerContoller : MonoBehaviour
     private short moveCounter;
 
     public int attackTargetIndex;
-    public int attackRange = 3;
+    public int attackRange;
     public List<int> attackRangeCellList;
     public bool isAttacking = false;
     public bool hasAttack = false;
@@ -55,13 +56,16 @@ public class PlayerContoller : MonoBehaviour
     private void Start()
     {
         tgs = TerrainGridSystem.instance;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        pieceProperties = this.gameObject.GetComponent<PieceProperties>();
+
         state = State.IDLE;
 
         var targetPos = tgs.CellGetPosition(initialCellIndex);
 
         transform.position = targetPos;
 
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
 
         // 绑定棋子阵营
         if (camp == Camp.Group1)
@@ -77,6 +81,10 @@ public class PlayerContoller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // 加载武器攻击范围
+        attackRange = pieceProperties.attackRange;
+
+
         // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
         if (steps == 0 && (hasAttack || usedEquipment))
         {
