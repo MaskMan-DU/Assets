@@ -1,0 +1,258 @@
+using System.Collections;
+using System.Collections.Generic;
+using TGS;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    TerrainGridSystem tgs;
+    public GameObject activePiece;
+    public PlayerContoller.Camp activeCamp;
+
+    public bool group1HasAct = false;
+    public bool group2HasAct = false;
+
+    public bool hasRollDice = false;
+
+    public int group1MoveDice;
+    public int group2MoveDice;
+
+    public int attackDice;
+
+    public enum State
+    {
+        RollMoveDice,
+        SelectPiece,
+        PieceAct,
+        ChangeToOtherSide,
+        EnemyAct,
+        NextTurn
+    }
+
+    public State state;
+    public GameObject PieceActionMenu;
+    public GameObject ActionCancelButton;
+
+    public List<GameObject> Group1Piece = null;
+    public List<GameObject> Group2Piece = null;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        tgs = TerrainGridSystem.instance;
+        state = State.RollMoveDice;
+        PieceActionMenu.SetActive(false);
+        ActionCancelButton.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        switch (state)
+        {
+            // 掷骰子阶段
+            case State.RollMoveDice:
+                
+
+                RollMoveDice(); // 掷骰子来确定两组棋子的移动力
+                WhoMoveFirst(); // 依据移动力高低来确定谁先移动
+
+                state = State.SelectPiece;
+                break;
+
+            // 棋子选择阶段
+            case State.SelectPiece:
+                SelectPiece();
+                break;
+            
+            // 选中棋子后，进行棋子行动
+            case State.PieceAct:
+                break;
+            
+            case State.ChangeToOtherSide:
+
+                CheckGroupsEndTurnCondition();
+
+                if (group1HasAct && group2HasAct)
+                {
+                    state = State.EnemyAct;
+                }
+                else
+                {
+
+                    if (group1HasAct)
+                    {
+                        activeCamp = PlayerContoller.Camp.Group2;
+                    }
+                    else if (group2HasAct)
+                    {
+                        activeCamp = PlayerContoller.Camp.Group1;
+                    }
+
+                    state = State.SelectPiece;
+                }
+                
+                break;
+
+            case State.EnemyAct:
+                PieceActionMenu.SetActive(false);
+                state = State.NextTurn;
+                break;
+
+            // 下一回合，重置部分参数
+            case State.NextTurn:
+                hasRollDice = false;
+                group1HasAct = false;
+                group2HasAct = false;
+
+                RefreshPiecesState();
+
+                state = State.RollMoveDice;
+                break;
+        }
+
+
+
+    }
+
+
+    public void RollMoveDice()
+    {
+        if (!hasRollDice)
+        {
+            group1MoveDice = Random.Range(1, 7);
+            group2MoveDice = Random.Range(1, 7);
+
+            foreach (var i in Group1Piece)
+            {
+                i.GetComponent<PlayerContoller>().steps = group1MoveDice;
+            }
+
+            foreach (var i in Group2Piece)
+            {
+                i.GetComponent<PlayerContoller>().steps = group2MoveDice;
+            }
+
+
+            hasRollDice = true;
+        }
+    }
+
+    /// <summary>
+    /// 依据行动力判断那方先行动
+    /// </summary>
+    public void WhoMoveFirst()
+    {
+        if (group1MoveDice > group2MoveDice)
+        {
+            activeCamp = PlayerContoller.Camp.Group1;
+        }
+        else if (group2MoveDice > group1MoveDice)
+        {
+            activeCamp = PlayerContoller.Camp.Group2;
+        }
+        else if (group1MoveDice == group2MoveDice)
+        {
+            activeCamp = (PlayerContoller.Camp)Random.Range(0, 2);
+        }
+    }
+
+    /// <summary>
+    /// 鼠标选择activeCamp阵营中的棋子，使该棋子为activePiece
+    /// </summary>
+    public void SelectPiece()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            int t_cell = tgs.cellHighlightedIndex;
+
+            // 判定玩家分组为玩家1或玩家2
+            if (activeCamp == PlayerContoller.Camp.Group1)
+            {
+                foreach (var i in Group1Piece)
+                {
+                    var targetPieceController = i.GetComponent<PlayerContoller>();
+                    if (t_cell == targetPieceController.currentCellIndex)
+                    {
+                        if (targetPieceController.state != PlayerContoller.State.ENDTURN)
+                        {
+                            activePiece = i.gameObject;
+                            PieceActionMenu.SetActive(true);
+
+                            state = State.PieceAct;
+                            break;
+                        }       
+                    }
+
+                }
+
+            }
+            else
+            {
+                foreach (var i in Group2Piece)
+                {
+                    var targetPieceController = i.GetComponent<PlayerContoller>();
+                    if (t_cell == targetPieceController.currentCellIndex)
+                    {
+                        if (targetPieceController.state != PlayerContoller.State.ENDTURN)
+                        {
+                            activePiece = i.gameObject;
+                            PieceActionMenu.SetActive(true);
+                            state = State.PieceAct;
+                            break;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 检查两个组的回合结束情况
+    /// </summary>
+    public void CheckGroupsEndTurnCondition()
+    {
+        foreach (var i in Group1Piece)
+        {
+            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.ENDTURN)
+            {
+                group1HasAct = false;
+                break;
+            }
+            else
+            {
+                group1HasAct = true;
+            }
+
+        }
+
+        foreach (var i in Group2Piece)
+        {
+            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.ENDTURN)
+            {
+                group2HasAct = false;
+                break;
+            }
+            else
+            {
+                group2HasAct = true;
+            }
+        }
+    }
+
+    public void RefreshPiecesState()
+    {
+        foreach (var i in Group1Piece)
+        {
+            i.GetComponent<PlayerContoller>().state = PlayerContoller.State.REFRESH;
+
+        }
+
+        foreach (var i in Group2Piece)
+        {
+            i.GetComponent<PlayerContoller>().state = PlayerContoller.State.REFRESH;
+        }
+    }
+
+}
