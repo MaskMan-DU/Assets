@@ -15,6 +15,8 @@ public class TGSSetting : MonoBehaviour
 
     public List<int> cells;
 
+    public List<GameObject> Enemy = null;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -14,6 +14,11 @@ public class PieceProperties : MonoBehaviour
 
     }
 
+    public enum Equipment
+    {
+
+    }
+
 
     [Header("基本属性")]
     public int lifeValue;
@@ -26,6 +31,10 @@ public class PieceProperties : MonoBehaviour
 
     public Weapon pieceWeapon;
     public int WeaponLevel;
+    public int minWeaponDamage;
+    public int maxWeaponDamage;
+
+    public Equipment equipment;
 
 
     [Header("实时数据")]

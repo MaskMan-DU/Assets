@@ -30,8 +30,9 @@ public class PlayerContoller : MonoBehaviour
     public State state;
 
     TerrainGridSystem tgs;
-    public GameManager gameManager;
-    public PieceProperties pieceProperties;
+    private GameManager gameManager;
+    private PieceProperties pieceProperties;
+    private TGSSetting tgsSetting;
 
     public List<Color> rangeOriginalColor;
 
@@ -58,6 +59,7 @@ public class PlayerContoller : MonoBehaviour
         tgs = TerrainGridSystem.instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pieceProperties = this.gameObject.GetComponent<PieceProperties>();
+        tgsSetting = GameObject.Find("GameManager").GetComponent<TGSSetting>();
 
         state = State.IDLE;
 
@@ -101,6 +103,8 @@ public class PlayerContoller : MonoBehaviour
                 break;
 
             case State.MOVING:
+                gameManager.ActionCancelButton.SetActive(false);
+
                 if (moveCounter < moveList.Count)
                 {
                     Move(tgs.CellGetPosition(moveList[moveCounter]));
@@ -109,16 +113,14 @@ public class PlayerContoller : MonoBehaviour
                 {
                     moveCounter = 0;
                     state = State.IDLE;
+                    
+                    gameManager.PieceActionMenu.SetActive(true);
                 }
 
                 if (moveRange != null)
                 {
                     CleanRange(moveRange);
                 }
-
-                gameManager.ActionCancelButton.SetActive(false);
-                gameManager.PieceActionMenu.SetActive(true);
-
                 break;
 
             case State.MOVESELECT:
@@ -166,7 +168,7 @@ public class PlayerContoller : MonoBehaviour
                 // 播放攻击动画
                 // Animator.setbool("isAttacking", true) 然后播放动画（此处代码为例子，当具备动画时需要重新编写）
 
-                hasAttack = true; 
+                Attack();
 
                 state = State.IDLE; // 在动画完成后应该加载到动画关键帧中。那时需要删除这行代码
 
@@ -368,5 +370,66 @@ public class PlayerContoller : MonoBehaviour
         tgs.CellSetCanCross(currentCellIndex, true);
     }
 
+    public void Attack()
+    {
+        if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_ENEMY)
+        {
+            
+        }
+        else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_PLAYER)
+        {
+            switch (camp)
+            {
+                case Camp.Group1:
+                    foreach (var i in gameManager.Group2Piece)
+                    {
+                        var pieceController = i.GetComponent<PlayerContoller>();
+                        if (pieceController.currentCellIndex == attackTargetIndex)
+                        {
+                            var targetPieceProperties = i.GetComponent<PieceProperties>();
 
+                            targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                            // Animator.setbool("isAttacking", false)
+
+                            break;
+                        }
+                    }
+                    break;
+                case Camp.Group2:
+                    foreach (var i in gameManager.Group1Piece)
+                    {
+                        var pieceController = i.GetComponent<PlayerContoller>();
+                        if (pieceController.currentCellIndex == attackTargetIndex)
+                        {
+                            var targetPieceProperties = i.GetComponent<PieceProperties>();
+
+                            targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                            // Animator.setbool("isAttacking", false)
+
+                            break;
+                        }
+                    }
+                    break;
+            }
+
+
+
+        }
+        else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_OBSTACLE)
+        {
+            switch (camp)
+            {
+                case Camp.Group1:
+
+                    break;
+                case Camp.Group2:
+
+                    break;
+            }
+        }
+
+        hasAttack = true;
+    }
 }
