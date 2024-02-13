@@ -235,8 +235,10 @@ public class PlayerContoller : MonoBehaviour
                 }
                 break;
             case State.USEEQUIPMENT:
+
                 break;
             case State.EQUIPMENTPOSITONSELECT:
+
                 break;
 
             case State.ENDTURN:
@@ -296,7 +298,7 @@ public class PlayerContoller : MonoBehaviour
         }
         else if (state == State.ATTACKSELECT)
         {
-            tgs.CellGetNeighbours(currentCellIndex, range, indices, -1, 0,  CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue,false, false);
+            tgs.CellGetNeighbours(currentCellIndex, range, indices, -1, 0,  CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
 
             for (int i = 0; i < indices.Count;i++)
             {
@@ -311,16 +313,24 @@ public class PlayerContoller : MonoBehaviour
                                 if (pieceController.currentCellIndex == indices[i])
                                 {
                                     indices.RemoveAt(i);
+                                    break;
                                 }
                             }
                             break;
                         case Camp.Group2:
+                            Debug.Log(indices[i]);
+                            print("List count is " + indices.Count);
+                            print("Index is " + i);
+
                             foreach (var p in gameManager.Group2Piece)
                             {
                                 var pieceController = p.GetComponent<PlayerContoller>();
+
+                                print("Index in for loop is " + i);
                                 if (pieceController.currentCellIndex == indices[i])
                                 {
                                     indices.RemoveAt(i);
+                                    break;
                                 }
                             }
                             break;
@@ -338,8 +348,6 @@ public class PlayerContoller : MonoBehaviour
                             break;
                     }
                 }
-
-
             }
 
             for (int i = 0; i < indices.Count; i++)
@@ -374,7 +382,20 @@ public class PlayerContoller : MonoBehaviour
     {
         if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_ENEMY)
         {
-            
+            foreach (var i in gameManager.EnemyPiece)
+            {
+                var enemyController = i.GetComponent<EnemyController>();
+                if (enemyController.currentCellIndex == attackTargetIndex)
+                {
+                    var targetPieceProperties = i.GetComponent<PieceProperties>();
+
+                    targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                    // Animator.setbool("isAttacking", false)
+
+                    break;
+                }
+            }
         }
         else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_PLAYER)
         {

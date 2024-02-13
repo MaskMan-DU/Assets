@@ -13,9 +13,9 @@ public class TGSSetting : MonoBehaviour
     public const int CELL_OBSTACLE = 8;
     public const int CELLS_ALL_NAVIGATABLE = ~(CELL_OBSTACLE | CELL_PLAYER | CELL_ENEMY);
 
-    public List<int> cells;
+    public List<int> GoldMinerCells = new List<int>() { 543, 577, 578, 545, 512, 511 };
 
-    public List<GameObject> Enemy = null;
+    
 
     // Start is called before the first frame update
     void Start()

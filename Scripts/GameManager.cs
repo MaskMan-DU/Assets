@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         PieceAct,
         ChangeToOtherSide,
         EnemyAct,
+        EnemyActCheck,
         NextTurn
     }
 
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> Group1Piece = null;
     public List<GameObject> Group2Piece = null;
+    public List<GameObject> EnemyPiece = null;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             // 掷骰子阶段
             case State.RollMoveDice:
-                
+                PieceActionMenu.SetActive(false);
 
                 RollMoveDice(); // 掷骰子来确定两组棋子的移动力
                 WhoMoveFirst(); // 依据移动力高低来确定谁先移动
@@ -95,8 +97,34 @@ public class GameManager : MonoBehaviour
                 break;
 
             case State.EnemyAct:
-                PieceActionMenu.SetActive(false);
-                state = State.NextTurn;
+                // PieceActionMenu.SetActive(false);
+                foreach(var i in EnemyPiece)
+                {
+                    var enemyController = i.GetComponent<EnemyController>();
+                    enemyController.state = EnemyController.State.ATTACKSELECT;
+                }
+
+                state = State.EnemyActCheck;
+                break;
+            case State.EnemyActCheck:
+
+                bool allEnemyEndTurn = true;
+                
+                foreach (var i in EnemyPiece)
+                {
+                    var enemyController = i.GetComponent<EnemyController>();
+                    if (enemyController.state != EnemyController.State.ENDTURN)
+                    {
+                        allEnemyEndTurn= false;
+                        break;
+                    }
+                }
+
+                if (allEnemyEndTurn)
+                {
+                    state = State.NextTurn;
+                }
+
                 break;
 
             // 下一回合，重置部分参数
@@ -110,9 +138,6 @@ public class GameManager : MonoBehaviour
                 state = State.RollMoveDice;
                 break;
         }
-
-
-
     }
 
 
@@ -126,11 +151,21 @@ public class GameManager : MonoBehaviour
             foreach (var i in Group1Piece)
             {
                 i.GetComponent<PlayerContoller>().steps = group1MoveDice + i.GetComponent<PieceProperties>().plusMovement;
+
+                if (i.GetComponent<PlayerContoller>().steps < 0)
+                {
+                    i.GetComponent<PlayerContoller>().steps = 0;
+                }
             }
 
             foreach (var i in Group2Piece)
             {
                 i.GetComponent<PlayerContoller>().steps = group2MoveDice + i.GetComponent<PieceProperties>().plusMovement;
+                
+                if (i.GetComponent<PlayerContoller>().steps < 0)
+                {
+                    i.GetComponent<PlayerContoller>().steps = 0;
+                }
             }
 
 
@@ -252,6 +287,11 @@ public class GameManager : MonoBehaviour
         foreach (var i in Group2Piece)
         {
             i.GetComponent<PlayerContoller>().state = PlayerContoller.State.REFRESH;
+        }
+
+        foreach(var i in EnemyPiece)
+        {
+            i.GetComponent<EnemyController>().state= EnemyController.State.REFRESH;
         }
     }
 
