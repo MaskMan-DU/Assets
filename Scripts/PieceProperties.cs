@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TGS;
 using UnityEngine;
 
 public class PieceProperties : MonoBehaviour
 {
+    private GameManager gameManager;
+    private TGSSetting tgsSetting;
+    TerrainGridSystem tgs;
+
+    public enum PieceType
+    {
+        Player,
+        NormalEnemy,
+        EliteEnemy
+    }
     public enum Profession
     {
         Cowboy,
@@ -22,6 +33,7 @@ public class PieceProperties : MonoBehaviour
 
     public enum Equipment
     {
+        None,
         Bulletproof_Vest,
         First_Aid_Kit,
         Wire,
@@ -35,6 +47,7 @@ public class PieceProperties : MonoBehaviour
 
 
     [Header("基本属性")]
+    public PieceType pieceType; 
     public int lifeValue = 100;
 
     public int plusMovement;
@@ -48,7 +61,10 @@ public class PieceProperties : MonoBehaviour
     public int minWeaponDamage = 1;
     public int maxWeaponDamage = 6;
 
-    public Equipment equipment = Equipment.Wire;
+    public Equipment equipment = Equipment.None;
+    public int equipmentLevel = 1;
+    public int equipmentDurability;
+    public int damageReduce = 0;
 
 
     [Header("实时数据")]
@@ -57,15 +73,44 @@ public class PieceProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tgs = TerrainGridSystem.instance;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        tgsSetting = GameObject.Find("GameManager").GetComponent<TGSSetting>();
+
+        if (pieceType == PieceType.Player)
+        {
+            UpdateWeaponProperties();
+            UpdateProfessionProperties();
+            UpdateEquipmentProperties();
+        }
+        else
+        {
+            pieceWeapon = (Weapon)Random.Range(0, 4);
+            if (pieceType == PieceType.NormalEnemy) // 是普通敌人
+            {
+                lifeValue = 100;
+                WeaponLevel = 1;
+            }
+            else
+            {
+                lifeValue = 150;
+                WeaponLevel = Random.Range(2, 4);
+            }
+            UpdateWeaponProperties();
+        }
+        
+
         currentLifeValue = lifeValue;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateProfessionProperties();
-        UpdateWeaponProperties();
-        UpdateEquipmentProperties();
+
+        if (equipmentDurability == 0)
+        {
+            equipment = Equipment.None;
+        }
     }
 
     private void UpdateProfessionProperties()
@@ -86,7 +131,6 @@ public class PieceProperties : MonoBehaviour
                     lifeValue = 220;
                 }
 
-
                 if (pieceWeapon == Weapon.Pistol)
                 {
                     if (WeaponLevel == 1)
@@ -104,22 +148,238 @@ public class PieceProperties : MonoBehaviour
                     }
                 }
                 break;
-            case Profession.Mercenary: 
+            case Profession.Mercenary:
+                if (PieceLevel == 1)
+                {
+                    lifeValue = 120;
+                }
+                else if (PieceLevel == 2)
+                {
+                    lifeValue = 140;
+                }
+                else if (PieceLevel == 3)
+                {
+                    lifeValue = 180;
+                }
+
+                if (pieceWeapon == Weapon.Assault_Rifle)
+                {
+                    if (WeaponLevel == 1)
+                    {
+                        minWeaponDamage += 2;
+                        maxWeaponDamage += 2;
+                    }
+                    else if (WeaponLevel == 2)
+                    {
+                        minWeaponDamage += 4;
+                        maxWeaponDamage += 4;
+                    }
+                    else if (WeaponLevel == 3)
+                    {
+                        minWeaponDamage += 8;
+                        maxWeaponDamage += 8;
+                    }
+                }
                 break;
-            case Profession.Engineer: 
+            case Profession.Engineer:
+                if (PieceLevel == 1)
+                {
+                    lifeValue = 110;
+                }
+                else if (PieceLevel == 2)
+                {
+                    lifeValue = 120;
+                }
+                else if (PieceLevel == 3)
+                {
+                    lifeValue = 140;
+                }
+
+                foreach (var i in tgsSetting.GoldMinerCells)
+                {
+                    if (tgs.CellGetIndex(transform.position) == i)
+                    {
+                        if (PieceLevel == 1)
+                        {
+                            // 黄金数量增加 20 
+                        }
+                        else if (PieceLevel == 2)
+                        {
+                            // 黄金数量增加 40 
+                        }
+                        else if (PieceLevel == 3)
+                        {
+                            // 黄金数量增加 80
+                        }
+                    }
+                }
                 break;
-            case Profession.Sniper: 
+            case Profession.Sniper:
+                lifeValue = 100;
+
+                if (pieceWeapon == Weapon.Sniper_Rifle)
+                {
+                    if (WeaponLevel == 1)
+                    {
+                        minWeaponDamage += 2;
+                        maxWeaponDamage += 2;
+                    }
+                    else if (WeaponLevel == 2)
+                    {
+                        minWeaponDamage += 6;
+                        maxWeaponDamage += 6;
+                    }
+                    else if (WeaponLevel == 3)
+                    {
+                        minWeaponDamage += 12;
+                        maxWeaponDamage += 12;
+                    }
+                }
                 break;
         }
     }
 
-    private void UpdateWeaponProperties()
+    public void UpdateWeaponProperties()
     {
+        switch(pieceWeapon)
+        {
+            case Weapon.Pistol:
+                attackRange = 1;
 
+                if (WeaponLevel == 1)
+                {
+                    plusMovement = 1;
+                    minWeaponDamage = 1;
+                    maxWeaponDamage = 6;
+                }else if (WeaponLevel == 2)
+                {
+                    plusMovement = 2;
+                    minWeaponDamage = 2;
+                    maxWeaponDamage = 12;
+                }
+                else if (WeaponLevel == 3)
+                {
+                    plusMovement = 3;
+                    minWeaponDamage = 3;
+                    maxWeaponDamage = 18;
+                }
+                break;
+            case Weapon.Assault_Rifle:
+                attackRange = 2;
+                plusMovement = 0;
+
+                if (WeaponLevel == 1)
+                {
+                    minWeaponDamage = 1;
+                    maxWeaponDamage = 6;
+                }
+                else if (WeaponLevel == 2)
+                {
+                    minWeaponDamage = 2;
+                    maxWeaponDamage = 12;
+                }
+                else if (WeaponLevel == 3)
+                {
+                    minWeaponDamage = 3;
+                    maxWeaponDamage = 18;
+                }
+                break;
+            case Weapon.Sniper_Rifle:
+                attackRange = 3;
+
+                if (WeaponLevel == 1)
+                {
+                    plusMovement = -2;
+                    minWeaponDamage = 1;
+                    maxWeaponDamage = 6;
+                }
+                else if (WeaponLevel == 2)
+                {
+                    plusMovement = -1;
+                    minWeaponDamage = 2;
+                    maxWeaponDamage = 12;
+                }
+                else if (WeaponLevel == 3)
+                {
+                    plusMovement = 0;
+                    minWeaponDamage = 3;
+                    maxWeaponDamage = 18;
+                }
+                break;
+            case Weapon.Rocket_Launcher:
+                attackRange = 2;
+
+                if (WeaponLevel == 1)
+                {
+                    plusMovement = -2;
+                    minWeaponDamage = 1;
+                    maxWeaponDamage = 6;
+                }
+                else if (WeaponLevel == 2)
+                {
+                    plusMovement = -1;
+                    minWeaponDamage = 2;
+                    maxWeaponDamage = 12;
+                }
+                else if (WeaponLevel == 3)
+                {
+                    plusMovement = 0;
+                    minWeaponDamage = 3;
+                    maxWeaponDamage = 18;
+                }
+                break;
+        }
     }
 
-    private void UpdateEquipmentProperties()
+    public void UpdateEquipmentProperties()
     {
-
+        switch (equipment)
+        {
+            case Equipment.None:
+                break;
+            case Equipment.Wire:
+                break;
+            case Equipment.First_Aid_Kit:
+                if (equipmentLevel == 1)
+                {
+                    equipmentDurability = 1;
+                }
+                else if (equipmentLevel == 2)
+                {
+                    equipmentDurability = 2;
+                }
+                else if (equipmentLevel == 3)
+                {
+                    equipmentDurability = 3;
+                }
+                break;
+            case Equipment.Bulletproof_Vest:
+                equipmentDurability = 100;
+                if (equipmentLevel== 1)
+                {
+                    damageReduce = 1;
+                }else if (equipmentLevel== 2)
+                {
+                    damageReduce= 2;
+                }else if (equipmentLevel== 3)
+                {
+                    damageReduce= 3;
+                }
+                break;
+            case Equipment.Trench:
+                break;
+        }
     }
+
+    public void First_Aid_Kit()
+    {
+        currentLifeValue += 50;
+        if (currentLifeValue > lifeValue)
+        {
+            currentLifeValue = lifeValue;
+        }
+        equipmentDurability--;
+    }
+
+
 }

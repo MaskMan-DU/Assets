@@ -497,16 +497,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 1
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &95237467
 MonoBehaviour:
@@ -678,16 +679,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 2
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &255982203
 MonoBehaviour:
@@ -990,16 +992,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &462594878
 MonoBehaviour:
@@ -1551,16 +1554,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 1
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &842072431
 MonoBehaviour:
@@ -1920,16 +1924,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 1
-  pieceProfession: 0
-  PieceLevel: 0
-  pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  plusMovement: 0
+  attackRange: 0
+  pieceProfession: 2
+  PieceLevel: 3
+  pieceWeapon: 2
+  WeaponLevel: 3
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!136 &976469300
 CapsuleCollider:
@@ -2139,16 +2144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 2
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1100034281
 MonoBehaviour:
@@ -2419,16 +2425,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 1
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1271419516
 MonoBehaviour:
@@ -2502,16 +2509,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 1
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1284455115
 MonoBehaviour:
@@ -2728,6 +2736,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394456394}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1430075636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430075637}
+  m_Layer: 5
+  m_Name: Surfaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1430075637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430075636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2349245250891015463}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1449613087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,16 +2814,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 1
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1449613090
 MonoBehaviour:
@@ -3093,16 +3133,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!136 &1631818012
 CapsuleCollider:
@@ -3300,16 +3341,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 2
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1678699885
 MonoBehaviour:
@@ -3894,16 +3936,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1c4ec141009214a8a48580eceb2c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceType: 0
   lifeValue: 100
-  plusMovement: 50
-  attackRange: 3
+  plusMovement: 0
+  attackRange: 0
   pieceProfession: 0
-  PieceLevel: 0
+  PieceLevel: 1
   pieceWeapon: 0
-  WeaponLevel: 0
-  minWeaponDamage: 10
-  maxWeaponDamage: 50
-  equipment: 0
+  WeaponLevel: 1
+  minWeaponDamage: 1
+  maxWeaponDamage: 6
+  equipment: 2
   currentLifeValue: 0
 --- !u!114 &1806742443
 MonoBehaviour:
@@ -4324,37 +4367,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980727044}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2010199169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2010199170}
-  m_Layer: 5
-  m_Name: Surfaces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2010199170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010199169}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2349245250891015463}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2037528948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4889,7 +4901,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2010199170}
+  - {fileID: 1430075637}
   m_Father: {fileID: 938491920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
