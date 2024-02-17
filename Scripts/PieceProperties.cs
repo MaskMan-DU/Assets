@@ -66,7 +66,6 @@ public class PieceProperties : MonoBehaviour
     public int equipmentDurability;
     public int damageReduce = 0;
 
-
     [Header("实时数据")]
     public int currentLifeValue;
 
@@ -107,7 +106,7 @@ public class PieceProperties : MonoBehaviour
     void Update()
     {
 
-        if (equipmentDurability == 0)
+        if (equipmentDurability <= 0)
         {
             equipment = Equipment.None;
         }
@@ -338,6 +337,19 @@ public class PieceProperties : MonoBehaviour
             case Equipment.None:
                 break;
             case Equipment.Wire:
+
+                if (equipmentLevel == 1)
+                {
+                    equipmentDurability = 1;
+                }
+                else if (equipmentLevel == 2)
+                {
+                    equipmentDurability = 2;
+                }
+                else if (equipmentLevel == 3)
+                {
+                    equipmentDurability = 3;
+                }
                 break;
             case Equipment.First_Aid_Kit:
                 if (equipmentLevel == 1)
@@ -367,6 +379,18 @@ public class PieceProperties : MonoBehaviour
                 }
                 break;
             case Equipment.Trench:
+                if (equipmentLevel == 1)
+                {
+                    equipmentDurability = 1;
+                }
+                else if (equipmentLevel == 2)
+                {
+                    equipmentDurability = 2;
+                }
+                else if (equipmentLevel == 3)
+                {
+                    equipmentDurability = 3;
+                }
                 break;
         }
     }

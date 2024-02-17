@@ -18,7 +18,7 @@ public class ActionButton_EndTurn : MonoBehaviour
             var playerContorller = gameManager.activePiece.GetComponent<PlayerContoller>();
 
             // 按下该按钮后，棋子会进入ENDTURN状态
-            playerContorller.state = PlayerContoller.State.ENDTURN;
+            playerContorller.state = PlayerContoller.State.WAITFORNEXTTURN;
 
             gameManager.PieceActionMenu.SetActive(false);
             gameManager.activePiece = null;

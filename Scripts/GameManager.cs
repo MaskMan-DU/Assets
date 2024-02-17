@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
             // Æå×ÓÑ¡Ôñ½×¶Î
             case State.SelectPiece:
+                PieceActionMenu.SetActive(false);
                 SelectPiece();
                 break;
             
@@ -72,9 +73,7 @@ public class GameManager : MonoBehaviour
                 break;
             
             case State.ChangeToOtherSide:
-
                 CheckGroupsEndTurnCondition();
-
                 if (group1HasAct && group2HasAct)
                 {
                     state = State.EnemyAct;
@@ -211,10 +210,9 @@ public class GameManager : MonoBehaviour
                     {
                         if (targetPieceController.state != PlayerContoller.State.ENDTURN)
                         {
+                            state = State.PieceAct;
                             activePiece = i.gameObject;
                             PieceActionMenu.SetActive(true);
-
-                            state = State.PieceAct;
                             break;
                         }       
                     }
@@ -230,10 +228,10 @@ public class GameManager : MonoBehaviour
                     if (t_cell == targetPieceController.currentCellIndex)
                     {
                         if (targetPieceController.state != PlayerContoller.State.ENDTURN)
-                        {
+                        {                         
+                            state = State.PieceAct;
                             activePiece = i.gameObject;
                             PieceActionMenu.SetActive(true);
-                            state = State.PieceAct;
                             break;
                         }
                     }
@@ -250,7 +248,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var i in Group1Piece)
         {
-            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.ENDTURN)
+            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.WAITFORNEXTTURN)
             {
                 group1HasAct = false;
                 break;
@@ -264,7 +262,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var i in Group2Piece)
         {
-            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.ENDTURN)
+            if (i.GetComponent<PlayerContoller>().state != PlayerContoller.State.WAITFORNEXTTURN)
             {
                 group2HasAct = false;
                 break;

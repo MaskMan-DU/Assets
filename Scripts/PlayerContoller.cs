@@ -16,6 +16,7 @@ public class PlayerContoller : MonoBehaviour
         MOVING,
         MOVESELECT,
         ENDTURN,
+        WAITFORNEXTTURN,
         REFRESH
     }
 
@@ -86,13 +87,6 @@ public class PlayerContoller : MonoBehaviour
         // 加载武器攻击范围
         attackRange = pieceProperties.attackRange;
 
-
-        // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
-        if (steps == 0 && (hasAttack || usedEquipment))
-        {
-            state = State.ENDTURN;
-        }
-
         currentCellIndex = tgs.CellGetIndex(transform.position,true);
 
         switch (state)
@@ -120,6 +114,12 @@ public class PlayerContoller : MonoBehaviour
                 if (moveRange != null)
                 {
                     CleanRange(moveRange);
+                }
+
+                // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
+                if (steps == 0 && (hasAttack || usedEquipment))
+                {
+                    state = State.ENDTURN;
                 }
                 break;
 
@@ -174,6 +174,12 @@ public class PlayerContoller : MonoBehaviour
 
                 gameManager.ActionCancelButton.SetActive(false);
                 gameManager.PieceActionMenu.SetActive(true);
+
+                // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
+                if (steps == 0 && (hasAttack || usedEquipment))
+                {
+                    state = State.ENDTURN;
+                }
                 break;
             case State.ATTACKSELECT: 
                 if (Input.GetMouseButtonUp(0))
@@ -242,6 +248,14 @@ public class PlayerContoller : MonoBehaviour
                 break;
 
             case State.ENDTURN:
+                gameManager.activePiece = null;
+                state = State.WAITFORNEXTTURN;
+
+                gameManager.state = GameManager.State.ChangeToOtherSide;
+                break;
+                
+
+            case State.WAITFORNEXTTURN:
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
                 tgs.CellSetCanCross(currentCellIndex, false);
                 break;
@@ -251,7 +265,9 @@ public class PlayerContoller : MonoBehaviour
 
                 state = State.IDLE;
                 break;
-        }    
+        }
+
+        
     }
 
     void Move(Vector3 in_vec)
@@ -318,10 +334,6 @@ public class PlayerContoller : MonoBehaviour
                             }
                             break;
                         case Camp.Group2:
-                            Debug.Log(indices[i]);
-                            print("List count is " + indices.Count);
-                            print("Index is " + i);
-
                             foreach (var p in gameManager.Group2Piece)
                             {
                                 var pieceController = p.GetComponent<PlayerContoller>();
@@ -336,7 +348,7 @@ public class PlayerContoller : MonoBehaviour
                             break;
                     }
                 }
-                else if (tgs.CellGetGroup(indices[i]) == TGSSetting.CELL_OBSTACLE)
+                /*else if (tgs.CellGetGroup(indices[i]) == TGSSetting.CELL_OBSTACLE)
                 {
                     switch (camp)
                     {
@@ -347,8 +359,9 @@ public class PlayerContoller : MonoBehaviour
 
                             break;
                     }
-                }
+                }*/
             }
+
 
             for (int i = 0; i < indices.Count; i++)
             {
@@ -358,7 +371,19 @@ public class PlayerContoller : MonoBehaviour
             attackRangeCellList = indices;
 
             tgs.CellSetColor(attackRangeCellList, new Color(1, 0, 0, 0.5f));
-        }     
+        }else if (pieceProperties.equipment == PieceProperties.Equipment.Wire)
+        {
+            indices = tgs.CellGetNeighbours(cell, 1, TGSSetting.CELLS_ALL_NAVIGATABLE);
+
+            for (int i = 0; i < indices.Count; i++)
+            {
+                rangeOriginalColor.Add(tgs.CellGetColor(indices[i]));
+            }
+
+            moveRange = indices;
+
+            tgs.CellSetColor(moveRange, new Color(0, 0, 1, 0.5f));
+        }    
     }
 
     public void CleanRange(List<int> targetRange)
@@ -409,7 +434,26 @@ public class PlayerContoller : MonoBehaviour
                         {
                             var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                            targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                            if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                            {
+                                var damage = (targetPieceProperties.equipmentDurability -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1));
+
+
+                                if (damage < 0)
+                                {
+                                    targetPieceProperties.currentLifeValue += damage;
+                                }
+
+                            }
+                            else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                            {
+                                targetPieceProperties.equipmentDurability--;
+                            }
+                            else 
+                            {
+                                targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);       
+                            }
+
 
                             // Animator.setbool("isAttacking", false)
 
@@ -425,7 +469,25 @@ public class PlayerContoller : MonoBehaviour
                         {
                             var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                            targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                            if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                            {
+                                var damage = (targetPieceProperties.equipmentDurability -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1));
+
+
+                                if (damage < 0)
+                                {
+                                    targetPieceProperties.currentLifeValue += damage;
+                                }
+
+                            }
+                            else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                            {
+                                targetPieceProperties.equipmentDurability--;
+                            }
+                            else
+                            {
+                                targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                            }
 
                             // Animator.setbool("isAttacking", false)
 
@@ -440,7 +502,7 @@ public class PlayerContoller : MonoBehaviour
         }
         else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_OBSTACLE)
         {
-            switch (camp)
+            /*switch (camp)
             {
                 case Camp.Group1:
 
@@ -448,7 +510,7 @@ public class PlayerContoller : MonoBehaviour
                 case Camp.Group2:
 
                     break;
-            }
+            }*/
         }
 
         hasAttack = true;

@@ -159,7 +159,7 @@ public class EnemyController : MonoBehaviour
         {
             ShowRange(attackRange);
         }
-        else if(gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKSELECT && gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKING)
+        else if(gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
         {
             ShowRange(attackRange);
         }
@@ -173,7 +173,7 @@ public class EnemyController : MonoBehaviour
         {
             CleanRange(attackRangeCellList);
         }
-        else if (gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKSELECT && gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKING)
+        else if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
         {
             CleanRange(attackRangeCellList);
         }
