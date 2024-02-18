@@ -64,7 +64,9 @@ public class PieceProperties : MonoBehaviour
     public Equipment equipment = Equipment.None;
     public int equipmentLevel = 1;
     public int equipmentDurability;
+    public int equipmentRange = 0;  
     public int damageReduce = 0;
+    public bool isTrenchActive = false;
 
     [Header("实时数据")]
     public int currentLifeValue;
@@ -105,10 +107,13 @@ public class PieceProperties : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (equipmentDurability <= 0)
         {
             equipment = Equipment.None;
+            equipmentDurability = 0;
+            damageReduce = 0;
+            equipmentRange = 0;
+            isTrenchActive = false;
         }
     }
 
@@ -405,5 +410,9 @@ public class PieceProperties : MonoBehaviour
         equipmentDurability--;
     }
 
+    public void Trench()
+    {
+        isTrenchActive = true;
+    }
 
 }

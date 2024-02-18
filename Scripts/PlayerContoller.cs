@@ -48,11 +48,13 @@ public class PlayerContoller : MonoBehaviour
     public bool isAttacking = false;
     public bool hasAttack = false;
 
+    public int equipmentTargetIndex;
+    public int equipmentRange;
+    public bool usedEquipment = false;
+
     public int initialCellIndex;
     public int currentCellIndex;
-    
-    
-    public bool usedEquipment = false;
+
 
     // Use this for initialization
     private void Start()
@@ -86,6 +88,8 @@ public class PlayerContoller : MonoBehaviour
     {
         // ¼ÓÔØÎäÆ÷¹¥»÷·¶Î§
         attackRange = pieceProperties.attackRange;
+
+
 
         currentCellIndex = tgs.CellGetIndex(transform.position,true);
 
@@ -347,19 +351,7 @@ public class PlayerContoller : MonoBehaviour
                             }
                             break;
                     }
-                }
-                /*else if (tgs.CellGetGroup(indices[i]) == TGSSetting.CELL_OBSTACLE)
-                {
-                    switch (camp)
-                    {
-                        case Camp.Group1:
-
-                            break;
-                        case Camp.Group2:
-
-                            break;
-                    }
-                }*/
+                }              
             }
 
 
@@ -414,7 +406,9 @@ public class PlayerContoller : MonoBehaviour
                 {
                     var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                    targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                    var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                    targetPieceProperties.currentLifeValue -= damage;
 
                     // Animator.setbool("isAttacking", false)
 
@@ -433,25 +427,29 @@ public class PlayerContoller : MonoBehaviour
                         if (pieceController.currentCellIndex == attackTargetIndex)
                         {
                             var targetPieceProperties = i.GetComponent<PieceProperties>();
+                            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
                             if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                             {
-                                var damage = (targetPieceProperties.equipmentDurability -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1));
-
-
-                                if (damage < 0)
-                                {
-                                    targetPieceProperties.currentLifeValue += damage;
-                                }
+                                targetPieceProperties.equipmentDurability -= damage;
+                                targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
 
                             }
                             else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
                             {
-                                targetPieceProperties.equipmentDurability--;
+                                if (targetPieceProperties.isTrenchActive)
+                                {
+                                    targetPieceProperties.equipmentDurability--;
+                                    targetPieceProperties.isTrenchActive = false;
+                                }
+                                else
+                                {
+                                    targetPieceProperties.currentLifeValue -= damage;
+                                }
                             }
                             else 
                             {
-                                targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);       
+                                targetPieceProperties.currentLifeValue -= damage;       
                             }
 
 
@@ -469,24 +467,30 @@ public class PlayerContoller : MonoBehaviour
                         {
                             var targetPieceProperties = i.GetComponent<PieceProperties>();
 
+                            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
                             if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                             {
-                                var damage = (targetPieceProperties.equipmentDurability -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1));
-
-
-                                if (damage < 0)
-                                {
-                                    targetPieceProperties.currentLifeValue += damage;
-                                }
+                                targetPieceProperties.equipmentDurability -= damage;
+                                targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
 
                             }
                             else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
                             {
-                                targetPieceProperties.equipmentDurability--;
+                                if (targetPieceProperties.isTrenchActive)
+                                {
+                                    targetPieceProperties.equipmentDurability--;
+                                    targetPieceProperties.isTrenchActive = false;
+                                }
+                                else
+                                {
+                                    targetPieceProperties.currentLifeValue -= damage;
+                                }
+                                
                             }
                             else
                             {
-                                targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                                targetPieceProperties.currentLifeValue -= damage;
                             }
 
                             // Animator.setbool("isAttacking", false)

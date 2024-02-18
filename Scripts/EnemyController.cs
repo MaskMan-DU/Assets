@@ -238,7 +238,30 @@ public class EnemyController : MonoBehaviour
                 {
                     var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                    targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                    var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                    {
+                        targetPieceProperties.equipmentDurability -= damage;
+                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                    }
+                    else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                    {
+                        if (targetPieceProperties.isTrenchActive)
+                        {
+                            targetPieceProperties.equipmentDurability--;
+                            targetPieceProperties.isTrenchActive = false;
+                        }
+                        else
+                        {
+                            targetPieceProperties.currentLifeValue -= damage;
+                        }
+                    }
+                    else
+                    {
+                        targetPieceProperties.currentLifeValue -= damage;
+                    }
 
                     // Animator.setbool("isAttacking", false)
 
@@ -253,7 +276,30 @@ public class EnemyController : MonoBehaviour
                 {
                     var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                    targetPieceProperties.currentLifeValue -= Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                    var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                    {
+                        targetPieceProperties.equipmentDurability -= damage;
+                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                    }
+                    else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                    {
+                        if (targetPieceProperties.isTrenchActive)
+                        {
+                            targetPieceProperties.equipmentDurability--;
+                            targetPieceProperties.isTrenchActive = false;
+                        }
+                        else
+                        {
+                            targetPieceProperties.currentLifeValue -= damage;
+                        }
+                    }
+                    else
+                    {
+                        targetPieceProperties.currentLifeValue -= damage;
+                    }
 
                     // Animator.setbool("isAttacking", false)
 
