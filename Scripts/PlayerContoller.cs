@@ -89,6 +89,7 @@ public class PlayerContoller : MonoBehaviour
     {
         // 加载武器攻击范围
         attackRange = pieceProperties.attackRange;
+        equipmentRange = pieceProperties.equipmentRange;
 
 
 
@@ -254,6 +255,10 @@ public class PlayerContoller : MonoBehaviour
                 }
 
                 // 在equipmentTargetIndex上复制一个Wire
+                Vector3 targetPos = tgs.CellGetPosition(equipmentTargetIndex, true);
+                Instantiate(gameManager.Wire, targetPos, Quaternion.identity);
+
+                pieceProperties.equipmentDurability--;
 
                 usedEquipment = true;
 
@@ -272,7 +277,7 @@ public class PlayerContoller : MonoBehaviour
                     pieceProperties.Trench();
                     usedEquipment = true;
                     state = State.IDLE;
-                }else if (pieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                }else if (pieceProperties.equipment == PieceProperties.Equipment.Wire)
                 {
                     if (Input.GetMouseButtonUp(0))
                     {
@@ -281,6 +286,7 @@ public class PlayerContoller : MonoBehaviour
                         {
                             equipmentTargetIndex = t_cell;
                             state = State.USEEQUIPMENT;
+                            break;
                         }
                     }
                 }
@@ -398,18 +404,19 @@ public class PlayerContoller : MonoBehaviour
             attackRangeCellList = indices;
 
             tgs.CellSetColor(attackRangeCellList, new Color(1, 0, 0, 0.5f));
-        }else if (pieceProperties.equipment == PieceProperties.Equipment.Wire)
+        }
+        else if (pieceProperties.equipment == PieceProperties.Equipment.Wire && state == State.EQUIPMENTPOSITONSELECT)
         {
-            indices = tgs.CellGetNeighbours(cell, 1, TGSSetting.CELLS_ALL_NAVIGATABLE);
+            indices = tgs.CellGetNeighbours(cell, equipmentRange, TGSSetting.CELLS_ALL_NAVIGATABLE);
 
             for (int i = 0; i < indices.Count; i++)
             {
                 rangeOriginalColor.Add(tgs.CellGetColor(indices[i]));
             }
 
-            moveRange = indices;
+            equipmentRangeCellList = indices;
 
-            tgs.CellSetColor(moveRange, new Color(0, 0, 1, 0.5f));
+            tgs.CellSetColor(equipmentRangeCellList, new Color(0, 1, 0, 0.5f));
         }    
     }
 

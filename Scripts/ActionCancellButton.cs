@@ -21,7 +21,7 @@ public class ActionCancellButton : MonoBehaviour
             playerContorller.state = PlayerContoller.State.IDLE;
             playerContorller.CleanRange(playerContorller.moveRange);
             playerContorller.CleanRange(playerContorller.attackRangeCellList);
-            // 还需要清理道具范围
+            playerContorller.CleanRange(playerContorller.equipmentRangeCellList);
 
             gameManager.PieceActionMenu.SetActive(true);
             gameManager.ActionCancelButton.SetActive(false);

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
 
     public State state;
+    public GameObject Wire;
     public GameObject PieceActionMenu;
     public GameObject ActionCancelButton;
 
@@ -209,7 +210,7 @@ public class GameManager : MonoBehaviour
                     var targetPieceController = i.GetComponent<PlayerContoller>();
                     if (t_cell == targetPieceController.currentCellIndex)
                     {
-                        if (targetPieceController.state != PlayerContoller.State.ENDTURN)
+                        if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN)
                         {
                             state = State.PieceAct;
                             activePiece = i.gameObject;
@@ -228,7 +229,7 @@ public class GameManager : MonoBehaviour
                     var targetPieceController = i.GetComponent<PlayerContoller>();
                     if (t_cell == targetPieceController.currentCellIndex)
                     {
-                        if (targetPieceController.state != PlayerContoller.State.ENDTURN)
+                        if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN)
                         {                         
                             state = State.PieceAct;
                             activePiece = i.gameObject;

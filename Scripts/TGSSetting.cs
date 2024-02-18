@@ -32,10 +32,9 @@ public class TGSSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        activePieceController = gameManager.activePiece.GetComponent<PlayerContoller>();
-
-        if (activePieceController != null )
+        if (gameManager.activePiece != null )
         {
+            activePieceController = gameManager.activePiece.GetComponent<PlayerContoller>();
             if (BarCheck())
             {
                 BarEvent();

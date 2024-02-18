@@ -21,13 +21,10 @@ public class ObstacleProperties : MonoBehaviour
 
         tgs = TerrainGridSystem.instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        currentCellIndex = tgs.CellGetIndex(transform.position);
-
-        gameManager.Obstacles.Add(this.gameObject);
-
+        currentCellIndex = tgs.CellGetIndex(transform.position, true);
         tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_OBSTACLE);
-
+        tgs.CellSetCanCross(currentCellIndex, false);
+        gameManager.Obstacles.Add(this.gameObject);
     }
 
     // Update is called once per frame
@@ -36,7 +33,7 @@ public class ObstacleProperties : MonoBehaviour
         if (currentLifeValue == 0)
         {
             tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
-
+            tgs.CellSetCanCross(currentCellIndex, true);
             Destroy(gameObject);
         }
     }

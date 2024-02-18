@@ -342,7 +342,7 @@ public class PieceProperties : MonoBehaviour
             case Equipment.None:
                 break;
             case Equipment.Wire:
-
+                equipmentRange = 1;
                 if (equipmentLevel == 1)
                 {
                     equipmentDurability = 1;
