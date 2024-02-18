@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Group1Piece = null;
     public List<GameObject> Group2Piece = null;
     public List<GameObject> EnemyPiece = null;
+    public List<GameObject> Obstacles = null;
 
     // Start is called before the first frame update
     void Start()
