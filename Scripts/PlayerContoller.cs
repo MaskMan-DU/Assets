@@ -50,6 +50,7 @@ public class PlayerContoller : MonoBehaviour
 
     public int equipmentTargetIndex;
     public int equipmentRange;
+    public List<int> equipmentRangeCellList;
     public bool usedEquipment = false;
 
     public int initialCellIndex;
@@ -121,7 +122,7 @@ public class PlayerContoller : MonoBehaviour
                 }
 
                 // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
-                if (steps == 0 && (hasAttack || usedEquipment))
+                if (steps == 0 && hasAttack)
                 {
                     state = State.ENDTURN;
                 }
@@ -180,7 +181,7 @@ public class PlayerContoller : MonoBehaviour
                 gameManager.PieceActionMenu.SetActive(true);
 
                 // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
-                if (steps == 0 && (hasAttack || usedEquipment))
+                if (steps == 0 && hasAttack)
                 {
                     state = State.ENDTURN;
                 }
@@ -245,10 +246,44 @@ public class PlayerContoller : MonoBehaviour
                 }
                 break;
             case State.USEEQUIPMENT:
+                gameManager.ActionCancelButton.SetActive(false);
+
+                if (equipmentRangeCellList != null)
+                {
+                    CleanRange(equipmentRangeCellList);
+                }
+
+                // 在equipmentTargetIndex上复制一个Wire
+
+                usedEquipment = true;
+
+                gameManager.PieceActionMenu.SetActive(true);
+                state = State.IDLE;
 
                 break;
             case State.EQUIPMENTPOSITONSELECT:
-
+                if (pieceProperties.equipment == PieceProperties.Equipment.First_Aid_Kit)
+                {
+                    pieceProperties.First_Aid_Kit();
+                    usedEquipment = true;
+                    state = State.IDLE;
+                }else if (pieceProperties.equipment == PieceProperties.Equipment.Trench)
+                {
+                    pieceProperties.Trench();
+                    usedEquipment = true;
+                    state = State.IDLE;
+                }else if (pieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                {
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        int t_cell = tgs.cellHighlightedIndex;
+                        if (equipmentRangeCellList.Contains(t_cell))
+                        {
+                            equipmentTargetIndex = t_cell;
+                            state = State.USEEQUIPMENT;
+                        }
+                    }
+                }
                 break;
 
             case State.ENDTURN:
