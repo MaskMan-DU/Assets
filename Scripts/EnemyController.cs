@@ -164,7 +164,7 @@ public class EnemyController : MonoBehaviour
             ShowRange(attackRange);
         }
 
-        print("On enemy!");
+
     }
 
     private void OnMouseExit()
@@ -178,7 +178,7 @@ public class EnemyController : MonoBehaviour
             CleanRange(attackRangeCellList);
         }
         
-        print("Leave enemy!");
+
     }
 
 
@@ -240,27 +240,96 @@ public class EnemyController : MonoBehaviour
 
                     var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
-                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                    if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
                     {
-                        targetPieceProperties.equipmentDurability -= damage;
-                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+                        List<int> targets = new List<int>();
+                        tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
+                        targets.Add(attackTargetIndex);
+
+                        foreach (var p in targets)
+                        {
+                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
+                            {
+                                foreach (var o in gameManager.EnemyPiece)
+                                {
+                                    if (o.GetComponent<EnemyController>().currentCellIndex == p)
+                                    {
+                                        targetPieceProperties.currentLifeValue -= damage;
+                                    }
+                                }
+                            }
+                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
+                            {
+                                foreach (var o in gameManager.Group2Piece)
+                                {
+                                    if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
+                                    {
+                                        var rocketTarget = o.GetComponent<PieceProperties>();
+                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        {
+                                            rocketTarget.equipmentDurability -= damage;
+                                            rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                                        }
+                                        else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
+                                        {
+                                            if (rocketTarget.isTrenchActive)
+                                            {
+                                                rocketTarget.equipmentDurability--;
+                                                rocketTarget.isTrenchActive = false;
+                                            }
+                                            else
+                                            {
+                                                rocketTarget.currentLifeValue -= damage;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            rocketTarget.currentLifeValue -= damage;
+                                        }
+                                    }
+
+                                }
+                            }
+                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
+                            {
+                                foreach (var o in gameManager.Obstacles)
+                                {
+                                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
+                                    {
+                                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
+                                    }
+                                }
+                            }
+                        }
+
+                        // Animator.setbool("isAttacking", false)
 
                     }
-                    else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                    else
                     {
-                        if (targetPieceProperties.isTrenchActive)
+                        if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                         {
-                            targetPieceProperties.equipmentDurability--;
-                            targetPieceProperties.isTrenchActive = false;
+                            targetPieceProperties.equipmentDurability -= damage;
+                            targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                        }
+                        else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                        {
+                            if (targetPieceProperties.isTrenchActive)
+                            {
+                                targetPieceProperties.equipmentDurability--;
+                                targetPieceProperties.isTrenchActive = false;
+                            }
+                            else
+                            {
+                                targetPieceProperties.currentLifeValue -= damage;
+                            }
                         }
                         else
                         {
                             targetPieceProperties.currentLifeValue -= damage;
                         }
-                    }
-                    else
-                    {
-                        targetPieceProperties.currentLifeValue -= damage;
                     }
 
                     // Animator.setbool("isAttacking", false)
@@ -278,27 +347,96 @@ public class EnemyController : MonoBehaviour
 
                     var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
-                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                    if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
                     {
-                        targetPieceProperties.equipmentDurability -= damage;
-                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+                        List<int> targets = new List<int>();
+                        tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
+                        targets.Add(attackTargetIndex);
+
+                        foreach (var p in targets)
+                        {
+                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
+                            {
+                                foreach (var o in gameManager.EnemyPiece)
+                                {
+                                    if (o.GetComponent<EnemyController>().currentCellIndex == p)
+                                    {
+                                        targetPieceProperties.currentLifeValue -= damage;
+                                    }
+                                }
+                            }
+                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
+                            {
+                                foreach (var o in gameManager.Group1Piece)
+                                {
+                                    if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
+                                    {
+                                        var rocketTarget = o.GetComponent<PieceProperties>();
+                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        {
+                                            rocketTarget.equipmentDurability -= damage;
+                                            rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                                        }
+                                        else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
+                                        {
+                                            if (rocketTarget.isTrenchActive)
+                                            {
+                                                rocketTarget.equipmentDurability--;
+                                                rocketTarget.isTrenchActive = false;
+                                            }
+                                            else
+                                            {
+                                                rocketTarget.currentLifeValue -= damage;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            rocketTarget.currentLifeValue -= damage;
+                                        }
+                                    }
+
+                                }
+                            }
+                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
+                            {
+                                foreach (var o in gameManager.Obstacles)
+                                {
+                                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
+                                    {
+                                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
+                                    }
+                                }
+                            }
+                        }
+
+                        // Animator.setbool("isAttacking", false)
 
                     }
-                    else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                    else
                     {
-                        if (targetPieceProperties.isTrenchActive)
+                        if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                         {
-                            targetPieceProperties.equipmentDurability--;
-                            targetPieceProperties.isTrenchActive = false;
+                            targetPieceProperties.equipmentDurability -= damage;
+                            targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
+                        }
+                        else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
+                        {
+                            if (targetPieceProperties.isTrenchActive)
+                            {
+                                targetPieceProperties.equipmentDurability--;
+                                targetPieceProperties.isTrenchActive = false;
+                            }
+                            else
+                            {
+                                targetPieceProperties.currentLifeValue -= damage;
+                            }
                         }
                         else
                         {
                             targetPieceProperties.currentLifeValue -= damage;
                         }
-                    }
-                    else
-                    {
-                        targetPieceProperties.currentLifeValue -= damage;
                     }
 
                     // Animator.setbool("isAttacking", false)
