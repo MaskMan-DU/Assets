@@ -238,16 +238,15 @@ public class PlayerContoller : MonoBehaviour
                                         }
                                         break;
                                 }
-                            }else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_WIRE) // 仍然需要更改
+                            }else 
                             {
-                                foreach (var i in gameManager.Obstacles)
+                                foreach(var i in gameManager.TrenchsList)
                                 {
-                                    var obstacleProperties = i.GetComponent<ObstacleProperties>();
-                                    
-                                    if (obstacleProperties.currentCellIndex == t_cell)
+                                    if (t_cell == i.GetComponent<TrenchProperties>().currentCellIndex)
                                     {
-                                        attackTargetIndex = t_cell;
+                                        attackTargetIndex= t_cell;
                                         state = State.ATTACKING;
+                                        break;
                                     }
                                 }
                             }
@@ -565,6 +564,16 @@ public class PlayerContoller : MonoBehaviour
                             o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
                         }
                     }
+                }else
+                {
+                    foreach (var i in gameManager.TrenchsList)
+                    {
+                        if (p == i.GetComponent<TrenchProperties>().currentCellIndex)
+                        {
+                            i.GetComponent<TrenchProperties>().TrenchGetDamage();
+                            break;
+                        }
+                    }
                 }
             }
 
@@ -697,16 +706,13 @@ public class PlayerContoller : MonoBehaviour
 
 
             }
-            else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_WIRE) // 仍然需要更改， 只能攻击堡垒不能攻击铁丝网。
+            else 
             {
-                foreach (var o in gameManager.Obstacles)
+                foreach (var i in gameManager.TrenchsList)
                 {
-                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == attackTargetIndex)
+                    if (attackTargetIndex == i.GetComponent<TrenchProperties>().currentCellIndex)
                     {
-                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-
-                        // Animator.setbool("isAttacking", false)
-
+                        i.GetComponent<TrenchProperties>().TrenchGetDamage();
                         break;
                     }
                 }

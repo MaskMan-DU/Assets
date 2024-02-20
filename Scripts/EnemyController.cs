@@ -256,27 +256,31 @@ public class EnemyController : MonoBehaviour
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
                                         var rocketTarget = o.GetComponent<PieceProperties>();
-                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
-                                            rocketTarget.equipmentDurability -= damage;
-                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
-
-                                        }
-                                        else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
-                                        {
-                                            if (rocketTarget.isTrenchActive)
+                                            foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                             {
-                                                rocketTarget.equipmentDurability--;
-                                                rocketTarget.isTrenchActive = false;
+                                                if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                                {
+                                                    l.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                    break;
+                                                }
+                                            }
+
+                                            rocketTarget.isTrenchActive = false;
+                                        }
+                                        else // 如果不无敌，是否有
+                                        {
+                                            if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                            {
+                                                rocketTarget.equipmentDurability -= damage;
+                                                rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
                                             }
                                             else
                                             {
                                                 rocketTarget.currentLifeValue -= damage;
                                             }
-                                        }
-                                        else
-                                        {
-                                            rocketTarget.currentLifeValue -= damage;
                                         }
                                     }
 
@@ -343,27 +347,31 @@ public class EnemyController : MonoBehaviour
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
                                         var rocketTarget = o.GetComponent<PieceProperties>();
-                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
-                                            rocketTarget.equipmentDurability -= damage;
-                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
-
-                                        }
-                                        else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
-                                        {
-                                            if (rocketTarget.isTrenchActive)
+                                            foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                             {
-                                                rocketTarget.equipmentDurability--;
-                                                rocketTarget.isTrenchActive = false;
+                                                if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                                {
+                                                    l.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                    break;
+                                                }
+                                            }
+
+                                            rocketTarget.isTrenchActive = false;
+                                        }
+                                        else // 如果不无敌，是否有
+                                        {
+                                            if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                            {
+                                                rocketTarget.equipmentDurability -= damage;
+                                                rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
                                             }
                                             else
                                             {
                                                 rocketTarget.currentLifeValue -= damage;
                                             }
-                                        }
-                                        else
-                                        {
-                                            rocketTarget.currentLifeValue -= damage;
                                         }
                                     }
 
@@ -376,27 +384,31 @@ public class EnemyController : MonoBehaviour
                     }
                     else
                     {
-                        if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                        if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                         {
-                            targetPieceProperties.equipmentDurability -= damage;
-                            targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
-
-                        }
-                        else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
-                        {
-                            if (targetPieceProperties.isTrenchActive)
+                            foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                             {
-                                targetPieceProperties.equipmentDurability--;
-                                targetPieceProperties.isTrenchActive = false;
+                                if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                {
+                                    o.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                    break;
+                                }
+                            }
+
+                            targetPieceProperties.isTrenchActive = false;
+                        }
+                        else // 如果不无敌，是否有
+                        {
+                            if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                            {
+                                targetPieceProperties.equipmentDurability -= damage;
+                                targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
                             }
                             else
                             {
                                 targetPieceProperties.currentLifeValue -= damage;
                             }
-                        }
-                        else
-                        {
-                            targetPieceProperties.currentLifeValue -= damage;
                         }
                     }
 
