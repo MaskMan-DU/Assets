@@ -11,8 +11,8 @@ public class TGSSetting : MonoBehaviour
     public const int CELL_DEFAULT = 1;
     public const int CELL_PLAYER = 2;
     public const int CELL_ENEMY = 4;
-    public const int CELL_OBSTACLE = 8;
-    public const int CELLS_ALL_NAVIGATABLE = ~(CELL_OBSTACLE | CELL_PLAYER | CELL_ENEMY);
+    public const int CELL_WIRE = 8;
+    public const int CELLS_ALL_NAVIGATABLE = ~(CELL_WIRE | CELL_PLAYER | CELL_ENEMY);
 
     public List<int> GoldMinerCells = new List<int>() { 543, 577, 578, 545, 512, 511 };
 

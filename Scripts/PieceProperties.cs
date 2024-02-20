@@ -432,9 +432,8 @@ public class PieceProperties : MonoBehaviour
 
     public void Trench()
     {
-        isTrenchActive = true;
-
         // 生成一个堡垒,堡垒生成消耗耐久度1，
+        Instantiate(gameManager.Trench, transform.position,Quaternion.identity);
     }
     
     private void UpdateAbility()

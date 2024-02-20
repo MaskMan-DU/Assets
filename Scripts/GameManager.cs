@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public State state;
     public GameObject Wire;
+    public GameObject Trench;
     public GameObject PieceActionMenu;
     public GameObject ActionCancelButton;
 
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Group2Piece = null;
     public List<GameObject> EnemyPiece = null;
     public List<GameObject> Obstacles = null;
+    public List<GameObject> TrenchsList = null;
 
     // Start is called before the first frame update
     void Start()

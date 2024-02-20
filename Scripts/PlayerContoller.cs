@@ -238,7 +238,7 @@ public class PlayerContoller : MonoBehaviour
                                         }
                                         break;
                                 }
-                            }else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_OBSTACLE) // 仍然需要更改
+                            }else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_WIRE) // 仍然需要更改
                             {
                                 foreach (var i in gameManager.Obstacles)
                                 {
@@ -483,28 +483,34 @@ public class PlayerContoller : MonoBehaviour
                                 if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                 {
                                     var rocketTarget = o.GetComponent<PieceProperties>();
-                                    if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
-                                    {
-                                        rocketTarget.equipmentDurability -= damage;
-                                        rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
 
-                                    }
-                                    else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
+                                    if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                     {
-                                        if (rocketTarget.isTrenchActive)
+                                        foreach (var i in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                         {
-                                            rocketTarget.equipmentDurability--;
-                                            rocketTarget.isTrenchActive = false;
+                                            if (i.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                            {
+                                                i.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                break;
+                                            }
+                                        }
+
+                                        rocketTarget.isTrenchActive = false;
+                                    }
+                                    else // 如果不无敌，是否有
+                                    {
+                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        {
+                                            rocketTarget.equipmentDurability -= damage;
+                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
                                         }
                                         else
                                         {
                                             rocketTarget.currentLifeValue -= damage;
-                                        }
+                                        }                               
                                     }
-                                    else
-                                    {
-                                        rocketTarget.currentLifeValue -= damage;
-                                    }
+                                    
                                 }
 
                             }
@@ -516,27 +522,31 @@ public class PlayerContoller : MonoBehaviour
                                 if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                 {
                                     var rocketTarget = o.GetComponent<PieceProperties>();
-                                    if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                    if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                     {
-                                        rocketTarget.equipmentDurability -= damage;
-                                        rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
-
-                                    }
-                                    else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
-                                    {
-                                        if (rocketTarget.isTrenchActive)
+                                        foreach (var i in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                         {
-                                            rocketTarget.equipmentDurability--;
-                                            rocketTarget.isTrenchActive = false;
+                                            if (i.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                            {
+                                                i.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                break;
+                                            }
+                                        }
+
+                                        rocketTarget.isTrenchActive = false;
+                                    }
+                                    else // 如果不无敌，是否有
+                                    {
+                                        if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                        {
+                                            rocketTarget.equipmentDurability -= damage;
+                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
                                         }
                                         else
                                         {
                                             rocketTarget.currentLifeValue -= damage;
                                         }
-                                    }
-                                    else
-                                    {
-                                        rocketTarget.currentLifeValue -= damage;
                                     }
                                 }
 
@@ -546,7 +556,7 @@ public class PlayerContoller : MonoBehaviour
                          
                     
                 }
-                else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
+                else if (tgs.CellGetGroup(p) == TGSSetting.CELL_WIRE)
                 {
                     foreach (var o in gameManager.Obstacles)
                     {
@@ -606,27 +616,31 @@ public class PlayerContoller : MonoBehaviour
                                 var targetPieceProperties = i.GetComponent<PieceProperties>();
                                 var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
-                                if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
-                                    targetPieceProperties.equipmentDurability -= damage;
-                                    targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
-
-                                }
-                                else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
-                                {
-                                    if (targetPieceProperties.isTrenchActive)
+                                    foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                     {
-                                        targetPieceProperties.equipmentDurability--;
-                                        targetPieceProperties.isTrenchActive = false;
+                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                        {
+                                            o.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                            break;
+                                        }
+                                    }
+
+                                    targetPieceProperties.isTrenchActive = false;
+                                }
+                                else // 如果不无敌，是否有
+                                {
+                                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                    {
+                                        targetPieceProperties.equipmentDurability -= damage;
+                                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
                                     }
                                     else
                                     {
                                         targetPieceProperties.currentLifeValue -= damage;
                                     }
-                                }
-                                else
-                                {
-                                    targetPieceProperties.currentLifeValue -= damage;
                                 }
 
                                 // Animator.setbool("isAttacking", false)
@@ -645,27 +659,31 @@ public class PlayerContoller : MonoBehaviour
 
                                 var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
-                                if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
-                                    targetPieceProperties.equipmentDurability -= damage;
-                                    targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
-
-                                }
-                                else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
-                                {
-                                    if (targetPieceProperties.isTrenchActive)
+                                    foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                     {
-                                        targetPieceProperties.equipmentDurability--;
-                                        targetPieceProperties.isTrenchActive = false;
+                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                        {
+                                            o.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                            break;
+                                        }
+                                    }
+
+                                    targetPieceProperties.isTrenchActive = false;
+                                }
+                                else // 如果不无敌，是否有
+                                {
+                                    if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                    {
+                                        targetPieceProperties.equipmentDurability -= damage;
+                                        targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
                                     }
                                     else
                                     {
                                         targetPieceProperties.currentLifeValue -= damage;
                                     }
-                                }
-                                else
-                                {
-                                    targetPieceProperties.currentLifeValue -= damage;
                                 }
 
                                 // Animator.setbool("isAttacking", false)
@@ -679,7 +697,7 @@ public class PlayerContoller : MonoBehaviour
 
 
             }
-            else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_OBSTACLE) // 仍然需要更改， 只能攻击堡垒不能攻击铁丝网。
+            else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_WIRE) // 仍然需要更改， 只能攻击堡垒不能攻击铁丝网。
             {
                 foreach (var o in gameManager.Obstacles)
                 {

@@ -106,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1795961046990407842}
-  - component: {fileID: 1795961046990407841}
   - component: {fileID: 7127128830082997628}
   m_Layer: 0
   m_Name: Obstacle
@@ -131,20 +130,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1795961046990407841
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1795961046990407846}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7127128830082997628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4952628219c918049998af1ff6631b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeValue: 2
+  lifeValue: 1
   currentCellIndex: 0
   currentLifeValue: 0

@@ -22,7 +22,7 @@ public class ObstacleProperties : MonoBehaviour
         tgs = TerrainGridSystem.instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         currentCellIndex = tgs.CellGetIndex(transform.position, true);
-        tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_OBSTACLE);
+        tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_WIRE);
         tgs.CellSetCanCross(currentCellIndex, false);
         gameManager.Obstacles.Add(this.gameObject);
     }
@@ -34,6 +34,7 @@ public class ObstacleProperties : MonoBehaviour
         {
             tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
             tgs.CellSetCanCross(currentCellIndex, true);
+            gameManager.Obstacles.Remove(this.gameObject);
             Destroy(gameObject);
         }
     }
