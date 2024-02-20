@@ -197,55 +197,62 @@ public class PlayerContoller : MonoBehaviour
 
                     if (attackRangeCellList.Contains(t_cell))
                     {
-                        if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_ENEMY)
+                        if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
                         {
-                            attackTargetIndex = t_cell;
+                            attackTargetIndex= t_cell;
                             state = State.ATTACKING;
                         }
-                        else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_PLAYER)
+                        else
                         {
-                            switch (camp)
+                            if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_ENEMY)
                             {
-                                case Camp.Group1:
-                                    foreach(var i in gameManager.Group2Piece)
-                                    {
-                                        var pieceController = i.GetComponent<PlayerContoller>();
-                                        if (pieceController.currentCellIndex == t_cell)
-                                        {
-                                            attackTargetIndex = t_cell;
-                                            state = State.ATTACKING;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                case Camp.Group2:
-                                    foreach (var i in gameManager.Group1Piece)
-                                    {
-                                        var pieceController = i.GetComponent<PlayerContoller>();
-                                        if (pieceController.currentCellIndex == t_cell)
-                                        {
-                                            attackTargetIndex = t_cell;
-                                            state = State.ATTACKING;
-                                            break;
-                                        }
-                                    }
-                                    break;
+                                attackTargetIndex = t_cell;
+                                state = State.ATTACKING;
                             }
-
-                            
-
-                        }else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_OBSTACLE)
-                        {
-                            switch (camp)
+                            else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_PLAYER)
                             {
-                                case Camp.Group1:
-
-                                    break;
-                                case Camp.Group2:
-
-                                    break;
+                                switch (camp)
+                                {
+                                    case Camp.Group1:
+                                        foreach (var i in gameManager.Group2Piece)
+                                        {
+                                            var pieceController = i.GetComponent<PlayerContoller>();
+                                            if (pieceController.currentCellIndex == t_cell)
+                                            {
+                                                attackTargetIndex = t_cell;
+                                                state = State.ATTACKING;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    case Camp.Group2:
+                                        foreach (var i in gameManager.Group1Piece)
+                                        {
+                                            var pieceController = i.GetComponent<PlayerContoller>();
+                                            if (pieceController.currentCellIndex == t_cell)
+                                            {
+                                                attackTargetIndex = t_cell;
+                                                state = State.ATTACKING;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                }
+                            }else if (tgs.CellGetGroup(t_cell) == TGSSetting.CELL_OBSTACLE) // 仍然需要更改
+                            {
+                                foreach (var i in gameManager.Obstacles)
+                                {
+                                    var obstacleProperties = i.GetComponent<ObstacleProperties>();
+                                    
+                                    if (obstacleProperties.currentCellIndex == t_cell)
+                                    {
+                                        attackTargetIndex = t_cell;
+                                        state = State.ATTACKING;
+                                    }
+                                }
                             }
-                        }                   
+                        }
+                                    
                     }
                 }
                 break;
@@ -275,7 +282,7 @@ public class PlayerContoller : MonoBehaviour
                     pieceProperties.First_Aid_Kit();
                     usedEquipment = true;
                     state = State.IDLE;
-                }else if (pieceProperties.equipment == PieceProperties.Equipment.Trench)
+                }else if (pieceProperties.equipment == PieceProperties.Equipment.Trench) 
                 {
                     pieceProperties.Trench();
                     usedEquipment = true;
@@ -445,116 +452,159 @@ public class PlayerContoller : MonoBehaviour
 
     public void Attack()
     {
-        if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_ENEMY)
+        if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
         {
-            foreach (var i in gameManager.EnemyPiece)
+            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+            List<int> targets = new List<int>();
+            tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
+            targets.Add(attackTargetIndex);
+
+            foreach (var p in targets)
             {
-                var enemyController = i.GetComponent<EnemyController>();
-                if (enemyController.currentCellIndex == attackTargetIndex)
+                if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
                 {
-                    var targetPieceProperties = i.GetComponent<PieceProperties>();
-
-                    var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
-
-                    targetPieceProperties.currentLifeValue -= damage;
-                    if (targetPieceProperties.currentLifeValue <= 0)
+                    foreach (var o in gameManager.EnemyPiece)
                     {
-                        if (camp == Camp.Group1)
+                        if (o.GetComponent<EnemyController>().currentCellIndex == p)
                         {
-                            gameManager.group1Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
-                        }
-
-                        if (camp == Camp.Group2)
-                        {
-                            gameManager.group2Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                            o.GetComponent<PieceProperties>().currentLifeValue -= damage;
                         }
                     }
-
-                    // Animator.setbool("isAttacking", false)
-
-                    break;
                 }
-            }
-        }
-        else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_PLAYER)
-        {
-            switch (camp)
-            {
-                case Camp.Group1:
-                    foreach (var i in gameManager.Group2Piece)
+                else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
+                {
+                    switch (camp)
                     {
-                        var pieceController = i.GetComponent<PlayerContoller>();
-                        if (pieceController.currentCellIndex == attackTargetIndex)
-                        {
-                            var targetPieceProperties = i.GetComponent<PieceProperties>();
-                            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
-
-                            if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
+                        case Camp.Group1:
+                            foreach (var o in gameManager.Group2Piece)
                             {
-                                List<int> targets = new List<int>();
-                                tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
-                                targets.Add(attackTargetIndex);
-
-                                foreach (var p in targets)
+                                if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                 {
-                                    if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
+                                    var rocketTarget = o.GetComponent<PieceProperties>();
+                                    if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                                     {
-                                        foreach (var o in gameManager.EnemyPiece)
-                                        {
-                                            if (o.GetComponent<EnemyController>().currentCellIndex == p)
-                                            {
-                                                targetPieceProperties.currentLifeValue -= damage;
-                                            }
-                                        }
-                                    }else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
-                                    {
-                                        foreach (var o in gameManager.Group2Piece)
-                                        {
-                                            if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
-                                            {
-                                                var rocketTarget = o.GetComponent<PieceProperties>();
-                                                if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
-                                                {
-                                                    rocketTarget.equipmentDurability -= damage;
-                                                    rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+                                        rocketTarget.equipmentDurability -= damage;
+                                        rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
 
-                                                }
-                                                else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
-                                                {
-                                                    if (rocketTarget.isTrenchActive)
-                                                    {
-                                                        rocketTarget.equipmentDurability--;
-                                                        rocketTarget.isTrenchActive = false;
-                                                    }
-                                                    else
-                                                    {
-                                                        rocketTarget.currentLifeValue -= damage;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    rocketTarget.currentLifeValue -= damage;
-                                                }
-                                            }
-                                            
-                                        }
-                                    }else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
+                                    }
+                                    else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
                                     {
-                                        foreach (var o in gameManager.Obstacles)
+                                        if (rocketTarget.isTrenchActive)
                                         {
-                                            if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
-                                            {
-                                                o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-                                            }
+                                            rocketTarget.equipmentDurability--;
+                                            rocketTarget.isTrenchActive = false;
                                         }
+                                        else
+                                        {
+                                            rocketTarget.currentLifeValue -= damage;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        rocketTarget.currentLifeValue -= damage;
                                     }
                                 }
 
-                                // Animator.setbool("isAttacking", false)
+                            }
+                            break;
+
+                        case Camp.Group2:
+                            foreach (var o in gameManager.Group1Piece)
+                            {
+                                if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
+                                {
+                                    var rocketTarget = o.GetComponent<PieceProperties>();
+                                    if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                    {
+                                        rocketTarget.equipmentDurability -= damage;
+                                        rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
+                                    }
+                                    else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
+                                    {
+                                        if (rocketTarget.isTrenchActive)
+                                        {
+                                            rocketTarget.equipmentDurability--;
+                                            rocketTarget.isTrenchActive = false;
+                                        }
+                                        else
+                                        {
+                                            rocketTarget.currentLifeValue -= damage;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        rocketTarget.currentLifeValue -= damage;
+                                    }
+                                }
 
                             }
-                            else
+                            break;
+                    }
+                         
+                    
+                }
+                else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
+                {
+                    foreach (var o in gameManager.Obstacles)
+                    {
+                        if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
+                        {
+                            o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
+                        }
+                    }
+                }
+            }
+
+            // Animator.setbool("isAttacking", false)
+        }
+        else
+        {
+            if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_ENEMY)
+            {
+                foreach (var i in gameManager.EnemyPiece)
+                {
+                    var enemyController = i.GetComponent<EnemyController>();
+                    if (enemyController.currentCellIndex == attackTargetIndex)
+                    {
+                        var targetPieceProperties = i.GetComponent<PieceProperties>();
+
+                        var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
+                        targetPieceProperties.currentLifeValue -= damage;
+                        if (targetPieceProperties.currentLifeValue <= 0)
+                        {
+                            if (camp == Camp.Group1)
                             {
+                                gameManager.group1Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                            }
+
+                            if (camp == Camp.Group2)
+                            {
+                                gameManager.group2Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                            }
+                        }
+
+                        // Animator.setbool("isAttacking", false)
+
+                        break;
+                    }
+                }
+            }
+            else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_PLAYER)
+            {
+                switch (camp)
+                {
+                    case Camp.Group1:
+                        foreach (var i in gameManager.Group2Piece)
+                        {
+                            var pieceController = i.GetComponent<PlayerContoller>();
+                            if (pieceController.currentCellIndex == attackTargetIndex)
+                            {
+                                var targetPieceProperties = i.GetComponent<PieceProperties>();
+                                var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
                                 if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                                 {
                                     targetPieceProperties.equipmentDurability -= damage;
@@ -577,92 +627,23 @@ public class PlayerContoller : MonoBehaviour
                                 {
                                     targetPieceProperties.currentLifeValue -= damage;
                                 }
-                            }
-
-                            // Animator.setbool("isAttacking", false)
-
-                            break;
-                        }
-                    }
-                    break;
-                case Camp.Group2:
-                    foreach (var i in gameManager.Group1Piece)
-                    {
-                        var pieceController = i.GetComponent<PlayerContoller>();
-                        if (pieceController.currentCellIndex == attackTargetIndex)
-                        {
-                            var targetPieceProperties = i.GetComponent<PieceProperties>();
-
-                            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
-
-                            if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
-                            {
-                                List<int> targets = new List<int>();
-                                tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
-                                targets.Add(attackTargetIndex);
-
-                                foreach (var p in targets)
-                                {
-                                    if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
-                                    {
-                                        foreach (var o in gameManager.EnemyPiece)
-                                        {
-                                            if (o.GetComponent<EnemyController>().currentCellIndex == p)
-                                            {
-                                                targetPieceProperties.currentLifeValue -= damage;
-                                            }
-                                        }
-                                    }
-                                    else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
-                                    {
-                                        foreach (var o in gameManager.Group1Piece)
-                                        {
-                                            if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
-                                            {
-                                                var rocketTarget = o.GetComponent<PieceProperties>();
-                                                if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
-                                                {
-                                                    rocketTarget.equipmentDurability -= damage;
-                                                    rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
-
-                                                }
-                                                else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
-                                                {
-                                                    if (rocketTarget.isTrenchActive)
-                                                    {
-                                                        rocketTarget.equipmentDurability--;
-                                                        rocketTarget.isTrenchActive = false;
-                                                    }
-                                                    else
-                                                    {
-                                                        rocketTarget.currentLifeValue -= damage;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    rocketTarget.currentLifeValue -= damage;
-                                                }
-                                            }
-
-                                        }
-                                    }
-                                    else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
-                                    {
-                                        foreach (var o in gameManager.Obstacles)
-                                        {
-                                            if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
-                                            {
-                                                o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-                                            }
-                                        }
-                                    }
-                                }
 
                                 // Animator.setbool("isAttacking", false)
 
+                                break;
                             }
-                            else
+                        }
+                        break;
+                    case Camp.Group2:
+                        foreach (var i in gameManager.Group1Piece)
+                        {
+                            var pieceController = i.GetComponent<PlayerContoller>();
+                            if (pieceController.currentCellIndex == attackTargetIndex)
                             {
+                                var targetPieceProperties = i.GetComponent<PieceProperties>();
+
+                                var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+
                                 if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                                 {
                                     targetPieceProperties.equipmentDurability -= damage;
@@ -685,34 +666,35 @@ public class PlayerContoller : MonoBehaviour
                                 {
                                     targetPieceProperties.currentLifeValue -= damage;
                                 }
+
+                                // Animator.setbool("isAttacking", false)
+
+                                break;
                             }
-
-                            // Animator.setbool("isAttacking", false)
-
-                            break;
                         }
-                    }
-                    break;
-            }
-
-
-
-        }
-        else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_OBSTACLE)
-        {
-            foreach (var o in gameManager.Obstacles)
-            {
-                if (o.GetComponent<ObstacleProperties>().currentCellIndex == attackTargetIndex)
-                {
-                    o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-
-                    // Animator.setbool("isAttacking", false)
-
-                    break;
+                        break;
                 }
-            }
 
+
+
+            }
+            else if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_OBSTACLE) // 仍然需要更改， 只能攻击堡垒不能攻击铁丝网。
+            {
+                foreach (var o in gameManager.Obstacles)
+                {
+                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == attackTargetIndex)
+                    {
+                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
+
+                        // Animator.setbool("isAttacking", false)
+
+                        break;
+                    }
+                }
+
+            }
         }
+        
 
         hasAttack = true;
     }

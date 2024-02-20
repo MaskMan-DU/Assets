@@ -9,7 +9,7 @@ public class ObstacleProperties : MonoBehaviour
     TerrainGridSystem tgs;
 
     [Header("基本属性")]
-    public int lifeValue = 2;
+    public int lifeValue = 1;
     public int currentCellIndex;
 
     [Header("实时数据")]

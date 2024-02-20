@@ -249,17 +249,7 @@ public class EnemyController : MonoBehaviour
 
                         foreach (var p in targets)
                         {
-                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
-                            {
-                                foreach (var o in gameManager.EnemyPiece)
-                                {
-                                    if (o.GetComponent<EnemyController>().currentCellIndex == p)
-                                    {
-                                        targetPieceProperties.currentLifeValue -= damage;
-                                    }
-                                }
-                            }
-                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
+                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
                             {
                                 foreach (var o in gameManager.Group2Piece)
                                 {
@@ -269,7 +259,7 @@ public class EnemyController : MonoBehaviour
                                         if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                                         {
                                             rocketTarget.equipmentDurability -= damage;
-                                            rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
 
                                         }
                                         else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
@@ -290,16 +280,6 @@ public class EnemyController : MonoBehaviour
                                         }
                                     }
 
-                                }
-                            }
-                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
-                            {
-                                foreach (var o in gameManager.Obstacles)
-                                {
-                                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
-                                    {
-                                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-                                    }
                                 }
                             }
                         }
@@ -356,17 +336,7 @@ public class EnemyController : MonoBehaviour
 
                         foreach (var p in targets)
                         {
-                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_ENEMY)
-                            {
-                                foreach (var o in gameManager.EnemyPiece)
-                                {
-                                    if (o.GetComponent<EnemyController>().currentCellIndex == p)
-                                    {
-                                        targetPieceProperties.currentLifeValue -= damage;
-                                    }
-                                }
-                            }
-                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
+                            if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
                             {
                                 foreach (var o in gameManager.Group1Piece)
                                 {
@@ -376,7 +346,7 @@ public class EnemyController : MonoBehaviour
                                         if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
                                         {
                                             rocketTarget.equipmentDurability -= damage;
-                                            rocketTarget.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+                                            rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
 
                                         }
                                         else if (rocketTarget.equipment == PieceProperties.Equipment.Trench)
@@ -397,16 +367,6 @@ public class EnemyController : MonoBehaviour
                                         }
                                     }
 
-                                }
-                            }
-                            else if (tgs.CellGetGroup(p) == TGSSetting.CELL_OBSTACLE)
-                            {
-                                foreach (var o in gameManager.Obstacles)
-                                {
-                                    if (o.GetComponent<ObstacleProperties>().currentCellIndex == p)
-                                    {
-                                        o.GetComponent<ObstacleProperties>().ObstacleGetDamage();
-                                    }
                                 }
                             }
                         }
