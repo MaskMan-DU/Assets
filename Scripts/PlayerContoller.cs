@@ -56,6 +56,8 @@ public class PlayerContoller : MonoBehaviour
     public int initialCellIndex;
     public int currentCellIndex;
 
+    public bool isInGoldMine = false;
+
 
     // Use this for initialization
     private void Start()
@@ -95,11 +97,15 @@ public class PlayerContoller : MonoBehaviour
 
         currentCellIndex = tgs.CellGetIndex(transform.position,true);
 
+
+
         switch (state)
         {
             case State.IDLE:
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
                 tgs.CellSetCanCross(currentCellIndex, false);
+
+                
                 break;
 
             case State.MOVING:
@@ -293,6 +299,8 @@ public class PlayerContoller : MonoBehaviour
                 gameManager.activePiece = null;
                 state = State.WAITFORNEXTTURN;
 
+                
+
                 gameManager.state = GameManager.State.ChangeToOtherSide;
                 break;
                 
@@ -300,6 +308,7 @@ public class PlayerContoller : MonoBehaviour
             case State.WAITFORNEXTTURN:
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
                 tgs.CellSetCanCross(currentCellIndex, false);
+
                 break;
             case State.REFRESH:
                 hasAttack = false;
@@ -308,6 +317,7 @@ public class PlayerContoller : MonoBehaviour
                 state = State.IDLE;
                 break;
         }
+
 
         
     }

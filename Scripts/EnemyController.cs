@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
             case State.ATTACKING:
                 if (attackRangeCellList != null)
                 {
-                    CleanRange(attackRangeCellList);
+                    // CleanRange(attackRangeCellList);
                 }
 
                 // Ãæ³¯¹¥»÷¶ÔÏó
@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
                 gameManager.PieceActionMenu.SetActive(true);
                 break;
             case State.ATTACKSELECT:
-                ShowRange(attackRange);
+                // ShowRange(attackRange);
 
                 List<int> protentialTargetPiecesIndex = new List<int>();
                 foreach(var i in attackRangeCellList)
@@ -149,6 +149,7 @@ public class EnemyController : MonoBehaviour
         {
             tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
             tgs.CellSetCanCross(currentCellIndex, true);
+            gameManager.EnemyPiece.Remove(this.gameObject);
             Destroy(this.gameObject);
         }
     }

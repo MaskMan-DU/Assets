@@ -17,14 +17,22 @@ public class ActionButton_Attack : MonoBehaviour
         if (gameManager.activePiece != null)
         {
             var playerContorller = gameManager.activePiece.GetComponent<PlayerContoller>();
-            if (playerContorller.hasAttack)
+
+            if (playerContorller.isInGoldMine)
             {
                 this.gameObject.GetComponent<Button>().interactable = false;
             }
             else
             {
-                this.gameObject.GetComponent<Button>().interactable = true;
-            }
+                if (playerContorller.hasAttack)
+                {
+                    this.gameObject.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().interactable = true;
+                }
+            }          
         }
 
     }

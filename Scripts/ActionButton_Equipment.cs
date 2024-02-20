@@ -19,17 +19,25 @@ public class ActionButton_Equipment : MonoBehaviour
             var playerContorller = gameManager.activePiece.GetComponent<PlayerContoller>();
             var pieceProperties = gameManager.activePiece.GetComponent<PieceProperties>();
 
-            if (pieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
-            {
-                this.gameObject.GetComponent<Button>().interactable = false;
-            }else if (playerContorller.usedEquipment)
+            if (playerContorller.isInGoldMine)
             {
                 this.gameObject.GetComponent<Button>().interactable = false;
             }
             else
             {
-                this.gameObject.GetComponent<Button>().interactable = true;
-            }
+                if (pieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                {
+                    this.gameObject.GetComponent<Button>().interactable = false;
+                }
+                else if (playerContorller.usedEquipment)
+                {
+                    this.gameObject.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    this.gameObject.GetComponent<Button>().interactable = true;
+                }
+            }       
         }
 
     }
