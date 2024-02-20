@@ -353,6 +353,7 @@ public class PlayerContoller : MonoBehaviour
         rangeOriginalColor = new List<Color>();
         moveRange = new List<int>();
         attackRangeCellList = new List<int>();
+        equipmentRangeCellList = new List<int>();
 
         Cell cell = tgs.CellGetAtPosition(transform.position, true);
 
