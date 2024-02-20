@@ -1578,6 +1578,7 @@ GameObject:
   - component: {fileID: 5413803382702305574}
   - component: {fileID: 5407308720391316382}
   - component: {fileID: 5456865046209577818}
+  - component: {fileID: 4042503264881862406}
   m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_01
   m_TagString: Untagged
@@ -1679,6 +1680,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43531877904820074, guid: d70ea84b37167204484057e531733574, type: 2}
+--- !u!114 &4042503264881862406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430269518741702028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5430465786278643750
 GameObject:
   m_ObjectHideFlags: 0

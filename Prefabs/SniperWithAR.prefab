@@ -4105,6 +4105,7 @@ GameObject:
   - component: {fileID: 2893299889928681089}
   - component: {fileID: 2885750955417838649}
   - component: {fileID: 2935234580257834237}
+  - component: {fileID: 1655722365065602665}
   m_Layer: 0
   m_Name: SM_Wep_Preset_A_Rifle_01
   m_TagString: Untagged
@@ -4206,6 +4207,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43531877904820074, guid: d70ea84b37167204484057e531733574, type: 2}
+--- !u!114 &1655722365065602665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907795727367029291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2907806713215411076
 GameObject:
   m_ObjectHideFlags: 0
@@ -7581,7 +7594,7 @@ Transform:
   m_GameObject: {fileID: 6003681207470689836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -265.6921, y: -35.9591, z: -376.49738}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
