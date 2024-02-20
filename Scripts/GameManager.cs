@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     TerrainGridSystem tgs;
+    public TGSSetting tgsSetting;
     public GameObject activePiece;
     public PlayerContoller.Camp activeCamp;
 
@@ -18,6 +19,12 @@ public class GameManager : MonoBehaviour
     public int group2MoveDice;
 
     public int attackDice;
+
+    public int group1Gold;
+    public int group2Gold;
+
+    public int group1Coin;
+    public int group2Coin;
 
     public enum State
     {
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         tgs = TerrainGridSystem.instance;
+        tgsSetting = gameObject.GetComponent<TGSSetting>();
         state = State.RollMoveDice;
         PieceActionMenu.SetActive(false);
         ActionCancelButton.SetActive(false);
@@ -135,6 +143,7 @@ public class GameManager : MonoBehaviour
                 group2HasAct = false;
 
                 RefreshPiecesState();
+                GetGold();
 
                 state = State.RollMoveDice;
                 break;
@@ -315,6 +324,28 @@ public class GameManager : MonoBehaviour
 
                     break;
 
+            }
+        }
+    }
+
+    public void GetGold()
+    {
+        foreach (var i in Group1Piece)
+        {
+            var goldOutPut = i.GetComponent<PieceProperties>().goldOutPutSpeed;
+
+            if (tgsSetting.GoldMinerCells.Contains(i.GetComponent<PlayerContoller>().currentCellIndex))
+            {
+                group1Gold += goldOutPut;
+            }  
+        }
+
+        foreach (var i in Group2Piece)
+        {
+            var goldOutPut = i.GetComponent<PieceProperties>().goldOutPutSpeed;
+            if (tgsSetting.GoldMinerCells.Contains(i.GetComponent<PlayerContoller>().currentCellIndex))
+            {
+                group2Gold += goldOutPut;
             }
         }
     }

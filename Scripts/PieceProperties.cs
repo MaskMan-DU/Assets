@@ -90,8 +90,13 @@ public class PieceProperties : MonoBehaviour
     public int abilityExtraSRWeaponDamage = 0;
     public int abilityPlusMovment = 0;
     public int abilityPlusLifeValue = 0;
+    public int extraEnemyCoin = 0;
 
-    public int goldOutPutSpeed = 20;
+    public int goldOutPutSpeed = 100;
+
+
+    public int enemyCoin;
+    
 
     [Header("实时数据")]
     public int currentLifeValue;
@@ -117,11 +122,13 @@ public class PieceProperties : MonoBehaviour
             {
                 lifeValue = 100;
                 WeaponLevel = 1;
+                enemyCoin = 50;
             }
             else
             {
                 lifeValue = 150;
                 WeaponLevel = Random.Range(2, 4);
+                enemyCoin = 100;
             }
             UpdateWeaponProperties();
         }
@@ -218,36 +225,20 @@ public class PieceProperties : MonoBehaviour
                 if (PieceLevel == 1)
                 {
                     lifeValue = 110;
+                    // 黄金数量增加 20 
+                    goldOutPutSpeed += 20;
                 }
                 else if (PieceLevel == 2)
                 {
                     lifeValue = 120;
+                    // 黄金数量增加 40 
+                    goldOutPutSpeed += 40;
                 }
                 else if (PieceLevel == 3)
                 {
                     lifeValue = 140;
-                }
-
-                foreach (var i in tgsSetting.GoldMinerCells)
-                {
-                    if (tgs.CellGetIndex(transform.position) == i)
-                    {
-                        if (PieceLevel == 1)
-                        {
-                            // 黄金数量增加 20 
-                            goldOutPutSpeed += 20;
-                        }
-                        else if (PieceLevel == 2)
-                        {
-                            // 黄金数量增加 40 
-                            goldOutPutSpeed += 40;
-                        }
-                        else if (PieceLevel == 3)
-                        {
-                            // 黄金数量增加 80
-                            goldOutPutSpeed += 80;
-                        }
-                    }
+                    // 黄金数量增加 80
+                    goldOutPutSpeed += 80;
                 }
                 break;
             case Profession.Sniper:
@@ -536,6 +527,18 @@ public class PieceProperties : MonoBehaviour
                 {
                     abilityExtraPistolWeaponDamage = 8;
                     lifeValue += 80;
+                }
+                break;
+            case Ability.Gold_Miner:
+                if (PieceLevel == 1)
+                {
+                    goldOutPutSpeed += 10;
+                }else if (PieceLevel == 2)
+                {
+                    goldOutPutSpeed += 20;
+                }else if (PieceLevel == 3)
+                {
+                    goldOutPutSpeed += 40;
                 }
                 break;
         }

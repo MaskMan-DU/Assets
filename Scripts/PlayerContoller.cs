@@ -447,6 +447,18 @@ public class PlayerContoller : MonoBehaviour
                     var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
 
                     targetPieceProperties.currentLifeValue -= damage;
+                    if (targetPieceProperties.currentLifeValue <= 0)
+                    {
+                        if (camp == Camp.Group1)
+                        {
+                            gameManager.group1Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                        }
+
+                        if (camp == Camp.Group2)
+                        {
+                            gameManager.group2Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                        }
+                    }
 
                     // Animator.setbool("isAttacking", false)
 
