@@ -117,7 +117,6 @@ public class PieceProperties : MonoBehaviour
         }
         else
         {
-            pieceWeapon = (Weapon)Random.Range(0, 4);
             if (pieceType == PieceType.NormalEnemy) //  «∆’Õ®µ–»À
             {
                 lifeValue = 100;
@@ -133,6 +132,7 @@ public class PieceProperties : MonoBehaviour
             UpdateWeaponProperties();
         }
         
+        
 
         currentLifeValue = lifeValue;
     }
@@ -140,9 +140,6 @@ public class PieceProperties : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (equipmentDurability <= 0)
         {
             equipment = Equipment.None;
@@ -437,7 +434,6 @@ public class PieceProperties : MonoBehaviour
     {
         isTrenchActive = true;
     }
-
     
     private void UpdateAbility()
     {

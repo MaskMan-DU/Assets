@@ -148,8 +148,6 @@ public class GameManager : MonoBehaviour
                 state = State.RollMoveDice;
                 break;
         }
-
-        UpdatePieceAbility();
     }
 
 
@@ -316,7 +314,10 @@ public class GameManager : MonoBehaviour
             switch (pieceCamp)
             {
                 case PlayerContoller.Camp.Group1:
-
+                    var group1ExtraWeaponDamage = 0;
+                    var group1ExtraMovement = 0;
+                    var group1ExtraLifeValue = 0;
+                 
 
                     break;
                 case PlayerContoller.Camp.Group2:
