@@ -139,6 +139,8 @@ public class GameManager : MonoBehaviour
                 state = State.RollMoveDice;
                 break;
         }
+
+        UpdatePieceAbility();
     }
 
 
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var i in Group1Piece)
             {
-                i.GetComponent<PlayerContoller>().steps = group1MoveDice + i.GetComponent<PieceProperties>().plusMovement;
+                i.GetComponent<PlayerContoller>().steps = group1MoveDice + i.GetComponent<PieceProperties>().finalMovement;
 
                 if (i.GetComponent<PlayerContoller>().steps < 0)
                 {
@@ -161,7 +163,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var i in Group2Piece)
             {
-                i.GetComponent<PlayerContoller>().steps = group2MoveDice + i.GetComponent<PieceProperties>().plusMovement;
+                i.GetComponent<PlayerContoller>().steps = group2MoveDice + i.GetComponent<PieceProperties>().finalMovement;
                 
                 if (i.GetComponent<PlayerContoller>().steps < 0)
                 {
@@ -292,6 +294,28 @@ public class GameManager : MonoBehaviour
         foreach(var i in EnemyPiece)
         {
             i.GetComponent<EnemyController>().state= EnemyController.State.REFRESH;
+        }
+    }
+
+
+    public void UpdatePieceAbility()
+    {
+        if (this.gameObject.GetComponent<PlayerContoller>() != null)
+        {
+            var pieceCamp = this.gameObject.GetComponent<PlayerContoller>().camp;
+
+            switch (pieceCamp)
+            {
+                case PlayerContoller.Camp.Group1:
+
+
+                    break;
+                case PlayerContoller.Camp.Group2:
+
+
+                    break;
+
+            }
         }
     }
 

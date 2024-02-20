@@ -42,15 +42,26 @@ public class PieceProperties : MonoBehaviour
 
     public enum Ability
     {
-
+        Spiritual_Leader,
+        Nutritionist,
+        Fitness_Trainer,
+        Plunderer,
+        Gold_Miner,
+        Shooting_Instructor,
+        Veteran,
+        Assualt_Captain
     }
 
 
     [Header("基本属性")]
     public PieceType pieceType; 
+
     public int lifeValue = 100;
+    public int finalLifeValue;
 
     public int plusMovement;
+    public int finalMovement;
+
     public int attackRange;
 
     public Profession pieceProfession = Profession.Cowboy;
@@ -58,8 +69,12 @@ public class PieceProperties : MonoBehaviour
 
     public Weapon pieceWeapon = Weapon.Pistol;
     public int WeaponLevel = 1;
+
     public int minWeaponDamage = 1;
     public int maxWeaponDamage = 6;
+
+    public int finalminWeaponDamage;
+    public int finalmaxWeaponDamage;
 
     public Equipment equipment = Equipment.None;
     public int equipmentLevel = 1;
@@ -67,6 +82,16 @@ public class PieceProperties : MonoBehaviour
     public int equipmentRange = 0;  
     public int damageReduce = 0;
     public bool isTrenchActive = false;
+
+    public Ability ability;
+    public int abilityPlusWeaponDamage = 0;
+    public int abilityExtraPistolWeaponDamage = 0;
+    public int abilityExtraARWeaponDamage = 0;
+    public int abilityExtraSRWeaponDamage = 0;
+    public int abilityPlusMovment = 0;
+    public int abilityPlusLifeValue = 0;
+
+    public int goldOutPutSpeed = 20;
 
     [Header("实时数据")]
     public int currentLifeValue;
@@ -82,6 +107,7 @@ public class PieceProperties : MonoBehaviour
         {
             UpdateWeaponProperties();
             UpdateProfessionProperties();
+            UpdateAbility();
             UpdateEquipmentProperties();
         }
         else
@@ -107,6 +133,9 @@ public class PieceProperties : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
         if (equipmentDurability <= 0)
         {
             equipment = Equipment.None;
@@ -206,14 +235,17 @@ public class PieceProperties : MonoBehaviour
                         if (PieceLevel == 1)
                         {
                             // 黄金数量增加 20 
+                            goldOutPutSpeed += 20;
                         }
                         else if (PieceLevel == 2)
                         {
                             // 黄金数量增加 40 
+                            goldOutPutSpeed += 40;
                         }
                         else if (PieceLevel == 3)
                         {
                             // 黄金数量增加 80
+                            goldOutPutSpeed += 80;
                         }
                     }
                 }
@@ -413,6 +445,100 @@ public class PieceProperties : MonoBehaviour
     public void Trench()
     {
         isTrenchActive = true;
+    }
+
+    
+    private void UpdateAbility()
+    {
+        switch (ability)
+        {
+            case Ability.Spiritual_Leader:
+                if (PieceLevel == 1)
+                {
+                    abilityPlusWeaponDamage = 1;
+                }else if (PieceLevel == 2)
+                {
+                    abilityPlusWeaponDamage = 2;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityPlusWeaponDamage = 4;
+                }
+                break;
+            case Ability.Nutritionist:
+                if (PieceLevel == 1)
+                {
+                    abilityPlusLifeValue = 10;
+                }
+                else if (PieceLevel == 2)
+                {
+                    abilityPlusLifeValue = 20;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityPlusLifeValue = 40;
+                }
+                break;
+            case Ability.Fitness_Trainer:
+                if (PieceLevel == 1)
+                {
+                    abilityPlusLifeValue = 10;
+                }
+                else if (PieceLevel == 2)
+                {
+                    abilityPlusLifeValue = 20;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityPlusLifeValue = 40;
+                }
+                break;
+            case Ability.Shooting_Instructor:
+                if (PieceLevel == 1)
+                {
+                    abilityExtraSRWeaponDamage = 2;
+                }
+                else if (PieceLevel == 2)
+                {
+                    abilityExtraSRWeaponDamage = 4;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityExtraSRWeaponDamage = 8;
+                }
+                break;
+            case Ability.Veteran:
+                if (PieceLevel == 1)
+                {
+                    abilityExtraARWeaponDamage = 2;
+                }
+                else if (PieceLevel == 2)
+                {
+                    abilityExtraARWeaponDamage = 4;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityExtraARWeaponDamage = 8;
+                }
+                break;
+            case Ability.Assualt_Captain:
+                if (PieceLevel == 1)
+                {
+                    abilityExtraPistolWeaponDamage = 2;
+                    lifeValue += 20;
+                }
+                else if (PieceLevel == 2)
+                {
+                    abilityExtraPistolWeaponDamage = 4;
+                    lifeValue += 40;
+                }
+                else if (PieceLevel == 3)
+                {
+                    abilityExtraPistolWeaponDamage = 8;
+                    lifeValue += 80;
+                }
+                break;
+        }
     }
 
 }

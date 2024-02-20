@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &31541425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31541426}
+  m_Layer: 5
+  m_Name: Surfaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31541426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31541425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2349245250891015463}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63737697
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 0
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -262,12 +295,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &95237467
 MonoBehaviour:
@@ -444,7 +487,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 2
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -452,12 +497,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &255982203
 MonoBehaviour:
@@ -649,7 +704,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 0
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -657,12 +714,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &462594878
 MonoBehaviour:
@@ -1219,7 +1286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 1
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -1227,12 +1296,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &842072431
 MonoBehaviour:
@@ -1504,7 +1583,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 2
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -1512,12 +1593,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &1100034281
 MonoBehaviour:
@@ -1729,7 +1820,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 0
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -1737,12 +1830,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 4
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &1271419516
 MonoBehaviour:
@@ -1821,7 +1924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 1
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -1829,12 +1934,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &1284455115
 MonoBehaviour:
@@ -2133,7 +2248,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 0
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 2
   PieceLevel: 1
@@ -2141,12 +2258,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 3
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!136 &1631818012
 CapsuleCollider:
@@ -2211,7 +2338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 2
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -2219,12 +2348,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &1678699885
 MonoBehaviour:
@@ -2406,7 +2545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceType: 0
   lifeValue: 100
+  finalLifeValue: 0
   plusMovement: 0
+  finalMovement: 0
   attackRange: 0
   pieceProfession: 0
   PieceLevel: 1
@@ -2414,12 +2555,22 @@ MonoBehaviour:
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  finalminWeaponDamage: 0
+  finalmaxWeaponDamage: 0
   equipment: 4
   equipmentLevel: 1
   equipmentDurability: 0
   equipmentRange: 0
   damageReduce: 0
   isTrenchActive: 0
+  ability: 0
+  abilityPlusWeaponDamage: 0
+  abilityExtraPistolWeaponDamage: 0
+  abilityExtraARWeaponDamage: 0
+  abilityExtraSRWeaponDamage: 0
+  abilityPlusMovment: 0
+  abilityPlusLifeValue: 0
+  goldOutPutSpeed: 20
   currentLifeValue: 0
 --- !u!114 &1806742443
 MonoBehaviour:
@@ -2706,37 +2857,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 602086850862681663, guid: 0c45e3b05f658fa40be83459e2354845, type: 3}
   m_PrefabInstance: {fileID: 602086852855974620}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2120296579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2120296580}
-  m_Layer: 5
-  m_Name: Surfaces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2120296580
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120296579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2349245250891015463}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &602086852855974620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2847,7 +2967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCellsSqrt: 100
-  _isDirty: 0
+  _isDirty: 1
   mouseIsOver: 0
   newInHierarchy: 0
   territoryThicknessSettingMigrated: 1
@@ -3086,7 +3206,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2120296580}
+  - {fileID: 31541426}
   m_Father: {fileID: 938491920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14187,8 +14307,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 676554826}
     m_Modifications:
     - target: {fileID: 5781745204524965716, guid: 0f5c285f64c5b80469f5ba3e5e859a5d, type: 3}
+      propertyPath: ability
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781745204524965716, guid: 0f5c285f64c5b80469f5ba3e5e859a5d, type: 3}
       propertyPath: pieceWeapon
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781745204524965716, guid: 0f5c285f64c5b80469f5ba3e5e859a5d, type: 3}
+      propertyPath: pieceProfession
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5781745204524965717, guid: 0f5c285f64c5b80469f5ba3e5e859a5d, type: 3}
       propertyPath: m_RootOrder
