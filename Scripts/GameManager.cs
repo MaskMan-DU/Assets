@@ -337,6 +337,11 @@ public class GameManager : MonoBehaviour
             if (tgsSetting.GoldMinerCells.Contains(i.GetComponent<PlayerContoller>().currentCellIndex))
             {
                 group1Gold += goldOutPut;
+                i.GetComponent<PlayerContoller>().isInGoldMine = true;
+            }
+            else
+            {
+                i.GetComponent<PlayerContoller>().isInGoldMine = false;
             }  
         }
 
@@ -345,7 +350,12 @@ public class GameManager : MonoBehaviour
             var goldOutPut = i.GetComponent<PieceProperties>().goldOutPutSpeed;
             if (tgsSetting.GoldMinerCells.Contains(i.GetComponent<PlayerContoller>().currentCellIndex))
             {
-                group2Gold += goldOutPut;
+                group2Gold += goldOutPut; 
+                i.GetComponent<PlayerContoller>().isInGoldMine = true;
+            }
+            else
+            {
+                i.GetComponent<PlayerContoller>().isInGoldMine = false;
             }
         }
     }
