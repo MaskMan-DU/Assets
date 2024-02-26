@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
+    public Button startButton;
+
     public bool group1Confirm = false;
     public bool group2Confirm = false;
 
@@ -25,11 +28,11 @@ public class Manager : MonoBehaviour
     {
         if (group1Confirm && group2Confirm)
         {
-
-
-
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            startButton.interactable = true;
+        }
+        else
+        {
+            startButton.interactable = false;
         }
     }
 
@@ -75,5 +78,15 @@ public class Manager : MonoBehaviour
     public void Group2PieceSkillSelect(int optionIndex)
     {
         group2Ability = (PieceProperties.Ability)optionIndex;
+    }
+
+
+    public void TransferDataAndStartGame()
+    {
+
+
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
