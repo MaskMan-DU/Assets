@@ -21,8 +21,6 @@ public class TGSSetting : MonoBehaviour
     public List<int> WeaponStore = new List<int>() { };
     public List<int> EquipmentShop = new List<int>() { };
 
-    public List<int> StartCell = new List<int>() { };
-
     private PlayerContoller activePieceController;
 
     // Start is called before the first frame update
