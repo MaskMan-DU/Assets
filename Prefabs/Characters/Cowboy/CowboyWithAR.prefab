@@ -3379,6 +3379,7 @@ MonoBehaviour:
   currentCellIndex: 0
   isInGoldMine: 0
   animator: {fileID: 3871058874830240371}
+  shootFire: {fileID: 4057556924475925598}
 --- !u!114 &8110552639559968327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3840,6 +3841,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f913bc3b5f93c1d4cac760813a9a6bf1, type: 3}
+--- !u!198 &4057556924475925598 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198644345807152676, guid: f913bc3b5f93c1d4cac760813a9a6bf1, type: 3}
+  m_PrefabInstance: {fileID: 4219573219015377530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4215668535900910994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4502835693877224, guid: f913bc3b5f93c1d4cac760813a9a6bf1, type: 3}
