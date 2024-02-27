@@ -454,7 +454,7 @@ public class PlayerContoller : MonoBehaviour
     {
         if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Rocket_Launcher)
         {
-            var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+            var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
             List<int> targets = new List<int>();
             tgs.CellGetNeighbours(attackTargetIndex, 1, targets, -1, 0, CanCrossCheckType.IgnoreCanCrossCheckOnAllCells, int.MaxValue, true, false);
@@ -469,6 +469,18 @@ public class PlayerContoller : MonoBehaviour
                         if (o.GetComponent<EnemyController>().currentCellIndex == p)
                         {
                             o.GetComponent<PieceProperties>().currentLifeValue -= damage;
+                            if (o.GetComponent<PieceProperties>().currentLifeValue <= 0)
+                            {
+                                if (camp == Camp.Group1)
+                                {
+                                    gameManager.group1Coin += o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin;
+                                }
+
+                                if (camp == Camp.Group2)
+                                {
+                                    gameManager.group2Coin += o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin;
+                                }
+                            }
                         }
                     }
                 }
@@ -590,7 +602,7 @@ public class PlayerContoller : MonoBehaviour
                     {
                         var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                        var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                        var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
                         targetPieceProperties.currentLifeValue -= damage;
                         if (targetPieceProperties.currentLifeValue <= 0)
@@ -623,7 +635,7 @@ public class PlayerContoller : MonoBehaviour
                             if (pieceController.currentCellIndex == attackTargetIndex)
                             {
                                 var targetPieceProperties = i.GetComponent<PieceProperties>();
-                                var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                                var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
                                 if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
@@ -666,7 +678,7 @@ public class PlayerContoller : MonoBehaviour
                             {
                                 var targetPieceProperties = i.GetComponent<PieceProperties>();
 
-                                var damage = Random.Range(pieceProperties.minWeaponDamage, pieceProperties.maxWeaponDamage + 1);
+                                var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
                                 if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
