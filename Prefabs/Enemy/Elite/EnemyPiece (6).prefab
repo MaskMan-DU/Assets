@@ -3323,14 +3323,18 @@ MonoBehaviour:
   plusMovement: 0
   finalMovement: 0
   attackRange: 0
-  pieceProfession: 0
+  pieceProfession: 2
   PieceLevel: 1
-  pieceWeapon: 0
+  pieceWeapon: 3
   WeaponLevel: 1
   minWeaponDamage: 1
   maxWeaponDamage: 6
+  plusWeaponDamage: 0
   finalminWeaponDamage: 0
   finalmaxWeaponDamage: 0
+  plusPistolDamage: 0
+  plusARDamage: 0
+  plusSRDamage: 0
   equipment: 2
   equipmentLevel: 1
   equipmentDurability: 0
