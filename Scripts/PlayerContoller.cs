@@ -57,6 +57,8 @@ public class PlayerContoller : MonoBehaviour
     public int currentCellIndex;
 
     public bool isInGoldMine = false;
+    public Animator animator;
+    public ParticleSystem shootFire;
 
 
     // Use this for initialization
@@ -102,6 +104,7 @@ public class PlayerContoller : MonoBehaviour
         switch (state)
         {
             case State.IDLE:
+                animator.SetBool("isRunning", false);
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
                 tgs.CellSetCanCross(currentCellIndex, false);
 
@@ -109,6 +112,7 @@ public class PlayerContoller : MonoBehaviour
                 break;
 
             case State.MOVING:
+                animator.SetBool("isRunning", true);
                 gameManager.ActionCancelButton.SetActive(false);
 
                 if (moveCounter < moveList.Count)
@@ -174,6 +178,7 @@ public class PlayerContoller : MonoBehaviour
                 // 面朝攻击对象
                 transform.LookAt(tgs.CellGetPosition(attackTargetIndex));
 
+                PlayEffect();
                 // 播放攻击动画
                 // Animator.setbool("isAttacking", true) 然后播放动画（此处代码为例子，当具备动画时需要重新编写）
 
@@ -735,4 +740,20 @@ public class PlayerContoller : MonoBehaviour
 
         hasAttack = true;
     }
+
+    public void PlayEffect()
+    {
+        if (shootFire != null && !shootFire.isPlaying)
+        {
+            shootFire.Play();
+        }
+    }
+
+    //public void StopEffect()
+    //{
+    //    if (shootFire != null && shootFire.isPlaying)
+    //    {
+    //        shootFire.Stop();
+    //    }
+    //}
 }
