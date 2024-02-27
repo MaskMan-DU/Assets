@@ -455,44 +455,55 @@ public class GameManager : MonoBehaviour
         switch (group1PieceProfession)
         {
             case PieceProperties.Profession.Cowboy:
-                group1Prefab = Resources.Load<GameObject>("Assets/Prefabs/Characters/Cowboy/CowboyWithPistol");
-                group1Piece = Instantiate(group1Prefab, tgs.CellGetPosition(tgsSetting.StartCell[0], true), Quaternion.identity);
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/CowboyWithPistol");
+                group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
+
+                group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                 group1Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Cowboy;
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
-                group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
+
+
+
                 break;
             case PieceProperties.Profession.Mercenary:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol.prefab");
-                group1Piece = Instantiate(group1Prefab, tgs.CellGetPosition(tgsSetting.StartCell[0], true), Quaternion.identity);
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol");
+                group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                 group1Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Mercenary;
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
             case PieceProperties.Profession.Sniper:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol.prefab");
-                group1Piece = Instantiate(group1Prefab, tgs.CellGetPosition(tgsSetting.StartCell[0], true), Quaternion.identity);
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol");
+                group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                 group1Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Sniper;
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
             case PieceProperties.Profession.Engineer:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol.prefab");
-                group1Piece = Instantiate(group1Prefab, tgs.CellGetPosition(tgsSetting.StartCell[0], true), Quaternion.identity);
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol");
+                group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                 group1Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Engineer;
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
         }
 
@@ -500,44 +511,50 @@ public class GameManager : MonoBehaviour
         switch (group2PieceProfession)
         {
             case PieceProperties.Profession.Cowboy:
-                group2Prefab = Resources.Load<GameObject>("Assets/Prefabs/Characters/Cowboy/CowboyWithPistol");
-                group2Piece = Instantiate(group2Prefab, tgs.CellGetPosition(tgsSetting.StartCell[1], true), Quaternion.identity);
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/CowboyWithPistol");
+                group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                 group2Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Cowboy;
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Mercenary:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol.prefab");
-                group2Piece = Instantiate(group2Prefab, tgs.CellGetPosition(tgsSetting.StartCell[1], true), Quaternion.identity);
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol");
+                group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                 group2Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Mercenary;
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Sniper:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol.prefab");
-                group2Piece = Instantiate(group2Prefab, tgs.CellGetPosition(tgsSetting.StartCell[1], true), Quaternion.identity);
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol");
+                group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                 group2Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Sniper;
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Engineer:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol.prefab");
-                group2Piece = Instantiate(group2Prefab, tgs.CellGetPosition(tgsSetting.StartCell[1], true), Quaternion.identity);
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol");
+                group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                 group2Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Engineer;
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
         }
 
