@@ -95,19 +95,13 @@ public class PlayerContoller : MonoBehaviour
         attackRange = pieceProperties.attackRange;
         equipmentRange = pieceProperties.equipmentRange;
 
-
-
         currentCellIndex = tgs.CellGetIndex(transform.position,true);
-
-
 
         switch (state)
         {
             case State.IDLE:
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
-                tgs.CellSetCanCross(currentCellIndex, false);
-
-                
+                tgs.CellSetCanCross(currentCellIndex, false);             
                 break;
 
             case State.MOVING:

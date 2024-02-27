@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TGS;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TGSSetting : MonoBehaviour
 {
@@ -16,14 +17,24 @@ public class TGSSetting : MonoBehaviour
 
     public List<int> GoldMinerCells = new List<int>() { 543, 577, 578, 545, 512, 511 };
 
-    public List<int> Bar = new List<int>() { };
+    public List<int> Bar = new List<int>() { 535, 569, 570, 537, 504, 503, 551, 585, 586, 553, 520, 519 };
     public List<int> MilitaryAcademy = new List<int>() { };
     public List<int> WeaponStore = new List<int>() { };
     public List<int> EquipmentShop = new List<int>() { };
 
-    public List<int> StartCell= new List<int>() { };
+    public List<int> StartCell= new List<int>() { 528, 560};
 
     private PlayerContoller activePieceController;
+
+    public GameObject ShopButton;
+
+    public GameObject BarShopUI;
+
+    public GameObject MilitaryAcademyShopUI;
+
+    public GameObject WeaponShopUI;
+
+    public GameObject EquipmentShopUI;
 
     // Start is called before the first frame update
     void Start()
@@ -42,20 +53,28 @@ public class TGSSetting : MonoBehaviour
                 BarEvent();
             }
 
-            if (MilitaryAcademyCheck())
+            else if (MilitaryAcademyCheck())
             {
                 MilitaryAcademyEvent();
             }
 
-            if (WeaponStoreCheck())
+            else if (WeaponStoreCheck())
             {
                 WeaponStoreEvent();
             }
 
-            if (EquipmentShopCheck())
+            else if (EquipmentShopCheck())
             {
                 EquipmentShopEvent();
             }
+            else
+            {
+                ShopButton.SetActive(false);
+            }
+        }
+        else
+        {
+            ShopButton.SetActive(false);
         }
     }
 
@@ -65,6 +84,7 @@ public class TGSSetting : MonoBehaviour
         {
             if (cell == activePieceController.currentCellIndex)
             {
+                ShopButton.SetActive(true);
                 return true;
             }
         }
@@ -82,6 +102,7 @@ public class TGSSetting : MonoBehaviour
         {
             if (cell == activePieceController.currentCellIndex)
             {
+                ShopButton.SetActive(true);
                 return true;
             }
         }
@@ -99,6 +120,7 @@ public class TGSSetting : MonoBehaviour
         {
             if (cell == activePieceController.currentCellIndex)
             {
+                ShopButton.SetActive(true);
                 return true;
             }
         }
@@ -116,6 +138,7 @@ public class TGSSetting : MonoBehaviour
         {
             if (cell == activePieceController.currentCellIndex)
             {
+                ShopButton.SetActive(true);
                 return true;
             }
         }
