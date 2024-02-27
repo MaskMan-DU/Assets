@@ -104,7 +104,6 @@ public class PlayerContoller : MonoBehaviour
         switch (state)
         {
             case State.IDLE:
-                animator.SetBool("isRunning", false);
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
                 tgs.CellSetCanCross(currentCellIndex, false);
 
@@ -122,6 +121,7 @@ public class PlayerContoller : MonoBehaviour
                 else
                 {
                     moveCounter = 0;
+                    animator.SetBool("isRunning", false);
                     state = State.IDLE;
                     
                     gameManager.PieceActionMenu.SetActive(true);
@@ -135,6 +135,7 @@ public class PlayerContoller : MonoBehaviour
                 // 如果该棋子步数为0，并且已经攻击过或者使用过道具，则该棋子回合结束
                 if (steps == 0 && hasAttack)
                 {
+                    animator.SetBool("isRunning", false);
                     state = State.ENDTURN;
                 }
                 break;
