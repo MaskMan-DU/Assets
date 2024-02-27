@@ -57,11 +57,18 @@ public class GameManager : MonoBehaviour
         state = State.RollMoveDice;
         PieceActionMenu.SetActive(false);
         ActionCancelButton.SetActive(false);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Group1Piece!= null || Group2Piece!= null) 
+        {
+            UpdatePieceAbility();
+        }
+
         switch (state)
         {
             // ÖÀ÷»×Ó½×¶Î
@@ -309,25 +316,91 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePieceAbility()
     {
-        if (this.gameObject.GetComponent<PlayerContoller>() != null)
+        var group1ExtraWeaponDamage = 0;
+        var group1ExtraMovement = 0;
+        var group1ExtraLifeValue = 0;
+        var group1ExtraPistolDamage = 0;
+        var group1ExtraARDamage = 0;
+        var group1ExtraSRDamage = 0;
+
+        foreach (var i in Group1Piece)
         {
-            var pieceCamp = this.gameObject.GetComponent<PlayerContoller>().camp;
+            var pieceProperties = i.GetComponent<PieceProperties>();
 
-            switch (pieceCamp)
+            group1ExtraPistolDamage += pieceProperties.abilityExtraPistolWeaponDamage;
+            group1ExtraSRDamage += pieceProperties.abilityExtraSRWeaponDamage;
+            group1ExtraARDamage += pieceProperties.abilityExtraARWeaponDamage;
+
+            group1ExtraLifeValue += pieceProperties.abilityPlusLifeValue;
+            group1ExtraMovement += pieceProperties.abilityPlusMovment;
+            group1ExtraWeaponDamage += pieceProperties.abilityPlusWeaponDamage;
+        }
+
+        foreach (var i in Group1Piece)
+        {
+            var pieceProperties = i.GetComponent<PieceProperties>();
+
+            pieceProperties.finalLifeValue = pieceProperties.lifeValue + group1ExtraLifeValue;
+            /*if (pieceProperties.currentLifeValue < pieceProperties.finalLifeValue && pieceProperties.currentLifeValue != 0)
             {
-                case PlayerContoller.Camp.Group1:
-                    var group1ExtraWeaponDamage = 0;
-                    var group1ExtraMovement = 0;
-                    var group1ExtraLifeValue = 0;
-                 
+                pieceProperties.currentLifeValue += group1ExtraLifeValue;
 
-                    break;
-                case PlayerContoller.Camp.Group2:
+                if (pieceProperties.currentLifeValue > pieceProperties.finalLifeValue)
+                {
+                    pieceProperties.currentLifeValue = pieceProperties.finalLifeValue;
+                }
+            }*/
 
 
-                    break;
+            pieceProperties.finalMovement = pieceProperties.plusMovement + group1ExtraMovement;
+            pieceProperties.plusWeaponDamage = group1ExtraWeaponDamage;
 
-            }
+            pieceProperties.plusPistolDamage = group1ExtraPistolDamage;
+            pieceProperties.plusARDamage = group1ExtraARDamage;
+            pieceProperties.plusSRDamage = group1ExtraSRDamage;
+        }
+
+        var group2ExtraWeaponDamage = 0;
+        var group2ExtraMovement = 0;
+        var group2ExtraLifeValue = 0;
+        var group2ExtraPistolDamage = 0;
+        var group2ExtraARDamage = 0;
+        var group2ExtraSRDamage = 0;
+
+        foreach (var i in Group2Piece)
+        {
+            var pieceProperties = i.GetComponent<PieceProperties>();
+
+            group2ExtraPistolDamage += pieceProperties.abilityExtraPistolWeaponDamage;
+            group2ExtraSRDamage += pieceProperties.abilityExtraSRWeaponDamage;
+            group2ExtraARDamage += pieceProperties.abilityExtraARWeaponDamage;
+
+            group2ExtraLifeValue += pieceProperties.abilityPlusLifeValue;
+            group2ExtraMovement += pieceProperties.abilityPlusMovment;
+            group2ExtraWeaponDamage += pieceProperties.abilityPlusWeaponDamage;
+        }
+
+        foreach (var i in Group2Piece)
+        {
+            var pieceProperties = i.GetComponent<PieceProperties>();
+
+            pieceProperties.finalLifeValue = pieceProperties.lifeValue + group2ExtraLifeValue;
+            /*if (pieceProperties.currentLifeValue < pieceProperties.finalLifeValue && pieceProperties.currentLifeValue != 0)
+            {
+                pieceProperties.currentLifeValue += group2ExtraLifeValue;
+
+                if (pieceProperties.currentLifeValue > pieceProperties.finalLifeValue)
+                {
+                    pieceProperties.currentLifeValue = pieceProperties.finalLifeValue;
+                }
+            }*/
+
+            pieceProperties.finalMovement = pieceProperties.plusMovement + group2ExtraMovement;
+            pieceProperties.plusWeaponDamage = group2ExtraWeaponDamage;
+
+            pieceProperties.plusPistolDamage = group2ExtraPistolDamage;
+            pieceProperties.plusARDamage = group2ExtraARDamage;
+            pieceProperties.plusSRDamage = group2ExtraSRDamage;
         }
     }
 
@@ -361,6 +434,12 @@ public class GameManager : MonoBehaviour
                 i.GetComponent<PlayerContoller>().isInGoldMine = false;
             }
         }
+    }
+
+
+    public void GameStart()
+    {
+
     }
 
 }

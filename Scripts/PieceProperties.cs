@@ -73,8 +73,14 @@ public class PieceProperties : MonoBehaviour
     public int minWeaponDamage = 1;
     public int maxWeaponDamage = 6;
 
+    public int plusWeaponDamage;
+
     public int finalminWeaponDamage;
     public int finalmaxWeaponDamage;
+
+    public int plusPistolDamage = 0;
+    public int plusARDamage = 0;
+    public int plusSRDamage = 0;
 
     public Equipment equipment = Equipment.None;
     public int equipmentLevel = 1;
@@ -114,27 +120,28 @@ public class PieceProperties : MonoBehaviour
             UpdateProfessionProperties();
             UpdateAbility();
             UpdateEquipmentProperties();
+            currentLifeValue = lifeValue;
         }
         else
         {
             if (pieceType == PieceType.NormalEnemy) //  «∆’Õ®µ–»À
             {
                 lifeValue = 100;
+                finalLifeValue = lifeValue;
                 WeaponLevel = 1;
                 enemyCoin = 50;
+                currentLifeValue = finalLifeValue;
             }
             else
             {
                 lifeValue = 150;
+                finalLifeValue = lifeValue;
                 WeaponLevel = Random.Range(2, 4);
                 enemyCoin = 100;
+                currentLifeValue = finalLifeValue;
             }
             UpdateWeaponProperties();
         }
-        
-        
-
-        currentLifeValue = lifeValue;
     }
 
     // Update is called once per frame
@@ -148,6 +155,29 @@ public class PieceProperties : MonoBehaviour
             equipmentRange = 0;
             isTrenchActive = false;
         }
+
+        if (pieceType== PieceType.Player)
+        {
+            switch (pieceWeapon)
+            {
+                case Weapon.Pistol:
+                    finalminWeaponDamage = minWeaponDamage + plusPistolDamage + plusWeaponDamage;
+                    finalmaxWeaponDamage = maxWeaponDamage + plusPistolDamage + plusWeaponDamage;
+                    break;
+                case Weapon.Assault_Rifle:
+                    finalminWeaponDamage = minWeaponDamage + plusARDamage + plusWeaponDamage;
+                    finalmaxWeaponDamage = maxWeaponDamage + plusARDamage + plusWeaponDamage;
+                    break;
+                case Weapon.Sniper_Rifle:
+                    finalminWeaponDamage = minWeaponDamage + plusSRDamage + plusWeaponDamage;
+                    finalmaxWeaponDamage = maxWeaponDamage + plusSRDamage + plusWeaponDamage;
+                    break;
+                case Weapon.Rocket_Launcher:
+                    finalminWeaponDamage = minWeaponDamage + plusWeaponDamage;
+                    finalmaxWeaponDamage = maxWeaponDamage + plusWeaponDamage;
+                    break;
+            }
+        }   
     }
 
     private void UpdateProfessionProperties()
@@ -468,18 +498,7 @@ public class PieceProperties : MonoBehaviour
                 }
                 break;
             case Ability.Fitness_Trainer:
-                if (PieceLevel == 1)
-                {
-                    abilityPlusLifeValue = 10;
-                }
-                else if (PieceLevel == 2)
-                {
-                    abilityPlusLifeValue = 20;
-                }
-                else if (PieceLevel == 3)
-                {
-                    abilityPlusLifeValue = 40;
-                }
+                abilityPlusMovment = 1;
                 break;
             case Ability.Shooting_Instructor:
                 if (PieceLevel == 1)
