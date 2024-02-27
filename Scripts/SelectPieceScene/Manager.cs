@@ -83,7 +83,11 @@ public class Manager : MonoBehaviour
 
     public void TransferDataAndStartGame()
     {
+        PlayerPrefs.SetInt("group1Profession", (int)group1Profession);
+        PlayerPrefs.SetInt("group1Ability", (int)group1Ability);
 
+        PlayerPrefs.SetInt("group2Profession", (int)group2Profession);
+        PlayerPrefs.SetInt("group2Ability", (int)group2Ability);
 
 
 
