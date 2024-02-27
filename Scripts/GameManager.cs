@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TGS;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -557,7 +556,6 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
         }
-
     }
 
 }
