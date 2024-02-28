@@ -6,11 +6,12 @@ public class Shopping : MonoBehaviour
 {
     public GameObject[] shopItems;
     public int[] rate = new int[] { 19, 19, 19, 19, 5, 5, 5, 5, 1, 1, 1, 1 };
+    int totalRate = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        int randomIndex = Rand(rate, 100);
+        int randomIndex = Rand(rate, totalRate);
         Debug.Log(randomIndex);
     }
 
@@ -30,6 +31,8 @@ public class Shopping : MonoBehaviour
             t += rate[i];
             if (r < t)
             {
+                rate[i] -= 1;
+                totalRate -= 1;
                 return i;
             }
         }
