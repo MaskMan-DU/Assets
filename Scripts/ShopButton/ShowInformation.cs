@@ -23,7 +23,7 @@ public class ShowInformation : MonoBehaviour, IPointerEnterHandler, IPointerExit
     // Start is called before the first frame update
     void Start()
     {
-
+        DetailInformation.SetActive(false);
     }
 
     // Update is called once per frame
