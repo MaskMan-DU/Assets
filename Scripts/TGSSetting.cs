@@ -36,6 +36,10 @@ public class TGSSetting : MonoBehaviour
 
     public GameObject EquipmentShopUI;
 
+    private int professionLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
+
+    private int weaponLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
+
     // Start is called before the first frame update
     void Start()
     {
