@@ -76,6 +76,8 @@ public class BarShopButton : MonoBehaviour
 
     public void RefreshInformation()
     {
+        this.GetComponent<Button>().interactable = true;
+
         // 生成随机人物
         pieceProfession = professionNames[Random.Range(0, professionNames.Count)]; // 获取随机产生的职业
         Profession.text = pieceProfession; // 依据获取到的职业填入职业名
@@ -104,6 +106,39 @@ public class BarShopButton : MonoBehaviour
 
     public void GeneratePiece()
     {
+        switch (gameManager.activeCamp)
+        {
+            case PlayerContoller.Camp.Group1:
+                if (gameManager.Group1Piece.Count < 3)
+                {
+                    var Weapon = "";
+                    if (pieceWeapon == "Pistol")
+                    {
+                        Weapon = "Pistol";
+                    }else if (pieceWeapon == "Assault Rifle")
+                    {
+                        Weapon = "AR";
+                    }else if (pieceWeapon == "Sniper Rifle")
+                    {
+                        Weapon = "SR";
+                    }
+                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession + "With" + Weapon);
 
+                    var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
+
+                    piece.transform.SetParent(GameObject.Find("Group1").transform);
+                    piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                    piece.GetComponent<PieceProperties>().WeaponLevel= weaponLevel;
+                    piece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
+                    piece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+                    piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
+
+                }
+                break;
+            case PlayerContoller.Camp.Group2:
+                break;
+        }
+
+        this.GetComponent<Button>().interactable = false;
     }
 }
