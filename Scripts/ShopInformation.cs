@@ -73,7 +73,7 @@ public class ShopInformation :MonoBehaviour
 
     public Dictionary<string, Equipment> EquipmentList = new Dictionary<string, Equipment>();
 
-    private void Start()
+    private void Awake()
     {
         AddProfession();
         AddWeapon();

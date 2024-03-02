@@ -65,7 +65,6 @@ public class BarShopButton : MonoBehaviour
         equipmentNames = new List<string>(shopInformation.EquipmentList.Keys); // 获取所有装备名
         abilityNames= new List<string>(shopInformation.AbilityList.Keys); // 获取所有能力名
 
-
         RefreshInformation();
     }
 
