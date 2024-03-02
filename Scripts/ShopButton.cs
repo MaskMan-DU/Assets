@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShopButton : MonoBehaviour
 {
+    public GameObject ShopScene;
+
+    public GameObject ActiveShop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,11 @@ public class ShopButton : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GotoShop()
+    {
+        ShopScene.SetActive(true);
+        ActiveShop.SetActive(true);
     }
 }

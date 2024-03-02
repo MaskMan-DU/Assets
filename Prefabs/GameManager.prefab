@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5330826489002316680}
   - component: {fileID: 5330826489002316681}
   - component: {fileID: 5330826489002316683}
+  - component: {fileID: 6474070617101523257}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596bd785db92e7b49818b03432fe870a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tgsSetting: {fileID: 0}
   activePiece: {fileID: 0}
   activeCamp: 0
   group1HasAct: 0
@@ -53,12 +55,20 @@ MonoBehaviour:
   group1MoveDice: 0
   group2MoveDice: 0
   attackDice: 0
+  group1Gold: 0
+  group2Gold: 0
+  group1Coin: 0
+  group2Coin: 0
   state: 0
+  Wire: {fileID: 0}
+  Trench: {fileID: 0}
   PieceActionMenu: {fileID: 0}
   ActionCancelButton: {fileID: 0}
   Group1Piece: []
   Group2Piece: []
   EnemyPiece: []
+  Obstacles: []
+  TrenchsList: []
 --- !u!114 &5330826489002316683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,4 +81,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9267f802c1b2d4b9159a4166163bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   GoldMinerCells: 1f02000041020000420200002102000000020000ff010000
+  Bar: 17020000390200003a02000019020000f8010000f701000027020000490200004a020000290200000802000007020000
+  MilitaryAcademy: 
+  WeaponStore: 
+  EquipmentShop: 
+  StartCell: 1002000030020000
+  ShopButton: {fileID: 0}
+  BarShopUI: {fileID: 0}
+  MilitaryAcademyShopUI: {fileID: 0}
+  WeaponShopUI: {fileID: 0}
+  EquipmentShopUI: {fileID: 0}
+--- !u!114 &6474070617101523257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5330826489002316686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ec50cc98777c14fb426d29a6201e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

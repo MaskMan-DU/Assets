@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,22 @@ public class Profession
         this.professionLifeValueDescription = professionLifeValueDescription;
         this.professionSkillDescription = professionSkillDescription;
         this.professionValue = professionValue;
+    }
+}
+
+public class Weapon
+{
+    public string weaponName;
+    public string movementEffe;
+    public string weaponAttackRange;
+    public PieceProperties.Weapon weaponValue;
+
+    public Weapon (string weaponName, string movementEffe, string weaponAttackRange, PieceProperties.Weapon weaponValue)
+    {
+        this.weaponName = weaponName;
+        this.movementEffe = movementEffe;
+        this.weaponAttackRange = weaponAttackRange;
+        this.weaponValue = weaponValue;
     }
 }
 
@@ -50,6 +67,8 @@ public class ShopInformation :MonoBehaviour
 {
     public Dictionary<string, Profession> ProfessionList = new Dictionary<string, Profession>();
 
+    public Dictionary<string, Weapon> WeaponList = new Dictionary<string, Weapon>();
+
     public Dictionary<string, Ability> AbilityList = new Dictionary<string, Ability>();
 
     public Dictionary<string, Equipment> EquipmentList = new Dictionary<string, Equipment>();
@@ -57,6 +76,7 @@ public class ShopInformation :MonoBehaviour
     private void Start()
     {
         AddProfession();
+        AddWeapon();
         AddAbility();
         AddEquipment();
     }
@@ -94,6 +114,42 @@ public class ShopInformation :MonoBehaviour
             "", // 职业生命值描述，依据等级提升，生命值也随之变化，或者始终保持不变
             "", // 职业固有能力描述，依据等级提升数值
             PieceProperties.Profession.Sniper) // 职业对应的变量
+            );
+    }
+
+    private void AddWeapon()
+    {
+        WeaponList.Add(
+            "Pistol", // Key
+            new Weapon
+            ("Cowboy", // 武器名
+            "", // 武器对移动距离的影响
+            "", // 武器攻击范围
+            PieceProperties.Weapon.Pistol) // 武器对应的变量
+            );
+        WeaponList.Add(
+            "Assault Rifle", // Key
+            new Weapon
+            ("Assault Rifle", // 武器名
+            "", // 武器对移动距离的影响
+            "", // 武器攻击范围
+            PieceProperties.Weapon.Assault_Rifle) // 武器对应的变量
+            );
+        WeaponList.Add(
+            "Sniper Rifle", // Key
+            new Weapon
+            ("Sniper Rifle", // 武器名
+            "", // 武器对移动距离的影响
+            "", // 武器攻击范围
+            PieceProperties.Weapon.Sniper_Rifle) // 武器对应的变量
+            );
+        WeaponList.Add(
+            "Rocket Launcher", // Key
+            new Weapon
+            ("Rocket Launcher", // 武器名
+            "", // 武器对移动距离的影响
+            "", // 武器攻击范围
+            PieceProperties.Weapon.Rocket_Launcher) // 武器对应的变量
             );
     }
 

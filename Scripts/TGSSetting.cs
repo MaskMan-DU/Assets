@@ -36,9 +36,9 @@ public class TGSSetting : MonoBehaviour
 
     public GameObject EquipmentShopUI;
 
-    private int professionLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
+    // private int professionLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
 
-    private int weaponLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
+    // private int weaponLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +97,7 @@ public class TGSSetting : MonoBehaviour
 
     public void BarEvent()
     {
-
+        ShopButton.GetComponent<ShopButton>().ActiveShop = BarShopUI;
     }
 
     private bool MilitaryAcademyCheck()
@@ -115,7 +115,7 @@ public class TGSSetting : MonoBehaviour
 
     public void MilitaryAcademyEvent()
     {
-
+        ShopButton.GetComponent<ShopButton>().ActiveShop = MilitaryAcademyShopUI;
     }
 
     private bool WeaponStoreCheck()
@@ -133,7 +133,7 @@ public class TGSSetting : MonoBehaviour
 
     public void WeaponStoreEvent()
     {
-
+        ShopButton.GetComponent<ShopButton>().ActiveShop = WeaponShopUI;
     }
 
     private bool EquipmentShopCheck()
@@ -151,6 +151,6 @@ public class TGSSetting : MonoBehaviour
 
     public void EquipmentShopEvent()
     {
-
+        ShopButton.GetComponent<ShopButton>().ActiveShop = EquipmentShopUI;
     }
 }
