@@ -11,7 +11,7 @@ public class ShopButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ShopScene.SetActive(false);
     }
 
     // Update is called once per frame

@@ -55,21 +55,34 @@ public class TGSSetting : MonoBehaviour
             if (BarCheck())
             {
                 BarEvent();
+                MilitaryAcademyShopUI.SetActive(false);
+                WeaponShopUI.SetActive(false);
+                EquipmentShopUI.SetActive(false);
             }
 
             else if (MilitaryAcademyCheck())
             {
                 MilitaryAcademyEvent();
+                BarShopUI.SetActive(false);
+                WeaponShopUI.SetActive(false);
+                EquipmentShopUI.SetActive(false);
             }
 
             else if (WeaponStoreCheck())
             {
                 WeaponStoreEvent();
+                BarShopUI.SetActive(false);
+                MilitaryAcademyShopUI.SetActive(false);
+                EquipmentShopUI.SetActive(false);
             }
+
 
             else if (EquipmentShopCheck())
             {
                 EquipmentShopEvent();
+                BarShopUI.SetActive(false);
+                MilitaryAcademyShopUI.SetActive(false);
+                WeaponShopUI.SetActive(false);
             }
             else
             {
