@@ -97,11 +97,14 @@ public class PlayerContoller : MonoBehaviour
 
         currentCellIndex = tgs.CellGetIndex(transform.position,true);
 
+        
+
         switch (state)
         {
             case State.IDLE:
                 tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_PLAYER);
-                tgs.CellSetCanCross(currentCellIndex, false);             
+                tgs.CellSetCanCross(currentCellIndex, false);
+                gameManager.GoldMineCheck();
                 break;
 
             case State.MOVING:
@@ -117,6 +120,8 @@ public class PlayerContoller : MonoBehaviour
                     moveCounter = 0;
                     animator.SetBool("isRunning", false);
                     state = State.IDLE;
+
+                    
                     
                     gameManager.PieceActionMenu.SetActive(true);
                 }
@@ -144,19 +149,22 @@ public class PlayerContoller : MonoBehaviour
 
                     if (t_cell != -1)
                     {
-                        //checks if we selected a cell
-                        int startCell = tgs.CellGetIndex(tgs.CellGetAtPosition(transform.position, true));
+                        if (moveRange.Contains(t_cell))
+                        {
+                            //checks if we selected a cell
+                            int startCell = tgs.CellGetIndex(tgs.CellGetAtPosition(transform.position, true));
 
-                        float totalCost;
+                            float totalCost;
 
-                        moveList = tgs.FindPath(startCell, t_cell, out totalCost, maxSteps: steps, includeInvisibleCells: false);
+                            moveList = tgs.FindPath(startCell, t_cell, out totalCost, maxSteps: steps, includeInvisibleCells: false);
 
-                        if (moveList == null)
-                            return;
+                            if (moveList == null)
+                                return;
 
-                        moveCounter = 0;
+                            moveCounter = 0;
 
-                        state = State.MOVING;
+                            state = State.MOVING;
+                        }
                     }
                     else
                     {
@@ -360,7 +368,22 @@ public class PlayerContoller : MonoBehaviour
 
         if (state == State.MOVESELECT) 
         {
-            indices = tgs.CellGetNeighbours(cell, range, TGSSetting.CELLS_ALL_NAVIGATABLE);
+            if (!isInGoldMine && gameManager.GoldMineHasPiece)
+            {
+                indices = tgs.CellGetNeighbours(cell, range, TGSSetting.CELLS_ALL_NAVIGATABLE);
+                foreach(var i in tgsSetting.GoldMinerCells)
+                {
+                    if (indices.Contains(i)) 
+                    { 
+                        indices.Remove(i);
+                    }
+                }
+            }
+            else
+            {
+                indices = tgs.CellGetNeighbours(cell, range, TGSSetting.CELLS_ALL_NAVIGATABLE);
+            }
+            
 
             for (int i = 0; i < indices.Count; i++)
             {

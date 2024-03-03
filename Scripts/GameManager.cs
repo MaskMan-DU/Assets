@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TGS;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,13 +43,31 @@ public class GameManager : MonoBehaviour
     public State state;
     public GameObject Wire;
     public GameObject Trench;
+
+    // 行动菜单
     public GameObject PieceActionMenu;
     public GameObject ActionCancelButton;
+
+    // 移动力
     public TMP_Text Group1Name;
     public TMP_Text Group1MovementDiceNumber;
     public TMP_Text Group2Name;
     public TMP_Text Group2MovementDiceNumber;
 
+    // 金币和金矿
+    public bool GoldMineHasPiece = false;
+    public int GetGoldCellIndex;
+    public int MaxGoldValue = 1000;
+    public Slider Group1Gold;
+    public Slider Group2Gold;
+    public TMP_Text Group1CoinsValue;
+    public TMP_Text Group2CoinsValue;
+
+    // 游戏结束
+    public bool GameOver = false;
+    public PlayerContoller.Camp WinCamp;
+
+    public List<GameObject> pieceList;
     public List<GameObject> Group1Piece = null;
     public List<GameObject> Group2Piece = null;
     public List<GameObject> EnemyPiece = null;
@@ -70,6 +90,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateMoveInfor();
+        UpdateGoldAndCoins();
+        
 
         if (Group1Piece!= null || Group2Piece!= null) 
         {
@@ -421,6 +443,7 @@ public class GameManager : MonoBehaviour
             {
                 group1Gold += goldOutPut;
                 i.GetComponent<PlayerContoller>().isInGoldMine = true;
+                
             }
             else
             {
@@ -443,6 +466,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GoldMineCheck()
+    {
+        pieceList = new List<GameObject>();
+        pieceList.AddRange(Group1Piece);
+        pieceList.AddRange(Group2Piece);
+
+        foreach (var i in pieceList)
+        {
+            if (tgsSetting.GoldMinerCells.Contains(i.GetComponent<PlayerContoller>().currentCellIndex))
+            {
+                GoldMineHasPiece = true;
+                GetGoldCellIndex = i.GetComponent<PlayerContoller>().currentCellIndex;
+                break;
+            }
+            else
+            {
+                GoldMineHasPiece = false;
+            }
+
+        }
+
+        if (GoldMineHasPiece)
+        {
+            foreach(var i in tgsSetting.GoldMinerCells)
+            {
+                if (i != GetGoldCellIndex)
+                {
+                    tgs.CellSetCanCross(i, false);
+                }
+            }
+        }
+        else
+        {
+            foreach (var i in tgsSetting.GoldMinerCells)
+            {
+                tgs.CellSetCanCross(i, true);
+            }
+        }
+    }
 
     public void GameStart()
     {
@@ -583,4 +645,42 @@ public class GameManager : MonoBehaviour
         Group2MovementDiceNumber.text = group2MoveDice.ToString();
     }
 
+    public void UpdateGoldAndCoins()
+    {
+        Group1Gold.value = group1Gold / MaxGoldValue;
+        Group2Gold.value = group2Gold / MaxGoldValue;
+
+       
+        Group1CoinsValue.text = group1Coin.ToString();
+        Group2CoinsValue.text = group2Coin.ToString();
+    }
+
+    public void GameOverCheck()
+    {
+        if (Group1Piece == null)
+        {
+            GameOver = true;
+            WinCamp = PlayerContoller.Camp.Group2;
+        }
+
+        if (Group2Piece == null)
+        {
+            GameOver = true;
+            WinCamp = PlayerContoller.Camp.Group1;
+        }
+
+        if (group1Gold == MaxGoldValue)
+        {
+            GameOver = true;
+            WinCamp = PlayerContoller.Camp.Group1;
+        }
+
+        if (group2Gold == MaxGoldValue)
+        {
+            GameOver = true;
+            WinCamp = PlayerContoller.Camp.Group1;
+        }
+
+
+    }
 }
