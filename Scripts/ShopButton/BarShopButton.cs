@@ -65,6 +65,10 @@ public class BarShopButton : MonoBehaviour
         equipmentNames = new List<string>(shopInformation.EquipmentList.Keys); // 获取所有装备名
         abilityNames= new List<string>(shopInformation.AbilityList.Keys); // 获取所有能力名
 
+
+        // 无火箭
+        weaponNames.Remove("Rocket Launcher");
+
         RefreshInformation();
     }
 
@@ -127,6 +131,7 @@ public class BarShopButton : MonoBehaviour
                     var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
 
                     piece.transform.SetParent(GameObject.Find("Group1").transform);
+                    piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                     piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                     piece.GetComponent<PieceProperties>().WeaponLevel= weaponLevel;
                     piece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
@@ -136,6 +141,34 @@ public class BarShopButton : MonoBehaviour
                 }
                 break;
             case PlayerContoller.Camp.Group2:
+                if (gameManager.Group2Piece.Count < 3)
+                {
+                    var Weapon = "";
+                    if (pieceWeapon == "Pistol")
+                    {
+                        Weapon = "Pistol";
+                    }
+                    else if (pieceWeapon == "Assault Rifle")
+                    {
+                        Weapon = "AR";
+                    }
+                    else if (pieceWeapon == "Sniper Rifle")
+                    {
+                        Weapon = "SR";
+                    }
+                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession + "With" + Weapon);
+
+                    var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
+
+                    piece.transform.SetParent(GameObject.Find("Group2").transform);
+                    piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
+                    piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                    piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
+                    piece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
+                    piece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+                    piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
+
+                }
                 break;
         }
 

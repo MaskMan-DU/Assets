@@ -383,8 +383,6 @@ public class PieceProperties : MonoBehaviour
                 }
                 break;
         }
-
-
     }
 
     public void UpdateEquipmentProperties()
