@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5330826489002316686
+--- !u!1 &1088883533832026413
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5330826489002316680}
-  - component: {fileID: 5330826489002316681}
-  - component: {fileID: 5330826489002316683}
+  - component: {fileID: 1088883533832026400}
+  - component: {fileID: 1088883534387933873}
+  - component: {fileID: 1088883533832026403}
+  - component: {fileID: 1088883533832026402}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5330826489002316680
+--- !u!4 &1088883533832026400
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5330826489002316686}
+  m_GameObject: {fileID: 1088883533832026413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 544.4708, y: 0.010383606, z: 535.7286}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,18 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5330826489002316681
+--- !u!114 &1088883534387933873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5330826489002316686}
+  m_GameObject: {fileID: 1088883533832026413}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 596bd785db92e7b49818b03432fe870a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tgsSetting: {fileID: 0}
   activePiece: {fileID: 0}
   activeCamp: 0
   group1HasAct: 0
@@ -53,22 +55,67 @@ MonoBehaviour:
   group1MoveDice: 0
   group2MoveDice: 0
   attackDice: 0
+  group1Gold: 0
+  group2Gold: 0
+  group1Coin: 0
+  group2Coin: 0
   state: 0
-  PieceActionMenu: {fileID: 0}
+  Wire: {fileID: 1795961046990407846, guid: f5ba4cf1634c79844b8911cf5757203f, type: 3}
+  Trench: {fileID: 3473819703865834249, guid: 54aee675bb71ff24383124de99ada7f5, type: 3}
+  PieceActionMenu: {fileID: 5592824023814946628, guid: 70d2f4baec0b2534980793d05230b7b4, type: 3}
   ActionCancelButton: {fileID: 0}
+  Group1Name: {fileID: 0}
+  Group1MovementDiceNumber: {fileID: 0}
+  Group2Name: {fileID: 0}
+  Group2MovementDiceNumber: {fileID: 0}
+  GoldMineHasPiece: 0
+  GetGoldCellIndex: 0
+  MaxGoldValue: 1000
+  Group1Gold: {fileID: 0}
+  Group2Gold: {fileID: 0}
+  Group1CoinsValue: {fileID: 0}
+  Group2CoinsValue: {fileID: 0}
+  GameOver: 0
+  WinCamp: 0
+  pieceList: []
   Group1Piece: []
   Group2Piece: []
   EnemyPiece: []
---- !u!114 &5330826489002316683
+  Obstacles: []
+  TrenchsList: []
+--- !u!114 &1088883533832026403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5330826489002316686}
+  m_GameObject: {fileID: 1088883533832026413}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a9267f802c1b2d4b9159a4166163bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1088883534387933873}
   GoldMinerCells: 1f02000041020000420200002102000000020000ff010000
+  Bar: 17020000390200003a02000019020000f8010000f701000027020000490200004a020000290200000802000007020000
+  MilitaryAcademy: 
+  WeaponStore: 
+  EquipmentShop: 
+  StartCell: 1002000030020000
+  ShopButton: {fileID: 0}
+  BarShopUI: {fileID: 0}
+  MilitaryAcademyShopUI: {fileID: 0}
+  WeaponShopUI: {fileID: 0}
+  EquipmentShopUI: {fileID: 0}
+--- !u!114 &1088883533832026402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088883533832026413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ec50cc98777c14fb426d29a6201e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
