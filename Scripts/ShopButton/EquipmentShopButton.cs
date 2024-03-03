@@ -30,6 +30,8 @@ public class EquipmentShopButton : MonoBehaviour
         shopInformation = GameObject.Find("GameManager").GetComponent<ShopInformation>();
 
         equipmentNames = new List<string>(shopInformation.EquipmentList.Keys); // 获取所有装备名
+
+        RefreshInformation();
     }
 
     // Update is called once per frame
@@ -54,6 +56,8 @@ public class EquipmentShopButton : MonoBehaviour
 
     public void BuyEquipment()
     {
+        // 花钱
+
         gameManager.activePiece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
         gameManager.activePiece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
 
