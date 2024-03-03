@@ -11,6 +11,8 @@ public class BarShopButton : MonoBehaviour
     private ShopInformation shopInformation;
     TerrainGridSystem tgs;
     private GameManager gameManager;
+    private PlayerContoller.Camp lastCamp;
+    private PlayerContoller.Camp currentCamp;
 
     // 按钮对应选项的详细信息
     // 职业
@@ -75,7 +77,13 @@ public class BarShopButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentCamp = gameManager.activeCamp;
+
+        if (currentCamp != lastCamp)
+        {
+            lastCamp = currentCamp;
+            RefreshInformation();
+        }
     }
 
     public void RefreshInformation()
@@ -115,18 +123,7 @@ public class BarShopButton : MonoBehaviour
             case PlayerContoller.Camp.Group1:
                 if (gameManager.Group1Piece.Count < 3)
                 {
-                    var Weapon = "";
-                    if (pieceWeapon == "Pistol")
-                    {
-                        Weapon = "Pistol";
-                    }else if (pieceWeapon == "Assault Rifle")
-                    {
-                        Weapon = "AR";
-                    }else if (pieceWeapon == "Sniper Rifle")
-                    {
-                        Weapon = "SR";
-                    }
-                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession + "With" + Weapon);
+                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
 
                     var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
 
@@ -143,20 +140,7 @@ public class BarShopButton : MonoBehaviour
             case PlayerContoller.Camp.Group2:
                 if (gameManager.Group2Piece.Count < 3)
                 {
-                    var Weapon = "";
-                    if (pieceWeapon == "Pistol")
-                    {
-                        Weapon = "Pistol";
-                    }
-                    else if (pieceWeapon == "Assault Rifle")
-                    {
-                        Weapon = "AR";
-                    }
-                    else if (pieceWeapon == "Sniper Rifle")
-                    {
-                        Weapon = "SR";
-                    }
-                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession + "With" + Weapon);
+                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
 
                     var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
 

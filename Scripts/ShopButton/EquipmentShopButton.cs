@@ -9,6 +9,8 @@ public class EquipmentShopButton : MonoBehaviour
 {
     private ShopInformation shopInformation;
     private GameManager gameManager;
+    private PlayerContoller.Camp lastCamp;
+    private PlayerContoller.Camp currentCamp;
 
     // ×°±¸
     public TMP_Text Equipment;
@@ -37,7 +39,13 @@ public class EquipmentShopButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentCamp = gameManager.activeCamp;
+
+        if (currentCamp != lastCamp)
+        {
+            lastCamp = currentCamp;
+            RefreshInformation();
+        }
     }
 
     public void RefreshInformation()
