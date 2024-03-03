@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TGS;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +43,10 @@ public class GameManager : MonoBehaviour
     public GameObject Trench;
     public GameObject PieceActionMenu;
     public GameObject ActionCancelButton;
+    public TMP_Text Group1Name;
+    public TMP_Text Group1MovementDiceNumber;
+    public TMP_Text Group2Name;
+    public TMP_Text Group2MovementDiceNumber;
 
     public List<GameObject> Group1Piece = null;
     public List<GameObject> Group2Piece = null;
@@ -64,6 +69,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateMoveInfor();
+
         if (Group1Piece!= null || Group2Piece!= null) 
         {
             UpdatePieceAbility();
@@ -556,6 +563,24 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
         }
+    }
+
+    public void UpdateMoveInfor()
+    {
+        if (activeCamp == PlayerContoller.Camp.Group1)
+        {
+            Group1Name.color = Color.green;
+            Group2Name.color = Color.white;
+        }
+        else if (activeCamp == PlayerContoller.Camp.Group2)
+        {
+            Group1Name.color = Color.white;
+            Group2Name.color = Color.green;
+        }
+
+
+        Group1MovementDiceNumber.text = group1MoveDice.ToString();
+        Group2MovementDiceNumber.text = group2MoveDice.ToString();
     }
 
 }
