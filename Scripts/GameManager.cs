@@ -523,7 +523,7 @@ public class GameManager : MonoBehaviour
         switch (group1PieceProfession)
         {
             case PieceProperties.Profession.Cowboy:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/CowboyWithPistol");
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/Cowboy");
                 group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
@@ -579,7 +579,7 @@ public class GameManager : MonoBehaviour
         switch (group2PieceProfession)
         {
             case PieceProperties.Profession.Cowboy:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/CowboyWithPistol");
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Cowboy/Cowboy");
                 group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
