@@ -11,54 +11,110 @@ public class ChangeWeapon : MonoBehaviour
     public TwoBoneIKConstraint Left;
     public PieceProperties pieceProperties;
     public GameObject[] pistolList;
+    public GameObject[] ARList;
+    public GameObject[] SRList;
+    public GameObject[] RPGList;
     public RigBuilder RigBuilder;
     public Animator animator;
-    int currentWeapon = 0;
-    int lastWeapon;
+    int currentWeaponLevel = 0;
+    int lastWeaponLevel;
+    PieceProperties.Weapon currentWeapon;
+    PieceProperties.Weapon lastWeapon;
     // Start is called before the first frame update
     void Start()
     {
-        RefreshWeaponBone();
-        currentWeapon = pieceProperties.WeaponLevel;
+        currentWeapon = pieceProperties.pieceWeapon;
+        currentWeaponLevel = pieceProperties.WeaponLevel;
+        lastWeaponLevel = currentWeaponLevel;
         lastWeapon = currentWeapon;
+        if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Pistol)
+        {
+            RefreshWeaponBone(pistolList);
+        }
+        else if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Assault_Rifle)
+        {
+            RefreshWeaponBone(ARList);
+        }
+        else if (pieceProperties.pieceWeapon == PieceProperties.Weapon.Sniper_Rifle)
+        {
+            RefreshWeaponBone(SRList);
+        }
+        else
+        {
+            RefreshWeaponBone(RPGList);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentWeapon = pieceProperties.WeaponLevel;
-        if (currentWeapon != lastWeapon)
+        currentWeapon = pieceProperties.pieceWeapon;
+        currentWeaponLevel = pieceProperties.WeaponLevel;
+        if (currentWeaponLevel != lastWeaponLevel || currentWeapon != lastWeapon)
         {
             animator.enabled = false;
             RigBuilder.enabled = false;
-            RefreshWeaponBone();
+            if(currentWeapon == PieceProperties.Weapon.Pistol)
+            {
+                RefreshWeaponBone(pistolList);
+                InvisibalWeapon();
+            }
+            else if(currentWeapon == PieceProperties.Weapon.Assault_Rifle)
+            {
+                RefreshWeaponBone(ARList);
+                InvisibalWeapon();
+            }
+            else if(currentWeapon == PieceProperties.Weapon.Sniper_Rifle)
+            {
+                RefreshWeaponBone(SRList);
+                InvisibalWeapon();
+            }
+            else
+            {
+                RefreshWeaponBone(RPGList);
+                InvisibalWeapon();
+            }
             lastWeapon = currentWeapon;
+            lastWeaponLevel = currentWeaponLevel;
             RigBuilder.Build();
             RigBuilder.enabled = true;
             animator.enabled = true;
         }
     }
         
-    public void RefreshWeaponBone()
+    public void RefreshWeaponBone(GameObject[] weaponList)
     {
-        
-        //var rightData = Right.data;
-        //var leftData = Left.data;
 
-        pistolList[pieceProperties.WeaponLevel - 1].SetActive(true);
+        weaponList[currentWeaponLevel - 1].SetActive(true);
 
+        Right.data.target = weaponList[currentWeaponLevel - 1].transform.Find("ref_right_hand_grip");
+        Left.data.target = weaponList[currentWeaponLevel - 1].transform.Find("ref_left_hand_grip");
 
-        Right.data.target = pistolList[pieceProperties.WeaponLevel - 1].transform.Find("ref_right_hand_grip");
-        Left.data.target = pistolList[pieceProperties.WeaponLevel - 1].transform.Find("ref_left_hand_grip");
+       
+    }
 
-
-
-        for (int i = 0; i < pistolList.Length; i++)
+    public void InvisibalWeapon()
+    {
+        //for (int i = 0; i < weaponList.Length; i++)
+        //{
+        //    if (i != currentWeaponLevel - 1)
+        //    {
+        //        weaponList[i].SetActive(false);
+        //    }
+        //}
+        if(lastWeapon == PieceProperties.Weapon.Pistol)
         {
-            if (i != pieceProperties.WeaponLevel - 1)
-            {
-                pistolList[i].SetActive(false);
-            }
+            pistolList[lastWeaponLevel-1].SetActive(false);
+        }else if(lastWeapon == PieceProperties.Weapon.Assault_Rifle)
+        {
+            ARList[lastWeaponLevel-1].SetActive(false) ;
+        }else if(lastWeapon == PieceProperties.Weapon.Sniper_Rifle)
+        {
+            SRList[lastWeaponLevel-1].SetActive(false) ;
+        }
+        else
+        {
+            RPGList[lastWeaponLevel-1].SetActive(false) ;
         }
     }
 }
