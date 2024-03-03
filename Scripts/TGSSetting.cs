@@ -99,7 +99,7 @@ public class TGSSetting : MonoBehaviour
     {
         foreach(var cell in Bar)
         {
-            if (cell == activePieceController.currentCellIndex)
+            if (cell == activePieceController.currentCellIndex && activePieceController.state == PlayerContoller.State.IDLE)
             {
                 ShopButton.SetActive(true);
                 return true;
@@ -117,7 +117,7 @@ public class TGSSetting : MonoBehaviour
     {
         foreach (var cell in MilitaryAcademy)
         {
-            if (cell == activePieceController.currentCellIndex)
+            if (cell == activePieceController.currentCellIndex && activePieceController.state == PlayerContoller.State.IDLE)
             {
                 ShopButton.SetActive(true);
                 return true;
@@ -135,7 +135,7 @@ public class TGSSetting : MonoBehaviour
     {
         foreach (var cell in WeaponStore)
         {
-            if (cell == activePieceController.currentCellIndex)
+            if (cell == activePieceController.currentCellIndex && activePieceController.state == PlayerContoller.State.IDLE)
             {
                 ShopButton.SetActive(true);
                 return true;
@@ -153,7 +153,7 @@ public class TGSSetting : MonoBehaviour
     {
         foreach (var cell in EquipmentShop)
         {
-            if (cell == activePieceController.currentCellIndex)
+            if (cell == activePieceController.currentCellIndex && activePieceController.state == PlayerContoller.State.IDLE)
             {
                 ShopButton.SetActive(true);
                 return true;
