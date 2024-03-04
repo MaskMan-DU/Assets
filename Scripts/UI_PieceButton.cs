@@ -20,7 +20,7 @@ public class UI_PieceButton : MonoBehaviour
     public TMP_Text Ability;
     public Slider LifeValue;
 
-    public int PieceIndex = 1;
+    public int PieceIndex;
 
 
     // Start is called before the first frame update
@@ -45,31 +45,46 @@ public class UI_PieceButton : MonoBehaviour
         switch (gameManager.activeCamp)
         {
             case PlayerContoller.Camp.Group1:
-                var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
-                LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
+
+                if (gameManager.Group1Piece.Count >= PieceIndex)
+                {
+                    var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                    LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
+                }
+                
 
                 break;
             case PlayerContoller.Camp.Group2:
-                piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
-                LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
-
+                if (gameManager.Group2Piece.Count >= PieceIndex)
+                {
+                    var piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                    LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
+                }
                 break;
         }
     }
 
     public void UpdatePieceInfor()
     {
-        if (gameManager.Group1Piece[PieceIndex - 1].GetComponent<PlayerContoller>().state == PlayerContoller.State.WAITFORNEXTTURN && gameManager.activeCamp == PlayerContoller.Camp.Group1)
+        switch (gameManager.activeCamp)
         {
-            this.gameObject.GetComponent<Button>().interactable = false;
-        }
-        else if (gameManager.Group2Piece[PieceIndex - 1].GetComponent<PlayerContoller>().state == PlayerContoller.State.WAITFORNEXTTURN && gameManager.activeCamp == PlayerContoller.Camp.Group2)
-        {
-            this.gameObject.GetComponent<Button>().interactable = false;
-        }
-        else
-        {
-            this.gameObject.GetComponent<Button>().interactable = true;
+            case PlayerContoller.Camp.Group1:
+
+                if (gameManager.Group1Piece.Count >= PieceIndex)
+                {
+                    var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                    
+                }
+
+
+                break;
+            case PlayerContoller.Camp.Group2:
+                if (gameManager.Group2Piece.Count >= PieceIndex)
+                {
+                    var piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                    
+                }
+                break;
         }
     }
 

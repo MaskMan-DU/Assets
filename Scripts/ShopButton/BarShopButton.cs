@@ -11,6 +11,7 @@ public class BarShopButton : MonoBehaviour
     private ShopInformation shopInformation;
     TerrainGridSystem tgs;
     private GameManager gameManager;
+    private TGSSetting tGSSetting;
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
@@ -52,6 +53,7 @@ public class BarShopButton : MonoBehaviour
     {
         tgs = TerrainGridSystem.instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        tGSSetting = GameObject.Find("GameManager").GetComponent<TGSSetting>();
         shopInformation = GameObject.Find("GameManager").GetComponent<ShopInformation>();
 
         weaponNames = new List<string>(shopInformation.WeaponList.Keys); // 获取所有武器名
@@ -113,6 +115,7 @@ public class BarShopButton : MonoBehaviour
 
                     piece.transform.SetParent(GameObject.Find("Group1").transform);
                     piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
+                    piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[0];
                     piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                     piece.GetComponent<PieceProperties>().WeaponLevel= weaponLevel;
                     piece.GetComponent<PieceProperties>().equipment =PieceProperties.Equipment.None;
@@ -129,6 +132,7 @@ public class BarShopButton : MonoBehaviour
 
                     piece.transform.SetParent(GameObject.Find("Group2").transform);
                     piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
+                    piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[1];
                     piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                     piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                     piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
