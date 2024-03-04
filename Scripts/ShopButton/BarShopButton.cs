@@ -37,15 +37,6 @@ public class BarShopButton : MonoBehaviour
     public TMP_Text WeaponLevel;
     public int weaponLevel;
 
-    // 装备
-    public TMP_Text Equipment;
-    private List<string> equipmentNames;
-    public string pieceEquipment;
-
-    // 装备等级
-    public TMP_Text EquipmentLevel;
-    public int equipmentLevel;
-
     // 能力
     public TMP_Text Ability;
     private List<string> abilityNames;
@@ -64,7 +55,6 @@ public class BarShopButton : MonoBehaviour
         shopInformation = GameObject.Find("GameManager").GetComponent<ShopInformation>();
 
         weaponNames = new List<string>(shopInformation.WeaponList.Keys); // 获取所有武器名
-        equipmentNames = new List<string>(shopInformation.EquipmentList.Keys); // 获取所有装备名
         abilityNames= new List<string>(shopInformation.AbilityList.Keys); // 获取所有能力名
 
 
@@ -103,12 +93,6 @@ public class BarShopButton : MonoBehaviour
         weaponLevel = Random.Range(1, 4); // 获取棋子武器等级
         WeaponLevel.text = weaponLevel.ToString(); // 填入棋子武器等级
 
-        pieceEquipment = equipmentNames[Random.Range(0, equipmentNames.Count)]; // 获取棋子装备
-        Equipment.text = pieceEquipment; // 填入棋子装备
-
-        equipmentLevel = Random.Range(1, 4); // 获取棋子装备等级
-        EquipmentLevel.text = equipmentLevel.ToString();// 填入棋子装备等级
-
         pieceAbility = abilityNames[Random.Range(0, abilityNames.Count)]; // 获取棋子额外能力
         Ability.text = pieceAbility; // 填入棋子额外能力
 
@@ -131,8 +115,7 @@ public class BarShopButton : MonoBehaviour
                     piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                     piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                     piece.GetComponent<PieceProperties>().WeaponLevel= weaponLevel;
-                    piece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
-                    piece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+                    piece.GetComponent<PieceProperties>().equipment =PieceProperties.Equipment.None;
                     piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
 
                 }
@@ -148,8 +131,7 @@ public class BarShopButton : MonoBehaviour
                     piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                     piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                     piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
-                    piece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
-                    piece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+                    piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
                     piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
 
                 }
