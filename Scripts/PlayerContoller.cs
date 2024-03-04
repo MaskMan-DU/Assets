@@ -492,6 +492,7 @@ public class PlayerContoller : MonoBehaviour
                         if (o.GetComponent<EnemyController>().currentCellIndex == p)
                         {
                             o.GetComponent<PieceProperties>().currentLifeValue -= damage;
+
                             if (o.GetComponent<PieceProperties>().currentLifeValue <= 0)
                             {
                                 if (camp == Camp.Group1)

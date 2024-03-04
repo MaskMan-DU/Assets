@@ -290,6 +290,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SelectPieceByButton()
+    {
+
+    }
+
     /// <summary>
     /// 检查两个组的回合结束情况
     /// </summary>

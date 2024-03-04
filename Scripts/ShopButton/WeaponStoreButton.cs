@@ -35,7 +35,7 @@ public class WeaponStoreButton : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         shopInformation = GameObject.Find("GameManager").GetComponent<ShopInformation>();
 
-        weaponNames = new List<string>(shopInformation.EquipmentList.Keys); // 获取所有装备名
+        weaponNames = new List<string>(shopInformation.WeaponList.Keys); // 获取所有装备名
 
         RefreshInformation();
     }
