@@ -56,9 +56,6 @@ public class MilitaryAcademyShopButton : MonoBehaviour
         weaponNames = new List<string>(shopInformation.WeaponList.Keys); // 获取所有武器名
         abilityNames = new List<string>(shopInformation.AbilityList.Keys); // 获取所有能力名
 
-
-        
-
         RefreshInformation();
     }
 

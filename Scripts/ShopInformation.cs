@@ -22,14 +22,14 @@ public class Profession
 public class Weapon
 {
     public string weaponName;
-    public string movementEffe;
+    public string movementEffect;
     public string weaponAttackRange;
     public PieceProperties.Weapon weaponValue;
 
     public Weapon (string weaponName, string movementEffe, string weaponAttackRange, PieceProperties.Weapon weaponValue)
     {
         this.weaponName = weaponName;
-        this.movementEffe = movementEffe;
+        this.movementEffect = movementEffe;
         this.weaponAttackRange = weaponAttackRange;
         this.weaponValue = weaponValue;
     }
