@@ -95,13 +95,6 @@ public class ChangeWeapon : MonoBehaviour
 
     public void InvisibalWeapon()
     {
-        //for (int i = 0; i < weaponList.Length; i++)
-        //{
-        //    if (i != currentWeaponLevel - 1)
-        //    {
-        //        weaponList[i].SetActive(false);
-        //    }
-        //}
         if(lastWeapon == PieceProperties.Weapon.Pistol)
         {
             pistolList[lastWeaponLevel-1].SetActive(false);

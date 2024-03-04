@@ -85,7 +85,7 @@ public class BarShopButton : MonoBehaviour
         Profession.text = pieceProfession; // 依据获取到的职业填入职业名
 
         pieceLevel = Random.Range(1, 4); // 获取棋子职业等级
-        ProfessionLevel.text = pieceLevel.ToString(); // 填入棋子等级
+        ProfessionLevel.text = "Level "+ pieceLevel.ToString(); // 填入棋子等级
 
         pieceWeapon = weaponNames[Random.Range(0, weaponNames.Count)]; // 获取随机选定的棋子武器
         Weapon.text = pieceWeapon; // 填入棋子武器
