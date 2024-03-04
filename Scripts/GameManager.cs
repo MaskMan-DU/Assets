@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
 
     public int attackDice;
 
-    public int group1Gold;
-    public int group2Gold;
+    public float group1Gold;
+    public float group2Gold;
 
     public int group1Coin;
     public int group2Coin;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     // ½ð±ÒºÍ½ð¿ó
     public bool GoldMineHasPiece = false;
     public int GetGoldCellIndex;
-    public int MaxGoldValue = 1000;
+    public float MaxGoldValue = 1000;
     public Slider Group1Gold;
     public Slider Group2Gold;
     public TMP_Text Group1CoinsValue;
@@ -341,7 +341,6 @@ public class GameManager : MonoBehaviour
             i.GetComponent<EnemyController>().state= EnemyController.State.REFRESH;
         }
     }
-
 
     public void UpdatePieceAbility()
     {

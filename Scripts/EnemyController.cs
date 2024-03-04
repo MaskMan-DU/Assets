@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TGS;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -33,6 +33,8 @@ public class EnemyController : MonoBehaviour
 
     public int currentCellIndex;
 
+    public Slider LifeValueBar;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class EnemyController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pieceProperties = this.gameObject.GetComponent<PieceProperties>();
         // tgsSetting = GameObject.Find("GameManager").GetComponent<TGSSetting>();
+        
 
         state = State.IDLE;
 
@@ -48,10 +51,7 @@ public class EnemyController : MonoBehaviour
 
         transform.position = targetPos;
 
-        gameManager.EnemyPiece.Add(this.gameObject);
-
-
-        
+        gameManager.EnemyPiece.Add(this.gameObject);       
     }
 
     // Update is called once per frame
@@ -62,6 +62,19 @@ public class EnemyController : MonoBehaviour
         // ¼ÓÔØÎäÆ÷¹¥»÷·¶Î§
         attackRange = pieceProperties.attackRange;
 
+        LifeValueBar.value = pieceProperties.currentLifeValue / pieceProperties.finalLifeValue;
+        LifeValueBar.transform.rotation = Camera.main.transform.rotation;
+
+
+        if (pieceProperties.currentLifeValue <= 0)
+        {
+            print("Die");
+            tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
+            tgs.CellSetCanCross(currentCellIndex, true);
+            gameManager.EnemyPiece.Remove(this.gameObject);
+            Destroy(this.gameObject);
+        }
+
 
         switch (state)
         {
@@ -70,10 +83,10 @@ public class EnemyController : MonoBehaviour
                 tgs.CellSetCanCross(currentCellIndex, false);
                 break;
             case State.ATTACKING:
-                if (attackRangeCellList != null)
+                /*if (attackRangeCellList != null)
                 {
-                    // CleanRange(attackRangeCellList);
-                }
+                    CleanRange(attackRangeCellList);
+                }*/
 
                 // Ãæ³¯¹¥»÷¶ÔÏó
                 transform.LookAt(tgs.CellGetPosition(attackTargetIndex));
@@ -89,7 +102,7 @@ public class EnemyController : MonoBehaviour
                 gameManager.PieceActionMenu.SetActive(true);
                 break;
             case State.ATTACKSELECT:
-                // ShowRange(attackRange);
+                ShowRange(attackRange, false);
 
                 List<int> protentialTargetPiecesIndex = new List<int>();
                 foreach(var i in attackRangeCellList)
@@ -131,7 +144,7 @@ public class EnemyController : MonoBehaviour
                 else
                 {
                     state = State.ENDTURN;
-                    CleanRange(attackRangeCellList);
+                    // CleanRange(attackRangeCellList);
                     print("Enemy find no target!");
                     break;
                 }
@@ -145,24 +158,18 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
-        if (pieceProperties.currentLifeValue <= 0)
-        {
-            tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
-            tgs.CellSetCanCross(currentCellIndex, true);
-            gameManager.EnemyPiece.Remove(this.gameObject);
-            Destroy(this.gameObject);
-        }
+        
     }
 
     private void OnMouseEnter()
     {
-        if (gameManager.activePiece == null)
+        if (gameManager.activePiece == null && pieceProperties.currentLifeValue > 0)
         {
-            ShowRange(attackRange);
+            ShowRange(attackRange, true);
         }
         else if(gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
         {
-            ShowRange(attackRange);
+            ShowRange(attackRange, true);
         }
 
 
@@ -170,7 +177,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (gameManager.activePiece == null)
+        if (gameManager.activePiece == null && pieceProperties.currentLifeValue > 0)
         {
             CleanRange(attackRangeCellList);
         }
@@ -178,17 +185,14 @@ public class EnemyController : MonoBehaviour
         {
             CleanRange(attackRangeCellList);
         }
-        
-
     }
 
 
-    private void ShowRange(int range)
+    private void ShowRange(int range, bool showRange)
     {
         rangeOriginalColor = new List<Color>();
-        attackRangeCellList = new List<int>();
 
-        // Cell cell = tgs.CellGetAtPosition(transform.position, true);
+        attackRangeCellList = new List<int>();
 
         List<int> indices = new List<int>();
 
@@ -207,15 +211,19 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+        attackRangeCellList = indices;
+
         for (int i = 0; i < indices.Count; i++)
         {
             rangeOriginalColor.Add(tgs.CellGetColor(indices[i]));
         }
 
-        attackRangeCellList = indices;
-
-        tgs.CellSetColor(attackRangeCellList, new Color(1, 0, 0, 0.5f));
+        if (showRange)
+        {
+            tgs.CellSetColor(indices, new Color(1, 0, 0, 0.5f));
+        } 
     }
+
 
     private void CleanRange(List<int> targetRange)
     {
@@ -223,7 +231,10 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < targetRange.Count; i++)
         {
-            tgs.CellSetColor(targetRange[i], rangeOriginalColor[i]);
+            if (rangeOriginalColor[i] != null)
+            {
+                tgs.CellSetColor(targetRange[i], rangeOriginalColor[i]);
+            }    
         }
 
     }

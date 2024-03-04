@@ -627,7 +627,11 @@ public class PlayerContoller : MonoBehaviour
 
                         var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
+                        print(damage);
+
                         targetPieceProperties.currentLifeValue -= damage;
+
+                        print(targetPieceProperties.currentLifeValue);
                         if (targetPieceProperties.currentLifeValue <= 0)
                         {
                             if (camp == Camp.Group1)

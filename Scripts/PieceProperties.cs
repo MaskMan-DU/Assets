@@ -56,8 +56,8 @@ public class PieceProperties : MonoBehaviour
     [Header("基本属性")]
     public PieceType pieceType; 
 
-    public int lifeValue = 100;
-    public int finalLifeValue;
+    public float lifeValue = 100;
+    public float finalLifeValue;
 
     public int plusMovement;
     public int finalMovement;
@@ -105,7 +105,7 @@ public class PieceProperties : MonoBehaviour
     
 
     [Header("实时数据")]
-    public int currentLifeValue;
+    public float currentLifeValue;
 
     // Start is called before the first frame update
     void Start()
@@ -126,7 +126,7 @@ public class PieceProperties : MonoBehaviour
         {
             if (pieceType == PieceType.NormalEnemy) // 是普通敌人
             {
-                lifeValue = 100;
+                lifeValue = 20;
                 finalLifeValue = lifeValue;
                 WeaponLevel = 1;
                 enemyCoin = 50;
@@ -134,7 +134,7 @@ public class PieceProperties : MonoBehaviour
             }
             else
             {
-                lifeValue = 150;
+                lifeValue = 40;
                 finalLifeValue = lifeValue;
                 WeaponLevel = Random.Range(2, 4);
                 enemyCoin = 100;

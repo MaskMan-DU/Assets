@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using TGS;
@@ -22,6 +23,9 @@ public class TGSSetting : MonoBehaviour
     public List<int> WeaponStore = new List<int>() { };
     public List<int> EquipmentShop = new List<int>() { };
 
+    public List<int> NormalEnemyCells = new List<int> { 531, 632, 434, 557, 655, 457 };
+    public List<int> ElitleEnemyCells = new List<int> { 535, 570, 504, 553, 585, 519 };
+
     public List<int> StartCell= new List<int>() { 528, 560};
 
     private PlayerContoller activePieceController;
@@ -44,6 +48,8 @@ public class TGSSetting : MonoBehaviour
     void Start()
     {
         tgs = TerrainGridSystem.instance;
+        GenerateElitleEnemy();
+        GenerateNormalEnemy();
     }
 
     // Update is called once per frame
@@ -165,5 +171,58 @@ public class TGSSetting : MonoBehaviour
     public void EquipmentShopEvent()
     {
         ShopButton.GetComponent<ShopButton>().ActiveShop = EquipmentShopUI;
+    }
+
+
+    public void GenerateNormalEnemy()
+    {
+        var NormalEnemyList = new List<string>()
+        {
+            "NormalEnemyWithPistol",
+            "NormalEnemyWithAR",
+            "NormalEnemyWithSR",
+            "NormalEnemyWithRPG",
+        };
+
+        foreach (var i in NormalEnemyCells)
+        {
+            var enemyName = NormalEnemyList[Random.Range(0, NormalEnemyList.Count)];
+
+            var enemyPrefab = Resources.Load<GameObject>("Prefabs/Enemy/Normal/" + enemyName);
+
+            var enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
+            enemy.transform.SetParent(GameObject.Find("Enemy").transform);
+
+            var enemyController = enemy.GetComponent<EnemyController>();
+
+            enemyController.currentCellIndex = i;
+        }
+    }
+
+    public void GenerateElitleEnemy()
+    {
+        var ElitleEnemyList = new List<string>()
+        {
+            "EliteEnemyWithPistol",
+            "EliteEnemyWithAR",
+            "EliteEnemyWithSR",
+            "EliteEnemyWithRPG",
+        };
+
+        foreach (var i in ElitleEnemyCells)
+        {
+            var enemyName = ElitleEnemyList[Random.Range(0, ElitleEnemyList.Count)];
+
+            var enemyPrefab = Resources.Load<GameObject>("Prefabs/Enemy/Elite/" + enemyName);
+
+            var enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+
+            enemy.transform.SetParent(GameObject.Find("Enemy").transform);
+
+            var enemyController = enemy.GetComponent<EnemyController>();
+
+            enemyController.currentCellIndex = i;
+        }
     }
 }
