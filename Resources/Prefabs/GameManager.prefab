@@ -62,7 +62,7 @@ MonoBehaviour:
   state: 0
   Wire: {fileID: 1795961046990407846, guid: f5ba4cf1634c79844b8911cf5757203f, type: 3}
   Trench: {fileID: 3473819703865834249, guid: 54aee675bb71ff24383124de99ada7f5, type: 3}
-  PieceActionMenu: {fileID: 5592824023814946628, guid: 70d2f4baec0b2534980793d05230b7b4, type: 3}
+  PieceActionMenu: {fileID: 0}
   ActionCancelButton: {fileID: 0}
   Group1Name: {fileID: 0}
   Group1MovementDiceNumber: {fileID: 0}
@@ -101,6 +101,8 @@ MonoBehaviour:
   MilitaryAcademy: 
   WeaponStore: 
   EquipmentShop: 
+  NormalEnemyCells: 1302000078020000b20100002d0200008f020000c9010000
+  ElitleEnemyCells: 170200003a020000f8010000290200004902000007020000
   StartCell: 1002000030020000
   ShopButton: {fileID: 0}
   BarShopUI: {fileID: 0}

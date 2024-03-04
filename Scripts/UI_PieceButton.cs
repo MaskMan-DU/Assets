@@ -36,8 +36,6 @@ public class UI_PieceButton : MonoBehaviour
     {
         UpdatePieceInfor();
         UpdateLifeValue();
-
-
     }
 
     public void UpdateLifeValue()
@@ -73,7 +71,11 @@ public class UI_PieceButton : MonoBehaviour
                 if (gameManager.Group1Piece.Count >= PieceIndex)
                 {
                     var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
-                    
+                    ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
+                    WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
+                    EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    Ability.text = piece.ability.ToString();
+
                 }
 
 
@@ -82,7 +84,10 @@ public class UI_PieceButton : MonoBehaviour
                 if (gameManager.Group2Piece.Count >= PieceIndex)
                 {
                     var piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
-                    
+                    ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
+                    WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
+                    EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    Ability.text = piece.ability.ToString();
                 }
                 break;
         }
