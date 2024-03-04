@@ -18,6 +18,7 @@ public class UI_PieceButton : MonoBehaviour
     public TMP_Text WeaponLevel;
     public TMP_Text EquipmentLevel;
     public TMP_Text Ability;
+    public Slider LifeValue;
 
     public int PieceIndex = 1;
 
@@ -26,14 +27,34 @@ public class UI_PieceButton : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Camera = GameObject.Find("Camera Rig").GetComponent<CameraController>();    
+        Camera = GameObject.Find("Camera Rig").GetComponent<CameraController>();
+        tgs = TerrainGridSystem.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdatePieceInfor();
-        tgs = TerrainGridSystem.instance;
+        UpdateLifeValue();
+
+
+    }
+
+    public void UpdateLifeValue()
+    {
+        switch (gameManager.activeCamp)
+        {
+            case PlayerContoller.Camp.Group1:
+                var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
+
+                break;
+            case PlayerContoller.Camp.Group2:
+                piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
+                LifeValue.value = piece.currentLifeValue / piece.finalLifeValue;
+
+                break;
+        }
     }
 
     public void UpdatePieceInfor()
@@ -50,8 +71,6 @@ public class UI_PieceButton : MonoBehaviour
         {
             this.gameObject.GetComponent<Button>().interactable = true;
         }
-
-
     }
 
     public void SelectPiece()

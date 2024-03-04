@@ -1142,13 +1142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ba20abcbeb6b429bfd5ab16702b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProfessionImage: {fileID: 0}
-  WeaponImage: {fileID: 0}
-  EquipmentImage: {fileID: 0}
-  ProfessionLevel: {fileID: 0}
-  WeaponLevel: {fileID: 0}
-  EquipmentLevel: {fileID: 0}
-  Ability: {fileID: 0}
+  ProfessionImage: {fileID: 7040917947970358654}
+  WeaponImage: {fileID: 7040917947302289541}
+  EquipmentImage: {fileID: 7040917947442537043}
+  ProfessionLevel: {fileID: 7040917948554327358}
+  WeaponLevel: {fileID: 7040917948695477005}
+  EquipmentLevel: {fileID: 7040917947831614561}
+  Ability: {fileID: 7040917948136692346}
   PieceIndex: 1
 --- !u!1 &7040917948302820744
 GameObject:

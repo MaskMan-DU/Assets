@@ -262,7 +262,8 @@ public class EnemyController : MonoBehaviour
                         {
                             if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
                             {
-                                foreach (var o in gameManager.Group2Piece)
+
+                                foreach (var o in gameManager.Group1Piece)
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
@@ -353,7 +354,7 @@ public class EnemyController : MonoBehaviour
                         {
                             if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
                             {
-                                foreach (var o in gameManager.Group1Piece)
+                                foreach (var o in gameManager.Group2Piece)
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
