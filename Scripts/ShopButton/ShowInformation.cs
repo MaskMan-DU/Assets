@@ -25,12 +25,4 @@ public class ShowInformation : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         DetailInformation.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    
 }

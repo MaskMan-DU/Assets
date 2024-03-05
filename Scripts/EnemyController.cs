@@ -246,6 +246,7 @@ public class EnemyController : MonoBehaviour
     {
         if (tgs.CellGetGroup(attackTargetIndex) == TGSSetting.CELL_PLAYER)
         {
+
             foreach (var i in gameManager.Group1Piece)
             {
                 var pieceController = i.GetComponent<PlayerContoller>();
@@ -267,6 +268,41 @@ public class EnemyController : MonoBehaviour
                             {
 
                                 foreach (var o in gameManager.Group1Piece)
+                                {
+                                    if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
+                                    {
+                                        var rocketTarget = o.GetComponent<PieceProperties>();
+                                        if (rocketTarget.isTrenchActive) // 首先判断是否无敌
+                                        {
+                                            foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
+                                            {
+                                                if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                                {
+                                                    l.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                    break;
+                                                }
+                                            }
+
+                                            rocketTarget.isTrenchActive = false;
+                                        }
+                                        else // 如果不无敌，是否有
+                                        {
+                                            if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                            {
+                                                rocketTarget.equipmentDurability -= damage;
+                                                rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
+                                            }
+                                            else
+                                            {
+                                                rocketTarget.currentLifeValue -= damage;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                foreach (var o in gameManager.Group2Piece)
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
@@ -357,6 +393,41 @@ public class EnemyController : MonoBehaviour
                         {
                             if (tgs.CellGetGroup(p) == TGSSetting.CELL_PLAYER)
                             {
+                                foreach (var o in gameManager.Group1Piece)
+                                {
+                                    if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
+                                    {
+                                        var rocketTarget = o.GetComponent<PieceProperties>();
+                                        if (rocketTarget.isTrenchActive) // 首先判断是否无敌
+                                        {
+                                            foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
+                                            {
+                                                if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
+                                                {
+                                                    l.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                                    break;
+                                                }
+                                            }
+
+                                            rocketTarget.isTrenchActive = false;
+                                        }
+                                        else // 如果不无敌，是否有
+                                        {
+                                            if (rocketTarget.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                                            {
+                                                rocketTarget.equipmentDurability -= damage;
+                                                rocketTarget.currentLifeValue -= (damage - rocketTarget.damageReduce);
+
+                                            }
+                                            else
+                                            {
+                                                rocketTarget.currentLifeValue -= damage;
+                                            }
+                                        }
+                                    }
+
+                                }
+
                                 foreach (var o in gameManager.Group2Piece)
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)

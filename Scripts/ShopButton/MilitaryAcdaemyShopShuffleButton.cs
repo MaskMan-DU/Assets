@@ -8,9 +8,33 @@ public class MilitaryAcdaemyShopShuffleButton : MonoBehaviour
 
     public void Shuffle()
     {
-        foreach (var i in options)
+        var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        if (gameManager.activePiece != null)
         {
-            i.GetComponent<MilitaryAcademyShopButton>().RefreshInformation();
+            switch (gameManager.activeCamp)
+            {
+                case PlayerContoller.Camp.Group1:
+                    if (gameManager.group1Coin >= 5)
+                    {
+                        gameManager.group1Coin -= 5;
+                        foreach (var i in options)
+                        {
+                            i.GetComponent<WeaponStoreButton>().RefreshInformation();
+                        }
+                    }
+                    break;
+                case PlayerContoller.Camp.Group2:
+                    if (gameManager.group2Coin >= 5)
+                    {
+                        gameManager.group2Coin -= 5;
+                        foreach (var i in options)
+                        {
+                            i.GetComponent<WeaponStoreButton>().RefreshInformation();
+                        }
+                    }
+                    break;
+            }
         }
     }
 }

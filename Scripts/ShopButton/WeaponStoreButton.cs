@@ -66,21 +66,24 @@ public class WeaponStoreButton : MonoBehaviour
         weaponPlueMovement = shopInformation.WeaponList[pieceWeapon].movementEffect; // 获取武器移动影响
         WeaponPlueMovement.text = weaponPlueMovement.ToString(); // 填入武器移动影响
 
-        if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
+        if (gameManager.activePiece!= null)
         {
-            if (pieceWeapon == "Rocket Launcher")
+            if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
             {
-                this.GetComponent<Button>().interactable = false;
+                if (pieceWeapon == "Rocket Launcher")
+                {
+                    this.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    this.GetComponent<Button>().interactable = true;
+                }
             }
             else
             {
                 this.GetComponent<Button>().interactable = true;
             }
-        }
-        else
-        {
-            this.GetComponent<Button>().interactable = true;
-        }   
+        }    
     }
 
     public void BuyWeapon()

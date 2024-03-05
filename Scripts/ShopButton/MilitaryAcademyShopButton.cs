@@ -112,6 +112,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
     public void GeneratePiece()
     {
+
         switch (gameManager.activeCamp)
         {
             case PlayerContoller.Camp.Group1:
