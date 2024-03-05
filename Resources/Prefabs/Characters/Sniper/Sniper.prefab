@@ -82553,8 +82553,7 @@ MonoBehaviour:
   initialCellIndex: 528
   currentCellIndex: 0
   isInGoldMine: 0
-  animator: {fileID: 0}
-  shootFire: {fileID: 0}
+  animator: {fileID: 4327489951651162469}
 --- !u!114 &4768965906766104173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82655,6 +82654,7 @@ MonoBehaviour:
   RPGList: []
   RigBuilder: {fileID: 4421656209383688510}
   animator: {fileID: 4327489951651162469}
+  findShootFire: {fileID: 0}
 --- !u!1 &4780880239603177708
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class PlayerContoller : MonoBehaviour
 
     public bool isInGoldMine = false;
     public Animator animator;
-    public ParticleSystem shootFire;
+    private ParticleSystem shootFire;
 
 
     // Use this for initialization
