@@ -20,6 +20,7 @@ public class ChangeWeapon : MonoBehaviour
     int lastWeaponLevel;
     PieceProperties.Weapon currentWeapon;
     PieceProperties.Weapon lastWeapon;
+    public ParticleSystem findShootFire;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,8 +90,9 @@ public class ChangeWeapon : MonoBehaviour
 
         Right.data.target = weaponList[currentWeaponLevel - 1].transform.Find("ref_right_hand_grip");
         Left.data.target = weaponList[currentWeaponLevel - 1].transform.Find("ref_left_hand_grip");
+        findShootFire = weaponList[currentWeaponLevel - 1].GetComponentInChildren<ParticleSystem>();
 
-       
+
     }
 
     public void InvisibalWeapon()

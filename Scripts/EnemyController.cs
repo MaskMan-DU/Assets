@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
     public int currentCellIndex;
 
     public Slider LifeValueBar;
+    public Animator animator;
+    public ParticleSystem shootFire;
 
 
     // Start is called before the first frame update
@@ -91,6 +93,7 @@ public class EnemyController : MonoBehaviour
                 // 面朝攻击对象
                 transform.LookAt(tgs.CellGetPosition(attackTargetIndex));
 
+                PlayEffect();
                 // 播放攻击动画
                 // Animator.setbool("isAttacking", true) 然后播放动画（此处代码为例子，当具备动画时需要重新编写）
 
@@ -432,5 +435,12 @@ public class EnemyController : MonoBehaviour
         }
 
         hasAttack = true;
+    }
+    public void PlayEffect()
+    {
+        if (shootFire != null && !shootFire.isPlaying)
+        {
+            shootFire.Play();
+        }
     }
 }

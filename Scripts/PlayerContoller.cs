@@ -34,6 +34,7 @@ public class PlayerContoller : MonoBehaviour
     private GameManager gameManager;
     private PieceProperties pieceProperties;
     private TGSSetting tgsSetting;
+    private ChangeWeapon changeWeapon;
 
     public List<Color> rangeOriginalColor;
 
@@ -67,7 +68,9 @@ public class PlayerContoller : MonoBehaviour
         tgs = TerrainGridSystem.instance;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pieceProperties = this.gameObject.GetComponent<PieceProperties>();
+        changeWeapon = this.gameObject.GetComponent<ChangeWeapon>();
         tgsSetting = GameObject.Find("GameManager").GetComponent<TGSSetting>();
+        shootFire = changeWeapon.findShootFire;
 
         state = State.IDLE;
 
@@ -91,6 +94,7 @@ public class PlayerContoller : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        shootFire = changeWeapon.findShootFire;
         // ¼ÓÔØÎäÆ÷¹¥»÷·¶Î§
         attackRange = pieceProperties.attackRange;
         equipmentRange = pieceProperties.equipmentRange;
@@ -771,12 +775,4 @@ public class PlayerContoller : MonoBehaviour
             shootFire.Play();
         }
     }
-
-    //public void StopEffect()
-    //{
-    //    if (shootFire != null && shootFire.isPlaying)
-    //    {
-    //        shootFire.Stop();
-    //    }
-    //}
 }
