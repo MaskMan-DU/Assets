@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TGS;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
@@ -37,7 +38,6 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
     public ParticleSystem shootFire;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,16 +66,6 @@ public class EnemyController : MonoBehaviour
 
         LifeValueBar.value = pieceProperties.currentLifeValue / pieceProperties.finalLifeValue;
         LifeValueBar.transform.rotation = Camera.main.transform.rotation;
-
-
-        if (pieceProperties.currentLifeValue <= 0)
-        {
-            print("Die");
-            tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
-            tgs.CellSetCanCross(currentCellIndex, true);
-            gameManager.EnemyPiece.Remove(this.gameObject);
-            Destroy(this.gameObject);
-        }
 
 
         switch (state)
@@ -161,32 +151,59 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
-        
+        if (pieceProperties.currentLifeValue <= 0)
+        {
+            print("Die");
+            tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
+            tgs.CellSetCanCross(currentCellIndex, true);
+            gameManager.EnemyPiece.Remove(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnMouseEnter()
     {
-        if (gameManager.activePiece == null && pieceProperties.currentLifeValue > 0)
+        if (gameManager.state == GameManager.State.SelectPiece)
         {
-            ShowRange(attackRange, true);
+            if (gameManager.activePiece != null)
+            {
+                if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
+                {
+                    ShowRange(attackRange, true);
+                }
+            }
+            else
+            {
+                ShowRange(attackRange, true);
+            }
         }
-        else if(gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
-        {
-            ShowRange(attackRange, true);
-        }
-
-
     }
 
     private void OnMouseExit()
     {
-        if (gameManager.activePiece == null && pieceProperties.currentLifeValue > 0)
+        if (gameManager.state == GameManager.State.SelectPiece)
         {
-            CleanRange(attackRangeCellList);
-        }
-        else if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
-        {
-            CleanRange(attackRangeCellList);
+            if (gameManager.activePiece != null)
+            {
+                if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
+                {
+                    CleanRange(attackRangeCellList);
+                    rangeOriginalColor = null;
+                }
+                else if (gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.IDLE)
+                {
+                    if (rangeOriginalColor != null)
+                    {
+                        CleanRange(attackRangeCellList);
+                        rangeOriginalColor = null;
+                    }
+                }
+            }
+            else
+            {
+                CleanRange(attackRangeCellList);
+                rangeOriginalColor = null;
+            }
         }
     }
 
@@ -230,7 +247,7 @@ public class EnemyController : MonoBehaviour
 
     private void CleanRange(List<int> targetRange)
     {
-        tgs.CellSetColor(targetRange, Color.clear);
+        // tgs.CellSetColor(targetRange, Color.clear);
 
         for (int i = 0; i < targetRange.Count; i++)
         {
