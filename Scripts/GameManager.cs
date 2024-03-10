@@ -536,9 +536,10 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().pieceProfession = PieceProperties.Profession.Cowboy;
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
+                group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group1Piece.GetComponent<PieceProperties>().WeaponLevel= 2;
+
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
-
-
 
                 break;
             case PieceProperties.Profession.Mercenary:
@@ -550,6 +551,9 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+
+                group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group1Piece.GetComponent<PieceProperties>().WeaponLevel= 2;
 
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
@@ -563,6 +567,9 @@ public class GameManager : MonoBehaviour
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
 
+                group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
+
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
             case PieceProperties.Profession.Engineer:
@@ -574,6 +581,9 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().ability = group1PieceAbility;
 
                 group1Piece.transform.SetParent(GameObject.Find("Group1").transform);
+
+                group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
@@ -592,6 +602,9 @@ public class GameManager : MonoBehaviour
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
 
+                group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
+
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Mercenary:
@@ -603,6 +616,10 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+
+                group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
+
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Sniper:
@@ -614,6 +631,10 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+
+                group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
+
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Engineer:
@@ -625,6 +646,9 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().ability = group2PieceAbility;
 
                 group2Piece.transform.SetParent(GameObject.Find("Group2").transform);
+
+                group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
+                group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;

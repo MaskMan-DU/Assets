@@ -64,13 +64,77 @@ public class EquipmentShopButton : MonoBehaviour
 
     public void BuyEquipment()
     {
+        var canBuy = false;
         // »¨Ç®
+        if (equipmentLevel == 1)
+        {
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 20)
+                {
+                    canBuy = true;
+                    gameManager.group1Coin -= 20;
+                }
+                
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 20)
+                {
+                    canBuy = true;
+                    gameManager.group2Coin -= 20;
+                }
+            }
+        }
+        else if (equipmentLevel == 2)
+        {
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 40)
+                {
+                    canBuy = true;
+                    gameManager.group1Coin -= 40;
+                }
 
-        gameManager.activePiece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
-        gameManager.activePiece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 40)
+                {
+                    canBuy = true;
+                    gameManager.group2Coin -= 40;
+                }
+            }
+        }
+        else if (equipmentLevel == 3)
+        {
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 60)
+                {
+                    canBuy = true;
+                    gameManager.group1Coin -= 60;
+                }
 
-        gameManager.activePiece.GetComponent<PieceProperties>().UpdateEquipmentProperties();
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 60)
+                {
+                    canBuy = true;
+                    gameManager.group2Coin -= 60;
+                }
+            }
+        }
 
-        this.GetComponent<Button>().interactable = false;
+        if (canBuy) 
+        {
+            gameManager.activePiece.GetComponent<PieceProperties>().equipment = shopInformation.EquipmentList[pieceEquipment].equipmentValue;
+            gameManager.activePiece.GetComponent<PieceProperties>().equipmentLevel = equipmentLevel;
+
+            gameManager.activePiece.GetComponent<PieceProperties>().UpdateEquipmentProperties();
+
+            this.GetComponent<Button>().interactable = false;
+        }       
     }
 }

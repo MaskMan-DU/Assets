@@ -112,45 +112,110 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
     public void GeneratePiece()
     {
-
-        switch (gameManager.activeCamp)
+        var canBuy = false;
+        // »¨Ç®
+        if (pieceLevel == 1)
         {
-            case PlayerContoller.Camp.Group1:
-                if (gameManager.Group1Piece.Count < 3)
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 20)
                 {
-                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
-
-                    var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
-
-                    piece.transform.SetParent(GameObject.Find("Group1").transform);
-                    piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
-                    piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[0];
-                    piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
-                    piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
-                    piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
-                    piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
-
+                    canBuy = true;
+                    gameManager.group1Coin -= 20;
                 }
-                break;
-            case PlayerContoller.Camp.Group2:
-                if (gameManager.Group2Piece.Count < 3)
+
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 20)
                 {
-                    var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
-
-                    var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
-
-                    piece.transform.SetParent(GameObject.Find("Group2").transform);
-                    piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
-                    piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[1];
-                    piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
-                    piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
-                    piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
-                    piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
-
+                    canBuy = true;
+                    gameManager.group2Coin -= 20;
                 }
-                break;
+            }
+        }
+        else if (pieceLevel == 2)
+        {
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 40)
+                {
+                    canBuy = true;
+                    gameManager.group1Coin -= 40;
+                }
+
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 40)
+                {
+                    canBuy = true;
+                    gameManager.group2Coin -= 40;
+                }
+            }
+        }
+        else if (pieceLevel == 3)
+        {
+            if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
+            {
+                if (gameManager.group1Coin >= 60)
+                {
+                    canBuy = true;
+                    gameManager.group1Coin -= 60;
+                }
+
+            }
+            else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
+            {
+                if (gameManager.group2Coin >= 60)
+                {
+                    canBuy = true;
+                    gameManager.group2Coin -= 60;
+                }
+            }
         }
 
-        this.GetComponent<Button>().interactable = false;
+        if (canBuy)
+        {
+            switch (gameManager.activeCamp)
+            {
+                case PlayerContoller.Camp.Group1:
+                    if (gameManager.Group1Piece.Count < 3)
+                    {
+                        var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
+
+                        var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
+
+                        piece.transform.SetParent(GameObject.Find("Group1").transform);
+                        piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
+                        piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[0];
+                        piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                        piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
+                        piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
+                        piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
+
+                    }
+                    break;
+                case PlayerContoller.Camp.Group2:
+                    if (gameManager.Group2Piece.Count < 3)
+                    {
+                        var piecePrefab = Resources.Load<GameObject>("Prefabs/Characters/" + pieceProfession + "/" + pieceProfession);
+
+                        var piece = Instantiate(piecePrefab, transform.position, Quaternion.identity);
+
+                        piece.transform.SetParent(GameObject.Find("Group2").transform);
+                        piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
+                        piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[1];
+                        piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                        piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
+                        piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
+                        piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
+
+                    }
+                    break;
+            }
+
+            this.GetComponent<Button>().interactable = false;
+        }   
     }
 }

@@ -336,6 +336,11 @@ public class PlayerContoller : MonoBehaviour
                 break;
         }
 
+        if (pieceProperties.currentLifeValue <= 0) 
+        { 
+
+        }
+
 
         
     }
@@ -501,12 +506,12 @@ public class PlayerContoller : MonoBehaviour
                             {
                                 if (camp == Camp.Group1)
                                 {
-                                    gameManager.group1Coin += o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin;
+                                    gameManager.group1Coin += (o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin);
                                 }
 
                                 if (camp == Camp.Group2)
                                 {
-                                    gameManager.group2Coin += o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin;
+                                    gameManager.group2Coin += (o.GetComponent<PieceProperties>().enemyCoin + pieceProperties.extraEnemyCoin);
                                 }
                             }
                         }
@@ -641,12 +646,12 @@ public class PlayerContoller : MonoBehaviour
                         {
                             if (camp == Camp.Group1)
                             {
-                                gameManager.group1Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                                gameManager.group1Coin += (targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin);
                             }
 
                             if (camp == Camp.Group2)
                             {
-                                gameManager.group2Coin += targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin;
+                                gameManager.group2Coin += (targetPieceProperties.enemyCoin + pieceProperties.extraEnemyCoin);
                             }
                         }
 
