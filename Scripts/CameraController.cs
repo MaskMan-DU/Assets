@@ -41,8 +41,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             newPosition = transform.position;
-            followTransform = null;
-            
+            followTransform = null; 
         }
     }
 
@@ -72,6 +71,23 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             newPosition += (transform.right * -movementSpeed);
+        }
+
+        if (newPosition.x < 230)
+        {
+            newPosition.x = 230;
+        }else if (newPosition.x > 780)
+        {
+            newPosition.x = 780;
+        }
+
+        if (newPosition.z < 250)
+        {
+            newPosition.z = 250;
+        }
+        else if (newPosition.z > 750)
+        {
+            newPosition.z = 750;
         }
 
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
