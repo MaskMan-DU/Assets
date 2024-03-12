@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Xml;
 using TGS;
+using Unity.VisualScripting;
 
 public class BarShopButton : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class BarShopButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+
     // 按钮对应选项的详细信息
     // 职业
+    public Image professionImage;
     public TMP_Text Profession;
     private List<string> professionNames = new List<string>()
     {
@@ -88,6 +91,8 @@ public class BarShopButton : MonoBehaviour
 
         pieceLevel = Random.Range(1, 4); // 获取棋子职业等级
         ProfessionLevel.text = "Level "+ pieceLevel.ToString(); // 填入棋子等级
+
+        professionImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceProfession.ToLower() + "" + pieceLevel);
 
         pieceWeapon = weaponNames[Random.Range(0, weaponNames.Count)]; // 获取随机选定的棋子武器
         Weapon.text = pieceWeapon; // 填入棋子武器

@@ -16,6 +16,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
     // 按钮对应选项的详细信息
     // 职业
+    public Image professionImage;
     public TMP_Text Profession;
     private List<string> professionNames = new List<string>()
     {
@@ -83,6 +84,8 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
         pieceLevel = Random.Range(1, 4); // 获取棋子职业等级
         ProfessionLevel.text = "Level " + pieceLevel.ToString(); // 填入棋子等级
+
+        professionImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceProfession.ToLower() + "" + pieceLevel);
 
         if (pieceProfession == "Sniper")
         {

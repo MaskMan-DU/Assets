@@ -550,7 +550,7 @@ public class GameManager : MonoBehaviour
 
                 break;
             case PieceProperties.Profession.Mercenary:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol");
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/Mercenary");
                 group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
@@ -565,7 +565,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
             case PieceProperties.Profession.Sniper:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol");
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
                 group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
@@ -580,7 +580,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
                 break;
             case PieceProperties.Profession.Engineer:
-                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol");
+                group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
                 group1Piece = Instantiate(group1Prefab, transform.position, Quaternion.identity);
 
                 group1Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
@@ -615,7 +615,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Mercenary:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/MercenaryWithPistol");
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/Mercenary");
                 group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
@@ -630,7 +630,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Sniper:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/SniperWithPistol");
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
                 group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
@@ -645,7 +645,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
                 break;
             case PieceProperties.Profession.Engineer:
-                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/EngineerWithPistol");
+                group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
                 group2Piece = Instantiate(group2Prefab, transform.position, Quaternion.identity);
 
                 group2Piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
