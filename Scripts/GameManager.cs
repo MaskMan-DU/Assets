@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,9 @@ public class GameManager : MonoBehaviour
     // 行动菜单
     public GameObject PieceActionMenu;
     public GameObject ActionCancelButton;
+
+    // 暂停菜单
+    public GameObject PauseMenu;
 
     // 移动力
     public TMP_Text Group1Name;
@@ -91,7 +95,9 @@ public class GameManager : MonoBehaviour
     {
         UpdateMoveInfor();
         UpdateGoldAndCoins();
-        
+        ActivePauseMenu();
+
+
 
         if (Group1Piece!= null || Group2Piece!= null) 
         {
@@ -182,6 +188,7 @@ public class GameManager : MonoBehaviour
 
                 RefreshPiecesState();
                 GetGold();
+                GameOverCheck();
 
                 state = State.RollMoveDice;
                 break;
@@ -685,30 +692,33 @@ public class GameManager : MonoBehaviour
 
     public void GameOverCheck()
     {
-        if (Group1Piece == null)
+        if (group1Gold >= MaxGoldValue)
+        {
+            GameOver = true;
+            WinCamp = PlayerContoller.Camp.Group1; 
+            PlayerPrefs.SetString("Winner", "Group1");
+        }
+
+        if (group2Gold >= MaxGoldValue)
         {
             GameOver = true;
             WinCamp = PlayerContoller.Camp.Group2;
+            PlayerPrefs.SetString("Winner", "Group2");
         }
 
-        if (Group2Piece == null)
+        if (GameOver)
         {
-            GameOver = true;
-            WinCamp = PlayerContoller.Camp.Group1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        if (group1Gold == MaxGoldValue)
+
+    }
+
+    public void ActivePauseMenu()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            GameOver = true;
-            WinCamp = PlayerContoller.Camp.Group1;
+            PauseMenu.SetActive(true);
         }
-
-        if (group2Gold == MaxGoldValue)
-        {
-            GameOver = true;
-            WinCamp = PlayerContoller.Camp.Group1;
-        }
-
-
     }
 }
