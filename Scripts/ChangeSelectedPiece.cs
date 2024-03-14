@@ -7,6 +7,7 @@ public class ChangeSelectedPiece : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] pieces;
+    public GameObject[] occupationalAbilities;
     public int currentpiece;
 
     // Update is called once per frame
@@ -21,6 +22,17 @@ public class ChangeSelectedPiece : MonoBehaviour
             else
             {
                 pieces[i].SetActive(false);
+            }
+        }
+        for (int i = 0; i < occupationalAbilities.Length; i++)
+        {
+            if (i == currentpiece)
+            {
+                occupationalAbilities[i].SetActive(true);
+            }
+            else
+            {
+                occupationalAbilities[i].SetActive(false);
             }
         }
     }
