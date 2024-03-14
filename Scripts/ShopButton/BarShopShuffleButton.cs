@@ -20,7 +20,7 @@ public class BarShopShuffleButton : MonoBehaviour
                         gameManager.group1Coin -= 5;
                         foreach (var i in options)
                         {
-                            i.GetComponent<WeaponStoreButton>().RefreshInformation();
+                            i.GetComponent<BarShopButton>().RefreshInformation();
                         }
                     }
                     break;
@@ -30,7 +30,7 @@ public class BarShopShuffleButton : MonoBehaviour
                         gameManager.group2Coin -= 5;
                         foreach (var i in options)
                         {
-                            i.GetComponent<WeaponStoreButton>().RefreshInformation();
+                            i.GetComponent<BarShopButton>().RefreshInformation();
                         }
                     }
                     break;
