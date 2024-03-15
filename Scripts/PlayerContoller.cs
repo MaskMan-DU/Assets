@@ -317,8 +317,6 @@ public class PlayerContoller : MonoBehaviour
                 gameManager.activePiece = null;
                 state = State.WAITFORNEXTTURN;
 
-                
-
                 gameManager.state = GameManager.State.ChangeToOtherSide;
                 break;
                 
@@ -337,12 +335,13 @@ public class PlayerContoller : MonoBehaviour
         }
 
         if (pieceProperties.currentLifeValue <= 0) 
-        { 
-
-        }
-
-
-        
+        {
+            state = State.ENDTURN;
+            tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
+            tgs.CellSetCanCross(currentCellIndex, true);
+            this.transform.position = tgs.CellGetPosition(gameManager.PiecePosCheck(camp));
+            pieceProperties.currentLifeValue = pieceProperties.finalLifeValue;
+        } 
     }
 
     void Move(Vector3 in_vec)

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -546,7 +547,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel= 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1);
 
                 break;
             case PieceProperties.Profession.Mercenary:
@@ -562,7 +563,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel= 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
                 break;
             case PieceProperties.Profession.Sniper:
                 group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
@@ -577,7 +578,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
                 break;
             case PieceProperties.Profession.Engineer:
                 group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
@@ -592,7 +593,7 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[0];
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
                 break;
         }
 
@@ -612,7 +613,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2); 
                 break;
             case PieceProperties.Profession.Mercenary:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/Mercenary");
@@ -627,7 +628,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
                 break;
             case PieceProperties.Profession.Sniper:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
@@ -642,7 +643,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
                 break;
             case PieceProperties.Profession.Engineer:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
@@ -657,7 +658,7 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = tgsSetting.StartCell[1];
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
                 break;
         }
     }
@@ -720,5 +721,94 @@ public class GameManager : MonoBehaviour
         {
             PauseMenu.SetActive(true);
         }
+    }
+
+    /// <summary>
+    /// 为了检查棋子出现的位置是否存在其它棋子或者铁丝网
+    /// </summary>
+    public int PiecePosCheck(PlayerContoller.Camp pieceCamp)
+    {
+        var pieceList = new List<GameObject>();
+        pieceList.AddRange(Group1Piece);
+        pieceList.AddRange(Group2Piece);
+        pieceList.AddRange(Obstacles);
+
+        bool pos1Check = true;
+        bool pos2Check = true;
+        bool pos3Check = true;
+
+        int targetPos = -1;
+
+        switch (pieceCamp)
+        {
+            case PlayerContoller.Camp.Group1:
+                foreach(var piece in pieceList)
+                {
+                    var pieceCell = tgs.CellGetAtPosition(piece.transform.position, true);
+                    if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group1StartCell[0])
+                    {
+                        pos1Check = false;
+                    }
+                    else if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group1StartCell[1])
+                    {
+                        pos2Check= false;
+                    }
+                    else if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group1StartCell[2])
+                    {
+                        pos3Check = false;
+                    }
+                }
+
+                if (pos1Check)
+                {
+                    targetPos = tgsSetting.Group1StartCell[0];
+                    break;
+                }else if (pos2Check)
+                {
+                    targetPos = tgsSetting.Group1StartCell[1];
+                    break;
+                }else if (pos3Check)
+                {
+                    targetPos = tgsSetting.Group1StartCell[2];
+                    break;
+                }
+                break;
+            case PlayerContoller.Camp.Group2:
+                foreach (var piece in pieceList)
+                {
+                    var pieceCell = tgs.CellGetAtPosition(piece.transform.position, true);
+                    if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group2StartCell[0])
+                    {
+                        pos1Check = false;
+                    }
+                    else if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group2StartCell[1])
+                    {
+                        pos2Check = false;
+                    }
+                    else if (tgs.CellGetIndex(pieceCell) == tgsSetting.Group2StartCell[2])
+                    {
+                        pos3Check = false;
+                    }
+                }
+
+                if (pos1Check)
+                {
+                    targetPos = tgsSetting.Group2StartCell[0];
+                    break;
+                }
+                else if (pos2Check)
+                {
+                    targetPos = tgsSetting.Group2StartCell[1];
+                    break;
+                }
+                else if (pos3Check)
+                {
+                    targetPos = tgsSetting.Group2StartCell[2];
+                    break;
+                }
+                break;
+        }   
+
+        return targetPos;
     }
 }

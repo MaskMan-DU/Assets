@@ -27,6 +27,9 @@ public class TGSSetting : MonoBehaviour
 
     public List<int> StartCell= new List<int>() { 528, 560};
 
+    public List<int> Group1StartCell = new List<int>() { 528 , 562, 496 };
+    public List<int> Group2StartCell = new List<int>() { 560 , 593, 527 };
+
     private PlayerContoller activePieceController;
 
     public GameObject ShopButton;

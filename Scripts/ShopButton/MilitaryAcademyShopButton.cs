@@ -191,7 +191,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
                         piece.transform.SetParent(GameObject.Find("Group1").transform);
                         piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
-                        piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[0];
+                        piece.GetComponent<PlayerContoller>().initialCellIndex = gameManager.PiecePosCheck(PlayerContoller.Camp.Group1);
                         piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                         piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
@@ -208,7 +208,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
 
                         piece.transform.SetParent(GameObject.Find("Group2").transform);
                         piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
-                        piece.GetComponent<PlayerContoller>().initialCellIndex = tGSSetting.StartCell[1];
+                        piece.GetComponent<PlayerContoller>().initialCellIndex = gameManager.PiecePosCheck(PlayerContoller.Camp.Group2);
                         piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
                         piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
