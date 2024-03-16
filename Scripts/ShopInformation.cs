@@ -122,7 +122,7 @@ public class ShopInformation :MonoBehaviour
         WeaponList.Add(
             "Pistol", // Key
             new Weapon
-            ("Cowboy", // 武器名
+            ("Pistol", // 武器名
             "", // 武器对移动距离的影响
             "", // 武器攻击范围
             PieceProperties.Weapon.Pistol) // 武器对应的变量
