@@ -73,7 +73,15 @@ public class UI_PieceButton : MonoBehaviour
                     var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
                     ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
                     WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
-                    EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    if (piece.equipment != PieceProperties.Equipment.None)
+                    {
+                        EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    }
+                    else
+                    {
+                        EquipmentLevel.text = "No Equipment";
+                    }
+                    
                     Ability.text = piece.ability.ToString();
 
                 }
@@ -86,7 +94,14 @@ public class UI_PieceButton : MonoBehaviour
                     var piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
                     ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
                     WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
-                    EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    if (piece.equipment != PieceProperties.Equipment.None)
+                    {
+                        EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
+                    }
+                    else
+                    {
+                        EquipmentLevel.text = "No Equipment";
+                    }
                     Ability.text = piece.ability.ToString();
                 }
                 break;
