@@ -17,13 +17,13 @@ public class TGSSetting : MonoBehaviour
 
     public List<int> GoldMinerCells = new List<int>() { 543, 577, 578, 545, 512, 511 };
 
-    public List<int> Bar = new List<int>() { 535, 569, 570, 537, 504, 503, 551, 585, 586, 553, 520, 519 };
-    public List<int> MilitaryAcademy = new List<int>() { };
-    public List<int> WeaponStore = new List<int>() { };
-    public List<int> EquipmentShop = new List<int>() { };
+    public List<int> Bar = new List<int>() { 551, 585, 586, 553, 520, 519, 537, 504, 503, 535, 569, 570};
+    public List<int> MilitaryAcademy = new List<int>() { 181, 147, 115, 116, 149, 182, 907, 908, 941, 974, 973, 939 };
+    public List<int> WeaponStore = new List<int>() { 320, 286, 254, 255, 288, 321, 835, 834, 800, 768, 769, 802 };
+    public List<int> EquipmentShop = new List<int>() { 306, 272, 240, 241, 274, 307, 782, 814, 848, 849, 816, 783 };
 
-    public List<int> NormalEnemyCells = new List<int> { 531, 632, 434, 557, 655, 457 };
-    public List<int> ElitleEnemyCells = new List<int> { 535, 570, 504, 553, 585, 519 };
+    public List<int> NormalEnemyCells = new List<int> { 556, 422, 686, 532, 402, 666, 979, 968, 679, 647, 646, 442, 408, 441, 640, 639, 672, 415, 449, 448, 121, 110 };
+    public List<int> ElitleEnemyCells = new List<int> { 321, 255, 286, 783, 849, 814, 240, 306, 274, 768, 834, 802, 941, 907, 973, 116, 182, 147, 577, 543, 511, 512, 545, 578 };
 
     public List<int> StartCell= new List<int>() { 528, 560};
 
