@@ -17,6 +17,8 @@ public class EquipmentShopButton : MonoBehaviour
     private List<string> equipmentNames;
     public string pieceEquipment;
 
+    public Image equipmentImage;
+
     // 装备等级
     public TMP_Text EquipmentLevel;
     public int equipmentLevel;
@@ -60,6 +62,8 @@ public class EquipmentShopButton : MonoBehaviour
 
         equipmentFunction = shopInformation.EquipmentList[pieceEquipment].equipmentDescription; // 获取装备能力描述
         EquipmentFunction.text = equipmentFunction; // 填入装备描述
+
+        equipmentImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceEquipment + "" + equipmentLevel);
     }
 
     public void BuyEquipment()

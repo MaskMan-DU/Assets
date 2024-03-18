@@ -12,6 +12,8 @@ public class WeaponStoreButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+    public Image weaponImage;
+
     // ÎäÆ÷
     public TMP_Text Weapon;
     private List<string> weaponNames;
@@ -83,7 +85,9 @@ public class WeaponStoreButton : MonoBehaviour
             {
                 this.GetComponent<Button>().interactable = true;
             }
-        }    
+        }
+
+        weaponImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceWeapon + "" + weaponLevel);
     }
 
     public void BuyWeapon()
