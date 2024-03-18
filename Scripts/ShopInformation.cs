@@ -135,40 +135,40 @@ public class ShopInformation :MonoBehaviour
             "Pistol", // Key
             new Weapon
             ("Pistol", // 武器名
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器攻击范围
+            "+1", // 武器对移动距离的影响
+            "+2", // 武器对移动距离的影响
+            "+3", // 武器对移动距离的影响
+            "1", // 武器攻击范围
             PieceProperties.Weapon.Pistol) // 武器对应的变量
             );
         WeaponList.Add(
             "Assault Rifle", // Key
             new Weapon
             ("Assault Rifle", // 武器名
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器攻击范围
+            "0", // 武器对移动距离的影响
+            "0", // 武器对移动距离的影响
+            "0", // 武器对移动距离的影响
+            "2", // 武器攻击范围
             PieceProperties.Weapon.Assault_Rifle) // 武器对应的变量
             );
         WeaponList.Add(
             "Sniper Rifle", // Key
             new Weapon
             ("Sniper Rifle", // 武器名
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器攻击范围
+            "-2", // 武器对移动距离的影响
+            "-1", // 武器对移动距离的影响
+            "0", // 武器对移动距离的影响
+            "3", // 武器攻击范围
             PieceProperties.Weapon.Sniper_Rifle) // 武器对应的变量
             );
         WeaponList.Add(
             "Rocket Launcher", // Key
             new Weapon
             ("Rocket Launcher", // 武器名
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器对移动距离的影响
-            "", // 武器攻击范围
+            "-2", // 武器对移动距离的影响
+            "-1", // 武器对移动距离的影响
+            "0", // 武器对移动距离的影响
+            "2", // 武器攻击范围
             PieceProperties.Weapon.Rocket_Launcher) // 武器对应的变量
             );
     }
