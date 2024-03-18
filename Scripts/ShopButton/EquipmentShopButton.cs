@@ -60,7 +60,17 @@ public class EquipmentShopButton : MonoBehaviour
         equipmentLevel = Random.Range(1, 4); // 获取棋子装备等级
         EquipmentLevel.text = equipmentLevel.ToString();// 填入棋子装备等级
 
-        equipmentFunction = shopInformation.EquipmentList[pieceEquipment].equipmentDescription; // 获取装备能力描述
+        if (equipmentLevel == 1)
+        {
+            equipmentFunction = shopInformation.EquipmentList[pieceEquipment].level1EquipmentDescription; // 获取装备能力描述
+        }else if (equipmentLevel == 2)
+        {
+            equipmentFunction = shopInformation.EquipmentList[pieceEquipment].level2EquipmentDescription; // 获取装备能力描述
+        }else if (equipmentLevel == 3)
+        {
+            equipmentFunction = shopInformation.EquipmentList[pieceEquipment].level3EquipmentDescription; // 获取装备能力描述
+        }
+        
         EquipmentFunction.text = equipmentFunction; // 填入装备描述
 
         equipmentImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceEquipment + "" + equipmentLevel);

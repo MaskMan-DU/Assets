@@ -73,6 +73,11 @@ public class UI_PieceButton : MonoBehaviour
                     var piece = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PieceProperties>();
                     ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
                     WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
+
+                    ProfessionImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.pieceProfession.ToString() + "" + piece.PieceLevel);
+                    WeaponImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.pieceWeapon.ToString() + "" + piece.WeaponLevel);
+                    EquipmentImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.equipment.ToString() + "" + piece.equipmentLevel);
+
                     if (piece.equipment != PieceProperties.Equipment.None)
                     {
                         EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
@@ -94,6 +99,11 @@ public class UI_PieceButton : MonoBehaviour
                     var piece = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PieceProperties>();
                     ProfessionLevel.text = "Level: " + piece.PieceLevel.ToString();
                     WeaponLevel.text = "Level: " + piece.WeaponLevel.ToString();
+
+                    ProfessionImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.pieceProfession.ToString() + "" + piece.PieceLevel);
+                    WeaponImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.pieceWeapon.ToString() + "" + piece.WeaponLevel);
+                    EquipmentImage.sprite = Resources.Load<Sprite>("Images/UI/" + piece.equipment.ToString() + "" + piece.equipmentLevel);
+
                     if (piece.equipment != PieceProperties.Equipment.None)
                     {
                         EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();

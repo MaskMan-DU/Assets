@@ -65,7 +65,19 @@ public class WeaponStoreButton : MonoBehaviour
         weaponAttackRange = shopInformation.WeaponList[pieceWeapon].weaponAttackRange; // 获取武器攻击范围
         WeaponAttackRange.text = weaponAttackRange.ToString(); // 填入武器攻击范围
 
-        weaponPlueMovement = shopInformation.WeaponList[pieceWeapon].movementEffect; // 获取武器移动影响
+        if (weaponLevel == 1)
+        {
+            weaponPlueMovement = shopInformation.WeaponList[pieceWeapon].level1MovementEffect; // 获取武器移动影响
+        }
+        else if (weaponLevel == 2)
+        {
+            weaponPlueMovement = shopInformation.WeaponList[pieceWeapon].level2MovementEffect; // 获取武器移动影响
+        }
+        else if (weaponLevel == 3)
+        {
+            weaponPlueMovement = shopInformation.WeaponList[pieceWeapon].level3MovementEffect; // 获取武器移动影响
+        }
+        
         WeaponPlueMovement.text = weaponPlueMovement.ToString(); // 填入武器移动影响
 
         if (gameManager.activePiece!= null)

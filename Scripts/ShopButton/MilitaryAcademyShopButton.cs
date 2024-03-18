@@ -109,7 +109,19 @@ public class MilitaryAcademyShopButton : MonoBehaviour
         pieceAbility = abilityNames[Random.Range(0, abilityNames.Count)]; // 获取棋子额外能力
         Ability.text = pieceAbility; // 填入棋子额外能力
 
-        abilityDescription = shopInformation.AbilityList[pieceAbility].ablilityDescription; // 获取能力描述
+        if (pieceLevel == 1)
+        {
+            abilityDescription = shopInformation.AbilityList[pieceAbility].level1AbilityDescription; // 获取能力描述
+        }
+        else if (pieceLevel == 2)
+        {
+            abilityDescription = shopInformation.AbilityList[pieceAbility].level2AbilityDescription; // 获取能力描述
+        }
+        else if (pieceLevel == 3)
+        {
+            abilityDescription = shopInformation.AbilityList[pieceAbility].level3AbilityDescription; // 获取能力描述
+        }
+
         AbilityDescription.text = abilityDescription; // 填入能力描述
     }
 
