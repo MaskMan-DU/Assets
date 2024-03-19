@@ -69,8 +69,8 @@ public class Equipment
     {
         this.equipmentName = equipmentName;
         this.level1EquipmentDescription = level1EquipmentDescription;
-        this.level1EquipmentDescription = level1EquipmentDescription;
-        this.level1EquipmentDescription = level1EquipmentDescription;
+        this.level2EquipmentDescription = level2EquipmentDescription;
+        this.level3EquipmentDescription = level3EquipmentDescription;
         this.equipmentValue = equipmentValue;
     }
 }
