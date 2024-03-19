@@ -161,54 +161,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
-    {
-        if (gameManager.state == GameManager.State.SelectPiece)
-        {
-            if (gameManager.activePiece != null)
-            {
-                if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
-                {
-                    ShowRange(attackRange, true);
-                }
-            }
-            else
-            {
-                ShowRange(attackRange, true);
-            }
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        if (gameManager.state == GameManager.State.SelectPiece)
-        {
-            if (gameManager.activePiece != null)
-            {
-                if (gameManager.activePiece.GetComponent<PlayerContoller>().state == PlayerContoller.State.IDLE)
-                {
-                    CleanRange(attackRangeCellList);
-                    rangeOriginalColor = null;
-                }
-                else if (gameManager.activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.IDLE)
-                {
-                    if (rangeOriginalColor != null)
-                    {
-                        CleanRange(attackRangeCellList);
-                        rangeOriginalColor = null;
-                    }
-                }
-            }
-            else
-            {
-                CleanRange(attackRangeCellList);
-                rangeOriginalColor = null;
-            }
-        }
-    }
-
-
-    private void ShowRange(int range, bool showRange)
+    public void ShowRange(int range, bool showRange)
     {
         rangeOriginalColor = new List<Color>();
 
@@ -245,7 +198,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    private void CleanRange(List<int> targetRange)
+    public void CleanRange(List<int> targetRange)
     {
         // tgs.CellSetColor(targetRange, Color.clear);
 

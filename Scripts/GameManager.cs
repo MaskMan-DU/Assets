@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Obstacles = null;
     public List<GameObject> TrenchsList = null;
 
+    private GameObject lastClickedEnemy = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
         UpdateMoveInfor();
         UpdateGoldAndCoins();
         ActivePauseMenu();
+        EnemyAttackRangeCheck();
 
 
 
@@ -297,12 +301,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    public void SelectPieceByButton()
-    {
-
-    }
-
     /// <summary>
     /// 检查两个组的回合结束情况
     /// </summary>
@@ -810,5 +808,70 @@ public class GameManager : MonoBehaviour
         }   
 
         return targetPos;
+    }
+
+    public void EnemyAttackRangeCheck()
+    {
+        // 检测鼠标左键是否被点击
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 如果鼠标在UI元素上，则返回
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                // print("UI");
+                if (lastClickedEnemy != null)
+                {
+                    lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                }
+                return;
+            }
+
+            // 发射一条射线从鼠标点击的屏幕位置
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // 检测是否有游戏对象与射线相交
+            if (Physics.Raycast(ray, out hit))
+            {
+                // 获取与射线相交的游戏对象
+                GameObject clickedObject = hit.collider.gameObject;
+
+                if (clickedObject.GetComponent<EnemyController>() != null)
+                {
+                    if (lastClickedEnemy != null)
+                    {
+                        lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                    }
+
+                    lastClickedEnemy = clickedObject;
+
+                    var enemy = clickedObject.GetComponent<EnemyController>();
+
+                    if (activePiece != null)
+                    {
+                        var activePieceScript = activePiece.GetComponent<PlayerContoller>();
+                        if (activePieceScript.state != PlayerContoller.State.ATTACKSELECT && activePieceScript.state != PlayerContoller.State.MOVESELECT)
+                        {
+                            enemy.ShowRange(enemy.attackRange, true);
+                        }
+                    }
+                    else
+                    {
+                        enemy.ShowRange(enemy.attackRange, true);
+                    }
+                    
+                }
+                else
+                {
+                    if (lastClickedEnemy != null)
+                    {
+                        lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                    }
+                }
+
+                // 在控制台输出点击到的游戏对象的名称
+                // Debug.Log("Clicked on: " + clickedObject.name);
+            }
+        }
     }
 }
