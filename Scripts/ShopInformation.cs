@@ -242,9 +242,9 @@ public class ShopInformation :MonoBehaviour
             "Assualt Captain", // Key
             new Ability
             ("Assualt Captain", // 技能名
-            "All team members' pistol damage +2 \n Self-health +20", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' pistol damage +4 \n Self-health +40", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' pistol damage +8 \n Self-health +80", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +2\r\nSelf-health +20", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +4\r\nSelf-health +40", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +8\r\nSelf-health +80", // 技能描述，依据棋子职业等级提升，数值也随之变化
             PieceProperties.Ability.Assualt_Captain) // 职业对应的变量
             );
     }
@@ -255,36 +255,36 @@ public class ShopInformation :MonoBehaviour
             "Bulletproof Vest", // Key
             new Equipment
             ("Bulletproof Vest", // 装备名
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
+            "Damage reduction -1\r\nDurability: 100", // 装备描述，依据装备等级提升，数值也随之变化
+            "Damage reduction -2\r\nDurability: 100", // 装备描述，依据装备等级提升，数值也随之变化
+            "Damage reduction -3\r\nDurability: 100", // 装备描述，依据装备等级提升，数值也随之变化
             PieceProperties.Equipment.Bulletproof_Vest)
             );
         EquipmentList.Add(
             "First Aid Kit", // Key
             new Equipment
             ("First Aid Kit", // 装备名
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
+            "Restores 50 health points\r\nUsable times: 1 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Restores 50 health points\r\nUsable times: 2 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Restores 50 health points\r\nUsable times: 3 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
             PieceProperties.Equipment.First_Aid_Kit)
             );
         EquipmentList.Add(
             "Wire", // Key
             new Equipment
             ("Wire", // 装备名
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
+            "Blocks the grid \r\nRange: 1\r\nUsable times: 1 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Blocks the grid \r\nRange: 1\r\nUsable times: 2 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Blocks the grid \r\nRange: 1\r\nUsable times: 3 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
             PieceProperties.Equipment.Wire)
             );
         EquipmentList.Add(
             "Trench", // Key
             new Equipment
             ("Trench", // 装备名
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
-            "", // 装备描述，依据装备等级提升，数值也随之变化
+            "Prevents the next damage received\r\nRange: 0\r\nUsable times: 1 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Prevents the next damage received\r\nRange: 0\r\nUsable times: 2 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
+            "Prevents the next damage received\r\nRange: 0\r\nUsable times: 3 \r\n", // 装备描述，依据装备等级提升，数值也随之变化
             PieceProperties.Equipment.Trench)
             );
     }
