@@ -10056,10 +10056,6 @@ MonoBehaviour:
   startButton: {fileID: 798336727}
   group1Confirm: 0
   group2Confirm: 0
-  group1Profession: 0
-  group2Profession: 0
-  group1Ability: 0
-  group2Ability: 0
 --- !u!4 &790568793
 Transform:
   m_ObjectHideFlags: 0

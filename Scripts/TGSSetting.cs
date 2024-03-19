@@ -46,12 +46,17 @@ public class TGSSetting : MonoBehaviour
 
     // private int weaponLevel; // 1 = À¶£¬ 2 = ×Ï£¬ 3 = »Æ
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         tgs = TerrainGridSystem.instance;
         GenerateElitleEnemy();
         GenerateNormalEnemy();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

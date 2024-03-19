@@ -11,16 +11,20 @@ public class Manager : MonoBehaviour
     public bool group1Confirm = false;
     public bool group2Confirm = false;
 
-    public PieceProperties.Profession group1Profession = PieceProperties.Profession.Cowboy;
-    public PieceProperties.Profession group2Profession = PieceProperties.Profession.Cowboy;
+    public static PieceProperties.Profession group1Profession;
+    public static PieceProperties.Profession group2Profession;
 
-    public PieceProperties.Ability group1Ability = PieceProperties.Ability.Spiritual_Leader;
-    public PieceProperties.Ability group2Ability = PieceProperties.Ability.Spiritual_Leader;
+    public static PieceProperties.Ability group1Ability;
+    public static PieceProperties.Ability group2Ability;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        group1Profession = PieceProperties.Profession.Cowboy;
+        group2Profession = PieceProperties.Profession.Cowboy;
+
+        group1Ability = PieceProperties.Ability.Spiritual_Leader;
+        group2Ability = PieceProperties.Ability.Spiritual_Leader;
     }
 
     // Update is called once per frame
@@ -83,11 +87,22 @@ public class Manager : MonoBehaviour
 
     public void TransferDataAndStartGame()
     {
+        /*PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
         PlayerPrefs.SetInt("group1Profession", (int)group1Profession);
         PlayerPrefs.SetInt("group1Ability", (int)group1Ability);
 
         PlayerPrefs.SetInt("group2Profession", (int)group2Profession);
         PlayerPrefs.SetInt("group2Ability", (int)group2Ability);
+
+        PlayerPrefs.Save();*/
+
+        /*DataSave.group1Profession = group1Profession;
+        DataSave.group1Ability = group1Ability;
+
+        DataSave.group2Ability = group2Ability;
+        DataSave.group2Profession = group2Profession;*/
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

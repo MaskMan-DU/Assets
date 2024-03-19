@@ -8,5 +8,6 @@ public class BackToMainMenuButton : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+        PlayerPrefs.DeleteAll();
     }
 }

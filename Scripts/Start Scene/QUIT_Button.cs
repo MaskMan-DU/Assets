@@ -19,5 +19,6 @@ public class QUIT_Button : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        PlayerPrefs.DeleteAll();
     }
 }

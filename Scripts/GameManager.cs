@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using UnityEngine.TextCore.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -81,9 +82,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> TrenchsList = null;
 
     private GameObject lastClickedEnemy = null;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         tgs = TerrainGridSystem.instance;
         tgsSetting = gameObject.GetComponent<TGSSetting>();
@@ -92,6 +91,12 @@ public class GameManager : MonoBehaviour
         ActionCancelButton.SetActive(false);
 
         GameStart();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -518,11 +523,17 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        PieceProperties.Profession group1PieceProfession = (PieceProperties.Profession) PlayerPrefs.GetInt("group1Profession");
+        /*PieceProperties.Profession group1PieceProfession = (PieceProperties.Profession) PlayerPrefs.GetInt("group1Profession");
         PieceProperties.Ability group1PieceAbility = (PieceProperties.Ability)PlayerPrefs.GetInt("group1Ability");
 
         PieceProperties.Profession group2PieceProfession = (PieceProperties.Profession)PlayerPrefs.GetInt("group2Profession");
-        PieceProperties.Ability group2PieceAbility = (PieceProperties.Ability)PlayerPrefs.GetInt("group2Ability");
+        PieceProperties.Ability group2PieceAbility = (PieceProperties.Ability)PlayerPrefs.GetInt("group2Ability");*/
+
+        PieceProperties.Profession group1PieceProfession = Manager.group1Profession;
+        PieceProperties.Ability group1PieceAbility = Manager.group1Ability;
+
+        PieceProperties.Profession group2PieceProfession = Manager.group2Profession;
+        PieceProperties.Ability group2PieceAbility = Manager.group2Ability;
 
         GameObject group1Piece;
         GameObject group2Piece;
