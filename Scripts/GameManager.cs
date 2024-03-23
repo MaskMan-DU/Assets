@@ -13,6 +13,8 @@ using UnityEngine.TextCore.Text;
 public class GameManager : MonoBehaviour
 {
     TerrainGridSystem tgs;
+    private CameraController CameraControll;
+    private bool cameraCanChange = false;
     public TGSSetting tgsSetting;
     public GameObject activePiece;
     public PlayerContoller.Camp activeCamp;
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CameraControll = GameObject.Find("Camera Rig").GetComponent<CameraController>();
     }
 
     // Update is called once per frame
@@ -128,6 +130,18 @@ public class GameManager : MonoBehaviour
 
             // Æå×ÓÑ¡Ôñ½×¶Î
             case State.SelectPiece:
+                if (activeCamp == PlayerContoller.Camp.Group1 && !cameraCanChange)
+                {
+                    CameraControll.newPosition.x = tgs.CellGetPosition(Group1Piece[0].GetComponent<PlayerContoller>().currentCellIndex, true).x;
+                    CameraControll.newPosition.z = tgs.CellGetPosition(Group1Piece[0].GetComponent<PlayerContoller>().currentCellIndex, true).z;
+                    cameraCanChange = true;
+                }
+                else if (activeCamp == PlayerContoller.Camp.Group2 && !cameraCanChange)
+                {
+                    CameraControll.newPosition.x = tgs.CellGetPosition(Group2Piece[0].GetComponent<PlayerContoller>().currentCellIndex, true).x;
+                    CameraControll.newPosition.z = tgs.CellGetPosition(Group2Piece[0].GetComponent<PlayerContoller>().currentCellIndex, true).z;
+                    cameraCanChange = true;
+                }
                 PieceActionMenu.SetActive(false);
                 SelectPiece();
                 break;
@@ -137,9 +151,11 @@ public class GameManager : MonoBehaviour
                 break;
             
             case State.ChangeToOtherSide:
+                
                 CheckGroupsEndTurnCondition();
                 if (group1HasAct && group2HasAct)
                 {
+                    cameraCanChange = false;
                     state = State.EnemyAct;
                 }
                 else
@@ -153,6 +169,8 @@ public class GameManager : MonoBehaviour
                     {
                         activeCamp = PlayerContoller.Camp.Group1;
                     }
+
+                    cameraCanChange = false;
 
                     state = State.SelectPiece;
                 }
@@ -255,6 +273,8 @@ public class GameManager : MonoBehaviour
         {
             activeCamp = (PlayerContoller.Camp)Random.Range(0, 2);
         }
+
+        
     }
 
     /// <summary>
