@@ -49,38 +49,7 @@ public class ChangeWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentWeapon = pieceProperties.pieceWeapon;
-        currentWeaponLevel = pieceProperties.WeaponLevel;
-        if (currentWeaponLevel != lastWeaponLevel || currentWeapon != lastWeapon)
-        {
-            animator.enabled = false;
-            RigBuilder.enabled = false;
-            if(currentWeapon == PieceProperties.Weapon.Pistol)
-            {
-                RefreshWeaponBone(pistolList);
-                InvisibalWeapon();
-            }
-            else if(currentWeapon == PieceProperties.Weapon.Assault_Rifle)
-            {
-                RefreshWeaponBone(ARList);
-                InvisibalWeapon();
-            }
-            else if(currentWeapon == PieceProperties.Weapon.Sniper_Rifle)
-            {
-                RefreshWeaponBone(SRList);
-                InvisibalWeapon();
-            }
-            else
-            {
-                RefreshWeaponBone(RPGList);
-                InvisibalWeapon();
-            }
-            lastWeapon = currentWeapon;
-            lastWeaponLevel = currentWeaponLevel;
-            RigBuilder.Build();
-            RigBuilder.enabled = true;
-            animator.enabled = true;
-        }
+        UpdateWeapon();
     }
         
     public void RefreshWeaponBone(GameObject[] weaponList)
@@ -110,6 +79,42 @@ public class ChangeWeapon : MonoBehaviour
         else
         {
             RPGList[lastWeaponLevel-1].SetActive(false) ;
+        }
+    }
+
+    public void UpdateWeapon()
+    {
+        currentWeapon = pieceProperties.pieceWeapon;
+        currentWeaponLevel = pieceProperties.WeaponLevel;
+        if (currentWeaponLevel != lastWeaponLevel || currentWeapon != lastWeapon)
+        {
+            animator.enabled = false;
+            RigBuilder.enabled = false;
+            if (currentWeapon == PieceProperties.Weapon.Pistol)
+            {
+                RefreshWeaponBone(pistolList);
+                InvisibalWeapon();
+            }
+            else if (currentWeapon == PieceProperties.Weapon.Assault_Rifle)
+            {
+                RefreshWeaponBone(ARList);
+                InvisibalWeapon();
+            }
+            else if (currentWeapon == PieceProperties.Weapon.Sniper_Rifle)
+            {
+                RefreshWeaponBone(SRList);
+                InvisibalWeapon();
+            }
+            else
+            {
+                RefreshWeaponBone(RPGList);
+                InvisibalWeapon();
+            }
+            lastWeapon = currentWeapon;
+            lastWeaponLevel = currentWeaponLevel;
+            RigBuilder.Build();
+            RigBuilder.enabled = true;
+            animator.enabled = true;
         }
     }
 }
