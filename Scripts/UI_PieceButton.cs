@@ -20,6 +20,8 @@ public class UI_PieceButton : MonoBehaviour
     public TMP_Text Ability;
     public Slider LifeValue;
 
+    public PlayerContoller.Camp camp = PlayerContoller.Camp.Group1;
+
     public int PieceIndex;
 
 
@@ -40,7 +42,7 @@ public class UI_PieceButton : MonoBehaviour
 
     public void UpdateLifeValue()
     {
-        switch (gameManager.activeCamp)
+        switch (camp)
         {
             case PlayerContoller.Camp.Group1:
 
@@ -64,7 +66,7 @@ public class UI_PieceButton : MonoBehaviour
 
     public void UpdatePieceInfor()
     {
-        switch (gameManager.activeCamp)
+        switch (camp)
         {
             case PlayerContoller.Camp.Group1:
 
@@ -120,26 +122,33 @@ public class UI_PieceButton : MonoBehaviour
 
     public void SelectPiece()
     {
-        switch (gameManager.activeCamp)
+        switch (camp)
         {
             case PlayerContoller.Camp.Group1:
-                var targetPieceController = gameManager.Group1Piece[PieceIndex-1].GetComponent<PlayerContoller>();
-                if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.state == GameManager.State.SelectPiece)
+                if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
                 {
-                    gameManager.state = GameManager.State.PieceAct;
-                    gameManager.activePiece = gameManager.Group1Piece[PieceIndex - 1];
-                    gameManager.PieceActionMenu.SetActive(true);                
+                    var targetPieceController = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PlayerContoller>();
+                    if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.state == GameManager.State.SelectPiece)
+                    {
+                        gameManager.state = GameManager.State.PieceAct;
+                        gameManager.activePiece = gameManager.Group1Piece[PieceIndex - 1];
+                        gameManager.PieceActionMenu.SetActive(true);
+                    }
                 }
                 break;
 
             case PlayerContoller.Camp.Group2:
-                targetPieceController = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PlayerContoller>();
-                if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.state == GameManager.State.SelectPiece)
+                if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
                 {
-                    gameManager.state = GameManager.State.PieceAct;
-                    gameManager.activePiece = gameManager.Group2Piece[PieceIndex - 1];
-                    gameManager.PieceActionMenu.SetActive(true);
+                    var targetPieceController = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PlayerContoller>();
+                    if (targetPieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.state == GameManager.State.SelectPiece)
+                    {
+                        gameManager.state = GameManager.State.PieceAct;
+                        gameManager.activePiece = gameManager.Group2Piece[PieceIndex - 1];
+                        gameManager.PieceActionMenu.SetActive(true);
+                    }
                 }
+                
                 break;
 
         }
