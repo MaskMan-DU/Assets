@@ -138,7 +138,7 @@ public class PieceProperties : MonoBehaviour
                 finalLifeValue = lifeValue;
                 WeaponLevel = Random.Range(2, 4);
                 currentLifeValue = finalLifeValue;
-                enemyCoin = 15;
+                enemyCoin = 30;
             }
             UpdateWeaponProperties();
         }
