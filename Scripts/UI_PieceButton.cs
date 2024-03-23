@@ -11,6 +11,8 @@ public class UI_PieceButton : MonoBehaviour
     private CameraController Camera;
     private TerrainGridSystem tgs;
 
+    public GameObject actionCheck;
+
     public Image ProfessionImage;
     public Image WeaponImage;
     public Image EquipmentImage;
@@ -91,6 +93,16 @@ public class UI_PieceButton : MonoBehaviour
                     
                     Ability.text = piece.ability.ToString();
 
+                    var pieceController = gameManager.Group1Piece[PieceIndex - 1].GetComponent<PlayerContoller>();
+                    if (pieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.activeCamp == camp)
+                    {
+                        actionCheck.SetActive(true);
+                    }
+                    else
+                    {
+                        actionCheck.SetActive(false);
+                    }
+
                 }
 
 
@@ -115,6 +127,16 @@ public class UI_PieceButton : MonoBehaviour
                         EquipmentLevel.text = "No Equipment";
                     }
                     Ability.text = piece.ability.ToString();
+
+                    var pieceController = gameManager.Group2Piece[PieceIndex - 1].GetComponent<PlayerContoller>();
+                    if (pieceController.state != PlayerContoller.State.WAITFORNEXTTURN && gameManager.activeCamp == camp)
+                    {
+                        actionCheck.SetActive(true);
+                    }
+                    else
+                    {
+                        actionCheck.SetActive(false);
+                    }
                 }
                 break;
         }
