@@ -578,6 +578,8 @@ public class GameManager : MonoBehaviour
 
                 group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1);
 
+                group1Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
+
                 break;
             case PieceProperties.Profession.Mercenary:
                 group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/Mercenary");
@@ -592,7 +594,9 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel= 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1);
+
+                group1Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
             case PieceProperties.Profession.Sniper:
                 group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
@@ -607,7 +611,9 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1);
+
+                group1Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
             case PieceProperties.Profession.Engineer:
                 group1Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
@@ -622,7 +628,10 @@ public class GameManager : MonoBehaviour
                 group1Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group1Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1); ;
+                group1Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group1);
+
+                group1Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
+
                 break;
         }
 
@@ -642,7 +651,9 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().PieceLevel = 2;
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
-                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2); 
+                group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
+
+                group2Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
             case PieceProperties.Profession.Mercenary:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Mercenary/Mercenary");
@@ -658,6 +669,8 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
+
+                group2Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
             case PieceProperties.Profession.Sniper:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Sniper/Sniper");
@@ -673,6 +686,8 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
+
+                group2Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
             case PieceProperties.Profession.Engineer:
                 group2Prefab = Resources.Load<GameObject>("Prefabs/Characters/Engineer/Engineer");
@@ -688,6 +703,8 @@ public class GameManager : MonoBehaviour
                 group2Piece.GetComponent<PieceProperties>().WeaponLevel = 2;
 
                 group2Piece.GetComponent<PlayerContoller>().initialCellIndex = PiecePosCheck(PlayerContoller.Camp.Group2);
+
+                group2Piece.GetComponent<PlayerContoller>().isInmortalPiece = true;
                 break;
         }
     }
