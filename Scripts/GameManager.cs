@@ -272,9 +272,7 @@ public class GameManager : MonoBehaviour
         else if (group1MoveDice == group2MoveDice)
         {
             activeCamp = (PlayerContoller.Camp)Random.Range(0, 2);
-        }
-
-        
+        }  
     }
 
     /// <summary>
