@@ -16,6 +16,10 @@ public class BarShopButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+    public int level1price = 15;
+    public int level2price = 30;
+    public int level3price = 60;
+
 
     // 按钮对应选项的详细信息
     // 职业
@@ -126,19 +130,19 @@ public class BarShopButton : MonoBehaviour
         {
             if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
             {
-                if (gameManager.group1Coin >= 20)
+                if (gameManager.group1Coin >= level1price)
                 {
                     canBuy = true;
-                    gameManager.group1Coin -= 20;
+                    gameManager.group1Coin -= level1price;
                 }
 
             }
             else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
             {
-                if (gameManager.group2Coin >= 20)
+                if (gameManager.group2Coin >= level1price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= 20;
+                    gameManager.group2Coin -= level1price;
                 }
             }
         }
@@ -146,19 +150,19 @@ public class BarShopButton : MonoBehaviour
         {
             if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
             {
-                if (gameManager.group1Coin >= 40)
+                if (gameManager.group1Coin >= level2price)
                 {
                     canBuy = true;
-                    gameManager.group1Coin -= 40;
+                    gameManager.group1Coin -= level2price;
                 }
 
             }
             else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
             {
-                if (gameManager.group2Coin >= 40)
+                if (gameManager.group2Coin >= level2price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= 40;
+                    gameManager.group2Coin -= level2price;
                 }
             }
         }
@@ -166,19 +170,19 @@ public class BarShopButton : MonoBehaviour
         {
             if (gameManager.activeCamp == PlayerContoller.Camp.Group1)
             {
-                if (gameManager.group1Coin >= 60)
+                if (gameManager.group1Coin >= level3price)
                 {
                     canBuy = true;
-                    gameManager.group1Coin -= 60;
+                    gameManager.group1Coin -= level3price;
                 }
 
             }
             else if (gameManager.activeCamp == PlayerContoller.Camp.Group2)
             {
-                if (gameManager.group2Coin >= 60)
+                if (gameManager.group2Coin >= level3price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= 60;
+                    gameManager.group2Coin -= level3price;
                 }
             }
         }
