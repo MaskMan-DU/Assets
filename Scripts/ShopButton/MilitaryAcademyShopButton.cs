@@ -209,6 +209,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
                         piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group1;
                         piece.GetComponent<PlayerContoller>().initialCellIndex = gameManager.PiecePosCheck(PlayerContoller.Camp.Group1);
                         piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                        piece.GetComponent<PieceProperties>().pieceWeapon = shopInformation.WeaponList[pieceWeapon].weaponValue;
                         piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
                         piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
@@ -226,6 +227,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
                         piece.GetComponent<PlayerContoller>().camp = PlayerContoller.Camp.Group2;
                         piece.GetComponent<PlayerContoller>().initialCellIndex = gameManager.PiecePosCheck(PlayerContoller.Camp.Group2);
                         piece.GetComponent<PieceProperties>().PieceLevel = pieceLevel;
+                        piece.GetComponent<PieceProperties>().pieceWeapon = shopInformation.WeaponList[pieceWeapon].weaponValue;
                         piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
                         piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
