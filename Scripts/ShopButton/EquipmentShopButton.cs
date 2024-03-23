@@ -12,9 +12,9 @@ public class EquipmentShopButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
-    public int level1price = 15;
-    public int level2price = 30;
-    public int level3price = 60;
+    public int level1price = 5;
+    public int level2price = 10;
+    public int level3price = 20;
 
     // ×°±¸
     public TMP_Text Equipment;

@@ -12,9 +12,9 @@ public class WeaponStoreButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
-    public int level1price = 15;
-    public int level2price = 30;
-    public int level3price = 60;
+    public int level1price = 10;
+    public int level2price = 20;
+    public int level3price = 40;
 
     public Image weaponImage;
 
