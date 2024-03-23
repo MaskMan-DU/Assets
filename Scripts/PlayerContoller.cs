@@ -30,6 +30,8 @@ public class PlayerContoller : MonoBehaviour
 
     public State state;
 
+    public bool isInmortalPiece = false;
+
     TerrainGridSystem tgs;
     private GameManager gameManager;
     private PieceProperties pieceProperties;
@@ -339,8 +341,25 @@ public class PlayerContoller : MonoBehaviour
             state = State.ENDTURN;
             tgs.CellSetGroup(currentCellIndex, TGSSetting.CELL_DEFAULT);
             tgs.CellSetCanCross(currentCellIndex, true);
-            this.transform.position = tgs.CellGetPosition(gameManager.PiecePosCheck(camp));
-            pieceProperties.currentLifeValue = pieceProperties.finalLifeValue;
+            if (isInmortalPiece)
+            {
+                this.transform.position = tgs.CellGetPosition(gameManager.PiecePosCheck(camp));
+                pieceProperties.currentLifeValue = pieceProperties.finalLifeValue;
+            }
+            else
+            {
+                if (camp == Camp.Group1)
+                {
+                    gameManager.Group1Piece.Remove(this.gameObject);
+                    
+                }
+                else if (camp == Camp.Group2)
+                {
+                    gameManager.Group2Piece.Remove(this.gameObject);
+                }
+                Destroy(gameObject);
+            }
+            
         } 
     }
 

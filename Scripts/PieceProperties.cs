@@ -126,17 +126,19 @@ public class PieceProperties : MonoBehaviour
         {
             if (pieceType == PieceType.NormalEnemy) //  «∆’Õ®µ–»À
             {
-                lifeValue = 20;
+                lifeValue = 6f;
                 finalLifeValue = lifeValue;
                 WeaponLevel = 1;
                 currentLifeValue = finalLifeValue;
+                enemyCoin = 15;
             }
             else
             {
-                lifeValue = 40;
+                lifeValue = 20f;
                 finalLifeValue = lifeValue;
                 WeaponLevel = Random.Range(2, 4);
                 currentLifeValue = finalLifeValue;
+                enemyCoin = 15;
             }
             UpdateWeaponProperties();
         }
