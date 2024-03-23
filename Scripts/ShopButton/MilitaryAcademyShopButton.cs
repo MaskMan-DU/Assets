@@ -107,7 +107,7 @@ public class MilitaryAcademyShopButton : MonoBehaviour
         }
        
 
-        weaponLevel = Random.Range(1, 4); // 获取棋子武器等级
+        weaponLevel = Random.Range(1, 3); // 获取棋子武器等级
         WeaponLevel.text = weaponLevel.ToString(); // 填入棋子武器等级
 
         pieceAbility = abilityNames[Random.Range(0, abilityNames.Count)]; // 获取棋子额外能力
