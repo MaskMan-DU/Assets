@@ -2836,6 +2836,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1241476918}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &708343568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708343569}
+  m_Layer: 5
+  m_Name: Surfaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &708343569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708343568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2349245250891015463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &716624937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4419715194353460, guid: bf7e228c4f7559445b61d3f1f4207327, type: 3}
@@ -7623,37 +7654,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09fe488528bdf434694ecaa6bb101012, type: 3}
---- !u!1 &1598855992
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1598855993}
-  m_Layer: 5
-  m_Name: Surfaces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1598855993
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598855992}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2349245250891015463}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1599730485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12340,7 +12340,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1598855993}
+  - {fileID: 708343569}
   m_Father: {fileID: 938491920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2349245250891255197
@@ -32128,6 +32128,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1241476918}
     m_Modifications:
+    - target: {fileID: 370579474, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
+      propertyPath: m_text
+      value: 'This store offers sniper and engineer pieces for purchase.
+
+
+        Coin
+        Cost: level 1: 15; level 2: 30; level 3: 60
+
+
+        Snipers have a lower
+        life value, but have a bonus to Sniper Rifle, and when armed with a Sniper
+        Rifle, are able to deal high damage to any piece, making them an excellent
+        attacker.
+
+
+        The Engineer also has a lower life value, but he is the
+        only piece that can use the Rocket Launcher, capable of hitting multiple
+        enemies clustered together at once. He also has a higher gold harvesting
+        efficiency, which speeds up gold harvesting. Although he has no weapon bonuses,
+        he is the most functional piece.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424467299, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
+      propertyPath: m_text
+      value: 'This store offers all kinds of equipments.
+
+
+        Different equipments
+        have different function.
+
+
+        Coin Cost: level 1: 5; level 2: 10; level
+        3: 20
+
+
+        *The Rocket Launcher can only be equipped by the Engineer.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873626017, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
+      propertyPath: m_text
+      value: 'This store offers cowboy and mercenary pieces for purchase.
+
+
+        Coin
+        Cost: level 1: 15; level 2: 30; level 3: 60
+
+
+        Cowboys have a bonus
+        to Pistols, enabling them to deal more damage when holding a Pistol. Cowboys
+        also have the highest life value of all the pieces in this category.
+
+
+        Mercenaries
+        have a bonus to AR and can deal more damage when equipped with them. A Mercenary
+        with AR is the best piece for mid-range output.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1371943426384413442, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
+      propertyPath: m_text
+      value: 'This store offers all kinds of weapons.
+
+
+        Different weapons
+        have different attack ranges and effects on movement.
+
+
+        Coin Cost:
+        level 1: 10; level 2: 20; level 3: 40
+
+
+        *The Rocket Launcher can
+        only be equipped by the Engineer.'
+      objectReference: {fileID: 0}
     - target: {fileID: 4694081556469643942, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
