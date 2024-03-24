@@ -69,17 +69,20 @@ MonoBehaviour:
   m_text: 'This store offers sniper and engineer pieces for purchase.
 
 
-    Snipers
-    have a lower life value, but have a bonus to Sniper Rifle, and when armed with
-    a Sniper Rifle, are able to deal high damage to any piece, making them an excellent
-    attacker.
+    Coin
+    Cost: level 1: 20; level 2: 40; level 3: 60
 
 
-    The Engineer also has a lower life value, but he is the only
-    piece that can use the Rocket Launcher, capable of hitting multiple enemies clustered
-    together at once. He also has a higher gold harvesting efficiency, which speeds
-    up gold harvesting. Although he has no weapon bonuses, he is the most functional
-    piece.'
+    Snipers have a lower life value,
+    but have a bonus to Sniper Rifle, and when armed with a Sniper Rifle, are able
+    to deal high damage to any piece, making them an excellent attacker.
+
+
+    The
+    Engineer also has a lower life value, but he is the only piece that can use the
+    Rocket Launcher, capable of hitting multiple enemies clustered together at once.
+    He also has a higher gold harvesting efficiency, which speeds up gold harvesting.
+    Although he has no weapon bonuses, he is the most functional piece.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -108,6 +111,152 @@ MonoBehaviour:
     rgba: 4294967295
   m_fontSize: 40
   m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1424467297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424467298}
+  - component: {fileID: 1424467300}
+  - component: {fileID: 1424467299}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1424467298
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424467297}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75000006, y: 0.7500081, z: 0.74999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7400207198753431155}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.00018310547, y: -0.00015258789}
+  m_SizeDelta: {x: 1661.7749, y: 484.5923}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1424467300
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424467297}
+  m_CullTransparentMesh: 1
+--- !u!114 &1424467299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424467297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'This store offers all kinds of equipments.
+
+
+    Different equipments
+    have different function.
+
+
+    Coin Cost: level 1: 20; level 2: 40; level 3:
+    60
+
+
+    *The Rocket Launcher can only be equipped by the Engineer.'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -217,14 +366,18 @@ MonoBehaviour:
   m_text: 'This store offers cowboy and mercenary pieces for purchase.
 
 
-    Cowboys
-    have a bonus to Pistols, enabling them to deal more damage when holding a Pistol.
-    Cowboys also have the highest life value of all the pieces in this category.
+    Coin
+    Cost: level 1: 20; level 2: 40; level 3: 60
 
 
-    Mercenaries
-    have a bonus to AR and can deal more damage when equipped with them. A Mercenary
-    with AR is the best piece for mid-range output.'
+    Cowboys have a bonus to Pistols,
+    enabling them to deal more damage when holding a Pistol. Cowboys also have the
+    highest life value of all the pieces in this category.
+
+
+    Mercenaries have
+    a bonus to AR and can deal more damage when equipped with them. A Mercenary with
+    AR is the best piece for mid-range output.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -747,7 +900,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2353,6 +2506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413d639d1d8c5f344bfc030f3b784b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 5
+  level2price: 10
+  level3price: 20
   Equipment: {fileID: 8964049693313647320}
   pieceEquipment: 
   equipmentImage: {fileID: 2552022826211442585}
@@ -2646,7 +2802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7400207198753431155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2660,6 +2816,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9135218077875011526}
+  - {fileID: 1424467298}
   m_Father: {fileID: 4871907203739293491}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4119,6 +4276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb38250b3095b443a24b3b7d969e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 859336932573903485}
   Profession: {fileID: 2402484989593986848}
   pieceProfession: 
@@ -5140,6 +5300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb38250b3095b443a24b3b7d969e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 8601766191810412229}
   Profession: {fileID: 3280552775858433961}
   pieceProfession: 
@@ -6378,6 +6541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860a0768890408d468ccf622cecfc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 5455726034920039046}
   Profession: {fileID: 4853270258342664835}
   pieceProfession: 
@@ -7071,6 +7237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb38250b3095b443a24b3b7d969e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 8239755488624757807}
   Profession: {fileID: 964704256242876450}
   pieceProfession: 
@@ -7516,6 +7685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adab091a2e892e540b8a7bf380313e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 10
+  level2price: 20
+  level3price: 40
   weaponImage: {fileID: 4740379260492249739}
   Weapon: {fileID: 8114590262088977031}
   pieceWeapon: 
@@ -9340,6 +9512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413d639d1d8c5f344bfc030f3b784b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 5
+  level2price: 10
+  level3price: 20
   Equipment: {fileID: 4087066749609645914}
   pieceEquipment: 
   equipmentImage: {fileID: 3640367262156181453}
@@ -9778,6 +9953,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860a0768890408d468ccf622cecfc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 1498996910785414256}
   Profession: {fileID: 4714327239688141343}
   pieceProfession: 
@@ -9952,6 +10130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413d639d1d8c5f344bfc030f3b784b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 5
+  level2price: 10
+  level3price: 20
   Equipment: {fileID: 8161419882300266396}
   pieceEquipment: 
   equipmentImage: {fileID: 3340846505471976430}
@@ -12923,6 +13104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413d639d1d8c5f344bfc030f3b784b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 5
+  level2price: 10
+  level3price: 20
   Equipment: {fileID: 1125839710498394051}
   pieceEquipment: 
   equipmentImage: {fileID: 615293102799829801}
@@ -14127,7 +14311,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -15451,7 +15635,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -16894,6 +17078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb38250b3095b443a24b3b7d969e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 3513305503424567960}
   Profession: {fileID: 8754507293534865811}
   pieceProfession: 
@@ -18050,6 +18237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adab091a2e892e540b8a7bf380313e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 10
+  level2price: 20
+  level3price: 40
   weaponImage: {fileID: 4477398205470012776}
   Weapon: {fileID: 2838289297441381273}
   pieceWeapon: 
@@ -19114,6 +19304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adab091a2e892e540b8a7bf380313e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 10
+  level2price: 20
+  level3price: 40
   weaponImage: {fileID: 8360985876916339390}
   Weapon: {fileID: 8630272631544824065}
   pieceWeapon: 
@@ -21042,7 +21235,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -21143,15 +21336,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This store offers all kinds of weapon.
+  m_text: 'This store offers all kinds of weapons.
 
 
     Different weapons have different
     attack ranges and effects on movement.
 
 
-    *The Rocket Launcher can only be
-    equipped by the Engineer.'
+    Coin Cost: level 1: 20; level 2:
+    40; level 3: 60
+
+
+    *The Rocket Launcher can only be equipped by the Engineer.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21580,7 +21776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &829807948035941442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21763,6 +21959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860a0768890408d468ccf622cecfc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 8369694835199651133}
   Profession: {fileID: 1759385374842470266}
   pieceProfession: 
@@ -23616,6 +23815,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adab091a2e892e540b8a7bf380313e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 10
+  level2price: 20
+  level3price: 40
   weaponImage: {fileID: 6207492549085291253}
   Weapon: {fileID: 5626290037658944073}
   pieceWeapon: 
@@ -25722,6 +25924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860a0768890408d468ccf622cecfc64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1price: 15
+  level2price: 30
+  level3price: 60
   professionImage: {fileID: 7575456169094723427}
   Profession: {fileID: 7575456169466484138}
   pieceProfession: 
