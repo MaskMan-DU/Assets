@@ -153,7 +153,6 @@ public class PieceProperties : MonoBehaviour
             equipmentDurability = 0;
             damageReduce = 0;
             equipmentRange = 0;
-            isTrenchActive = false;
         }
 
         if (pieceType== PieceType.Player)
@@ -462,8 +461,23 @@ public class PieceProperties : MonoBehaviour
 
     public void Trench()
     {
+        var canInstantiate = true;
         // 生成一个堡垒,堡垒生成消耗耐久度1，
-        Instantiate(gameManager.Trench, transform.position,Quaternion.identity);
+        foreach(var i in gameManager.TrenchsList)
+        {
+            var playerController = this.gameObject.GetComponent<PlayerContoller>();
+            if (playerController.currentCellIndex == i.GetComponent<TrenchProperties>().currentCellIndex)
+            {
+                canInstantiate = false;
+                break;
+            }
+        }
+        
+        if (canInstantiate)
+        {
+            Instantiate(gameManager.Trench, transform.position, Quaternion.identity);
+            equipmentDurability--;
+        }
     }
     
     private void UpdateAbility()

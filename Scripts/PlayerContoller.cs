@@ -101,7 +101,7 @@ public class PlayerContoller : MonoBehaviour
         attackRange = pieceProperties.attackRange;
         equipmentRange = pieceProperties.equipmentRange;
 
-        currentCellIndex = tgs.CellGetIndex(transform.position,true);
+        currentCellIndex = tgs.CellGetIndex(transform.position,true);  
 
         
 
@@ -252,7 +252,8 @@ public class PlayerContoller : MonoBehaviour
                                         }
                                         break;
                                 }
-                            }else 
+                            }
+                            else 
                             {
                                 foreach(var i in gameManager.TrenchsList)
                                 {
@@ -548,6 +549,8 @@ public class PlayerContoller : MonoBehaviour
 
                                     if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                     {
+                                        print("Trench 被击中");
+
                                         foreach (var i in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                         {
                                             if (i.GetComponent<TrenchProperties>().currentCellIndex == p)
@@ -586,6 +589,7 @@ public class PlayerContoller : MonoBehaviour
                                     var rocketTarget = o.GetComponent<PieceProperties>();
                                     if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                     {
+                                        print("Trench 被击中");
                                         foreach (var i in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                         {
                                             if (i.GetComponent<TrenchProperties>().currentCellIndex == p)
@@ -683,8 +687,8 @@ public class PlayerContoller : MonoBehaviour
             {
                 switch (camp)
                 {
-                    case Camp.Group1:
-                        foreach (var i in gameManager.Group2Piece)
+                    case Camp.Group2:
+                        foreach (var i in gameManager.Group1Piece)
                         {
                             var pieceController = i.GetComponent<PlayerContoller>();
                             if (pieceController.currentCellIndex == attackTargetIndex)
@@ -692,18 +696,20 @@ public class PlayerContoller : MonoBehaviour
                                 var targetPieceProperties = i.GetComponent<PieceProperties>();
                                 var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
+                                print("Trench 被击中" + targetPieceProperties.isTrenchActive);
                                 if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
+                                    
                                     foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                     {
-                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == pieceController.currentCellIndex)
                                         {
                                             o.GetComponent<TrenchProperties>().TrenchGetDamage();
                                             break;
                                         }
                                     }
 
-                                    targetPieceProperties.isTrenchActive = false;
+                                    // targetPieceProperties.isTrenchActive = false;
                                 }
                                 else // 如果不无敌，是否有
                                 {
@@ -725,28 +731,28 @@ public class PlayerContoller : MonoBehaviour
                             }
                         }
                         break;
-                    case Camp.Group2:
-                        foreach (var i in gameManager.Group1Piece)
+                    case Camp.Group1:
+                        foreach (var i in gameManager.Group2Piece)
                         {
                             var pieceController = i.GetComponent<PlayerContoller>();
                             if (pieceController.currentCellIndex == attackTargetIndex)
                             {
                                 var targetPieceProperties = i.GetComponent<PieceProperties>();
-
                                 var damage = Random.Range(pieceProperties.finalminWeaponDamage, pieceProperties.finalmaxWeaponDamage + 1);
 
                                 if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                                 {
+                                    print("Trench 被击中");
                                     foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                     {
-                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                        if (o.GetComponent<TrenchProperties>().currentCellIndex == pieceController.currentCellIndex)
                                         {
                                             o.GetComponent<TrenchProperties>().TrenchGetDamage();
                                             break;
                                         }
                                     }
 
-                                    targetPieceProperties.isTrenchActive = false;
+                                    // targetPieceProperties.isTrenchActive = false;
                                 }
                                 else // 如果不无敌，是否有
                                 {
@@ -769,9 +775,6 @@ public class PlayerContoller : MonoBehaviour
                         }
                         break;
                 }
-
-
-
             }
             else 
             {

@@ -29,53 +29,21 @@ public class TrenchProperties : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Trench();
-
-        if (currentLifeValue == 0)
-        {
-            gameManager.TrenchsList.Remove(this.gameObject);
-
-            foreach (var i in gameManager.Group1Piece)
-            {
-                if (currentCellIndex == i.GetComponent<PlayerContoller>().currentCellIndex) // 如果Trench现在的位置有group1的棋子
-                {
-                    i.GetComponent<PieceProperties>().isTrenchActive = false; 
-                    break;
-                }
-            }
-
-
-            foreach (var i in gameManager.Group2Piece)
-            {
-                if (currentCellIndex == i.GetComponent<PlayerContoller>().currentCellIndex) // 如果Trench现在的位置有group2的棋子
-                {
-                    i.GetComponent<PieceProperties>().isTrenchActive = false; 
-                    break;
-                }
-            }
-
-            Destroy(gameObject);
-        }
-
-        
+        //Trench();  
     }
 
     public void TrenchGetDamage()
     {
         currentLifeValue--;
-    }
 
-    public void Trench()
-    {
-        foreach(var i in gameManager.Group1Piece)
+        gameManager.TrenchsList.Remove(this.gameObject);
+
+        foreach (var i in gameManager.Group1Piece)
         {
             if (currentCellIndex == i.GetComponent<PlayerContoller>().currentCellIndex) // 如果Trench现在的位置有group1的棋子
             {
-                i.GetComponent<PieceProperties>().isTrenchActive = true; // 该棋子处于被Trench保护的状态
-            }
-            else
-            {
-                i.GetComponent<PieceProperties>().isTrenchActive = false; // 如果该棋子清除被Trench保护的状态
+                i.GetComponent<PieceProperties>().isTrenchActive = false;
+                break;
             }
         }
 
@@ -84,12 +52,28 @@ public class TrenchProperties : MonoBehaviour
         {
             if (currentCellIndex == i.GetComponent<PlayerContoller>().currentCellIndex) // 如果Trench现在的位置有group2的棋子
             {
-                i.GetComponent<PieceProperties>().isTrenchActive = true; // 该棋子处于被Trench保护的状态
-            }
-            else
-            {
-                i.GetComponent<PieceProperties>().isTrenchActive = false; // 如果该棋子清除被Trench保护的状态
+                i.GetComponent<PieceProperties>().isTrenchActive = false;
+                break;
             }
         }
+
+        Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerContoller>() != null)
+        {
+            other.GetComponent<PieceProperties>().isTrenchActive = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerContoller>() != null)
+        {
+            other.GetComponent<PieceProperties>().isTrenchActive = false;
+        }
+    }
+
 }

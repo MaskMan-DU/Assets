@@ -244,6 +244,7 @@ public class EnemyController : MonoBehaviour
                                         var rocketTarget = o.GetComponent<PieceProperties>();
                                         if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
+                                            print("Trench 被击中");
                                             foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                             {
                                                 if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
@@ -279,6 +280,7 @@ public class EnemyController : MonoBehaviour
                                         var rocketTarget = o.GetComponent<PieceProperties>();
                                         if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
+                                            print("Trench 被击中");
                                             foreach (var l in gameManager.TrenchsList) // 找到位于该Cell的Trench
                                             {
                                                 if (l.GetComponent<TrenchProperties>().currentCellIndex == p)
@@ -314,27 +316,32 @@ public class EnemyController : MonoBehaviour
                     }
                     else
                     {
-                        if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                        if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                         {
-                            targetPieceProperties.equipmentDurability -= damage;
-                            targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
-
-                        }
-                        else if (targetPieceProperties.equipment == PieceProperties.Equipment.Trench)
-                        {
-                            if (targetPieceProperties.isTrenchActive)
+                            print("Trench 被击中");
+                            foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                             {
-                                targetPieceProperties.equipmentDurability--;
-                                targetPieceProperties.isTrenchActive = false;
+                                if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
+                                {
+                                    o.GetComponent<TrenchProperties>().TrenchGetDamage();
+                                    break;
+                                }
+                            }
+
+                            targetPieceProperties.isTrenchActive = false;
+                        }
+                        else // 如果不无敌，是否有
+                        {
+                            if (targetPieceProperties.equipment == PieceProperties.Equipment.Bulletproof_Vest)
+                            {
+                                targetPieceProperties.equipmentDurability -= damage;
+                                targetPieceProperties.currentLifeValue -= (damage - targetPieceProperties.damageReduce);
+
                             }
                             else
                             {
                                 targetPieceProperties.currentLifeValue -= damage;
                             }
-                        }
-                        else
-                        {
-                            targetPieceProperties.currentLifeValue -= damage;
                         }
                     }
 
@@ -367,6 +374,7 @@ public class EnemyController : MonoBehaviour
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
+                                        print("Trench 被击中");
                                         var rocketTarget = o.GetComponent<PieceProperties>();
                                         if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
@@ -402,6 +410,7 @@ public class EnemyController : MonoBehaviour
                                 {
                                     if (o.GetComponent<PlayerContoller>().currentCellIndex == p)
                                     {
+                                        print("Trench 被击中");
                                         var rocketTarget = o.GetComponent<PieceProperties>();
                                         if (rocketTarget.isTrenchActive) // 首先判断是否无敌
                                         {
@@ -442,6 +451,7 @@ public class EnemyController : MonoBehaviour
                     {
                         if (targetPieceProperties.isTrenchActive) // 首先判断是否无敌
                         {
+                            print("Trench 被击中");
                             foreach (var o in gameManager.TrenchsList) // 找到位于该Cell的Trench
                             {
                                 if (o.GetComponent<TrenchProperties>().currentCellIndex == attackTargetIndex)
