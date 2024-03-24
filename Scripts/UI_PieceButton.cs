@@ -84,10 +84,12 @@ public class UI_PieceButton : MonoBehaviour
 
                     if (piece.equipment != PieceProperties.Equipment.None)
                     {
+                        EquipmentImage.color = Color.white;
                         EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
                     }
                     else
                     {
+                        EquipmentImage.color = new Color(0f, 0f, 0f, 0.3f);
                         EquipmentLevel.text = "No Equipment";
                     }
                     
@@ -120,10 +122,12 @@ public class UI_PieceButton : MonoBehaviour
 
                     if (piece.equipment != PieceProperties.Equipment.None)
                     {
+                        EquipmentImage.color = Color.white;
                         EquipmentLevel.text = "Level: " + piece.equipmentLevel.ToString();
                     }
                     else
                     {
+                        EquipmentImage.color = new Color(0f, 0f, 0f, 0.3f);
                         EquipmentLevel.text = "No Equipment";
                     }
                     Ability.text = piece.ability.ToString();
