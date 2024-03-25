@@ -35,6 +35,7 @@ public class UI_PlayerPieceInfor : MonoBehaviour
         else if (gameManager.Group1Piece.Count == 2)
         {
             Group1Piece2.SetActive(true);
+            Group1Piece3.SetActive(false);
         }
         else if (gameManager.Group1Piece.Count == 3)
         {
@@ -50,6 +51,7 @@ public class UI_PlayerPieceInfor : MonoBehaviour
         else if (gameManager.Group2Piece.Count == 2)
         {
             Group2Piece2.SetActive(true);
+            Group2Piece3.SetActive(false);
         }
         else if (gameManager.Group2Piece.Count == 3)
         {
