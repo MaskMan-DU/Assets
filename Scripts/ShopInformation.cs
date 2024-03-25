@@ -188,9 +188,9 @@ public class ShopInformation :MonoBehaviour
             "Nutritionist", // Key
             new Ability
             ("Nutritionist", // 技能名
-            "All team members' health +10 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' health +20 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' health +40 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' maximum health limit +10 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' maximum health limit +20 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' maximum health limit +40 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
             PieceProperties.Ability.Nutritionist) // 职业对应的变量
             );
         AbilityList.Add(
