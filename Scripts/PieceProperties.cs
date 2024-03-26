@@ -56,7 +56,7 @@ public class PieceProperties : MonoBehaviour
     [Header("基本属性")]
     public PieceType pieceType; 
 
-    public float lifeValue = 100;
+    public float lifeValue = 50;
     public float finalLifeValue;
 
     public int plusMovement;
@@ -186,15 +186,15 @@ public class PieceProperties : MonoBehaviour
             case Profession.Cowboy:
                 if (PieceLevel == 1)
                 {
-                    lifeValue = 130;
+                    lifeValue = 50 + 15;
                 }
                 else if (PieceLevel == 2)
                 {
-                    lifeValue = 160;
+                    lifeValue = 50 + 20;
                 }
                 else if (PieceLevel == 3)
                 {
-                    lifeValue = 220;
+                    lifeValue = 50 + 40;
                 }
 
                 if (pieceWeapon == Weapon.Pistol)
@@ -217,15 +217,15 @@ public class PieceProperties : MonoBehaviour
             case Profession.Mercenary:
                 if (PieceLevel == 1)
                 {
-                    lifeValue = 120;
+                    lifeValue = 60;
                 }
                 else if (PieceLevel == 2)
                 {
-                    lifeValue = 140;
+                    lifeValue = 65;
                 }
                 else if (PieceLevel == 3)
                 {
-                    lifeValue = 180;
+                    lifeValue = 80;
                 }
 
                 if (pieceWeapon == Weapon.Assault_Rifle)
@@ -250,25 +250,25 @@ public class PieceProperties : MonoBehaviour
             case Profession.Engineer:
                 if (PieceLevel == 1)
                 {
-                    lifeValue = 110;
+                    lifeValue = 55;
                     // 黄金数量增加 20 
                     goldOutPutSpeed += 20;
                 }
                 else if (PieceLevel == 2)
                 {
-                    lifeValue = 120;
+                    lifeValue = 60;
                     // 黄金数量增加 40 
                     goldOutPutSpeed += 40;
                 }
                 else if (PieceLevel == 3)
                 {
-                    lifeValue = 140;
+                    lifeValue = 70;
                     // 黄金数量增加 80
                     goldOutPutSpeed += 80;
                 }
                 break;
             case Profession.Sniper:
-                lifeValue = 100;
+                lifeValue = 50;
 
                 if (pieceWeapon == Weapon.Sniper_Rifle)
                 {
@@ -500,15 +500,15 @@ public class PieceProperties : MonoBehaviour
             case Ability.Nutritionist:
                 if (PieceLevel == 1)
                 {
-                    abilityPlusLifeValue = 10;
+                    abilityPlusLifeValue = 5;
                 }
                 else if (PieceLevel == 2)
                 {
-                    abilityPlusLifeValue = 20;
+                    abilityPlusLifeValue = 10;
                 }
                 else if (PieceLevel == 3)
                 {
-                    abilityPlusLifeValue = 40;
+                    abilityPlusLifeValue = 20;
                 }
                 break;
             case Ability.Fitness_Trainer:
@@ -546,17 +546,17 @@ public class PieceProperties : MonoBehaviour
                 if (PieceLevel == 1)
                 {
                     abilityExtraPistolWeaponDamage = 2;
-                    lifeValue += 20;
+                    lifeValue += 10;
                 }
                 else if (PieceLevel == 2)
                 {
                     abilityExtraPistolWeaponDamage = 4;
-                    lifeValue += 40;
+                    lifeValue += 15;
                 }
                 else if (PieceLevel == 3)
                 {
                     abilityExtraPistolWeaponDamage = 8;
-                    lifeValue += 80;
+                    lifeValue += 30;
                 }
                 break;
             case Ability.Gold_Miner:

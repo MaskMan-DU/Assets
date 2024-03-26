@@ -14,6 +14,8 @@ public class WeaponStoreButton : MonoBehaviour
 
     private int lastTurn;
 
+    private bool hasBuy = false;
+
     public int level1price = 10;
     public int level2price = 20;
     public int level3price = 40;
@@ -65,7 +67,7 @@ public class WeaponStoreButton : MonoBehaviour
             RefreshInformation();
         }
 
-        if (gameManager.activePiece != null)
+        if (gameManager.activePiece != null && !hasBuy)
         {
             if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
             {
@@ -87,6 +89,7 @@ public class WeaponStoreButton : MonoBehaviour
 
     public void RefreshInformation()
     {
+        hasBuy = false;
         pieceWeapon = weaponNames[Random.Range(0, weaponNames.Count)]; // 获取随机选定的棋子武器
         Weapon.text = pieceWeapon; // 填入棋子武器
 
@@ -188,6 +191,7 @@ public class WeaponStoreButton : MonoBehaviour
             gameManager.activePiece.GetComponent<PieceProperties>().UpdateWeaponProperties();
 
             this.GetComponent<Button>().interactable = false;
+            hasBuy = true;
         }  
     }
 }

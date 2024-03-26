@@ -14,6 +14,8 @@ public class EquipmentShopButton : MonoBehaviour
 
     private int lastTurn;
 
+    private bool hasBuy = false;
+
     public int level1price = 5;
     public int level2price = 10;
     public int level3price = 20;
@@ -60,10 +62,30 @@ public class EquipmentShopButton : MonoBehaviour
             lastTurn++;
             RefreshInformation();
         }
+
+        if (gameManager.activePiece != null && !hasBuy)
+        {
+            if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
+            {
+                if (pieceEquipment == "Wire")
+                {
+                    this.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    this.GetComponent<Button>().interactable = true;
+                }
+            }
+            else
+            {
+                this.GetComponent<Button>().interactable = true;
+            }
+        }
     }
 
     public void RefreshInformation()
     {
+        hasBuy = false;
         this.GetComponent<Button>().interactable = true;
 
         pieceEquipment = equipmentNames[Random.Range(0, equipmentNames.Count)]; // 获取棋子装备
@@ -161,6 +183,7 @@ public class EquipmentShopButton : MonoBehaviour
             gameManager.activePiece.GetComponent<PieceProperties>().UpdateEquipmentProperties();
 
             this.GetComponent<Button>().interactable = false;
+            hasBuy = true;
         }       
     }
 }

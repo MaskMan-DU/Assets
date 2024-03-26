@@ -188,9 +188,9 @@ public class ShopInformation :MonoBehaviour
             "Nutritionist", // Key
             new Ability
             ("Nutritionist", // 技能名
+            "All team members' maximum health limit +5 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
             "All team members' maximum health limit +10 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
             "All team members' maximum health limit +20 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' maximum health limit +40 ", // 技能描述，依据棋子职业等级提升，数值也随之变化
             PieceProperties.Ability.Nutritionist) // 职业对应的变量
             );
         AbilityList.Add(
@@ -242,9 +242,9 @@ public class ShopInformation :MonoBehaviour
             "Assualt Captain", // Key
             new Ability
             ("Assualt Captain", // 技能名
-            "All team members' pistol damage +2\r\nSelf-health +20", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' pistol damage +4\r\nSelf-health +40", // 技能描述，依据棋子职业等级提升，数值也随之变化
-            "All team members' pistol damage +8\r\nSelf-health +80", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +2\r\nSelf-health +10", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +4\r\nSelf-health +15", // 技能描述，依据棋子职业等级提升，数值也随之变化
+            "All team members' pistol damage +8\r\nSelf-health +30", // 技能描述，依据棋子职业等级提升，数值也随之变化
             PieceProperties.Ability.Assualt_Captain) // 职业对应的变量
             );
     }

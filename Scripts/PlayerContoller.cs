@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TGS;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ public class PlayerContoller : MonoBehaviour
     private TGSSetting tgsSetting;
     private ChangeWeapon changeWeapon;
     public GameObject Indicator;
+    public GameObject PieceNumber;
 
     public List<Color> rangeOriginalColor;
 
@@ -112,6 +114,17 @@ public class PlayerContoller : MonoBehaviour
         {
             Indicator.SetActive(false);
         }
+
+        PieceNumber.transform.rotation = Camera.main.transform.rotation;
+        if (camp == Camp.Group1)
+        {
+            PieceNumber.GetComponent<TMP_Text>().text = (gameManager.Group1Piece.IndexOf(this.gameObject) + 1).ToSafeString();
+        }
+        else
+        {
+            PieceNumber.GetComponent<TMP_Text>().text = (gameManager.Group2Piece.IndexOf(this.gameObject) + 1).ToSafeString();
+        }
+        
 
         switch (state)
         {
