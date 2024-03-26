@@ -12,6 +12,8 @@ public class EquipmentShopButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+    private int lastTurn;
+
     public int level1price = 5;
     public int level2price = 10;
     public int level3price = 20;
@@ -50,6 +52,12 @@ public class EquipmentShopButton : MonoBehaviour
         if (currentCamp != lastCamp)
         {
             lastCamp = currentCamp;
+            RefreshInformation();
+        }
+
+        if (lastTurn != gameManager.TurnNumber)
+        {
+            lastTurn++;
             RefreshInformation();
         }
     }

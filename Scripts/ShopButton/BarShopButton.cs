@@ -16,6 +16,8 @@ public class BarShopButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+    private int lastTurn = 0;
+
     public int level1price = 15;
     public int level2price = 30;
     public int level3price = 60;
@@ -83,6 +85,12 @@ public class BarShopButton : MonoBehaviour
             lastCamp = currentCamp;
             RefreshInformation();
         }
+        
+        if (lastTurn != gameManager.TurnNumber)
+        {
+            lastTurn++;
+            RefreshInformation();
+        }
     }
 
     public void RefreshInformation()
@@ -125,6 +133,7 @@ public class BarShopButton : MonoBehaviour
     {
 
         var canBuy = false;
+        var cost = 0;
         // »¨Ç®
         if (pieceLevel == 1)
         {
@@ -133,7 +142,7 @@ public class BarShopButton : MonoBehaviour
                 if (gameManager.group1Coin >= level1price)
                 {
                     canBuy = true;
-                    gameManager.group1Coin -= level1price;
+                    cost = level1price;
                 }
 
             }
@@ -142,7 +151,7 @@ public class BarShopButton : MonoBehaviour
                 if (gameManager.group2Coin >= level1price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= level1price;
+                    cost = level1price;
                 }
             }
         }
@@ -152,8 +161,8 @@ public class BarShopButton : MonoBehaviour
             {
                 if (gameManager.group1Coin >= level2price)
                 {
-                    canBuy = true;
-                    gameManager.group1Coin -= level2price;
+                    canBuy = true;                    
+                    cost = level2price;
                 }
 
             }
@@ -162,7 +171,7 @@ public class BarShopButton : MonoBehaviour
                 if (gameManager.group2Coin >= level2price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= level2price;
+                    cost = level2price;
                 }
             }
         }
@@ -173,7 +182,7 @@ public class BarShopButton : MonoBehaviour
                 if (gameManager.group1Coin >= level3price)
                 {
                     canBuy = true;
-                    gameManager.group1Coin -= level3price;
+                    cost = level3price;
                 }
 
             }
@@ -182,7 +191,7 @@ public class BarShopButton : MonoBehaviour
                 if (gameManager.group2Coin >= level3price)
                 {
                     canBuy = true;
-                    gameManager.group2Coin -= level3price;
+                    cost = level3price;
                 }
             }
         }
@@ -207,6 +216,8 @@ public class BarShopButton : MonoBehaviour
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
                         piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
 
+                        gameManager.group1Coin -= cost;
+
                     }
                     break;
                 case PlayerContoller.Camp.Group2:
@@ -224,6 +235,8 @@ public class BarShopButton : MonoBehaviour
                         piece.GetComponent<PieceProperties>().WeaponLevel = weaponLevel;
                         piece.GetComponent<PieceProperties>().equipment = PieceProperties.Equipment.None;
                         piece.GetComponent<PieceProperties>().ability = shopInformation.AbilityList[pieceAbility].ablilityValue;
+
+                        gameManager.group2Coin -= cost;
 
                     }
                     break;

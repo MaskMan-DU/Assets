@@ -12,6 +12,8 @@ public class WeaponStoreButton : MonoBehaviour
     private PlayerContoller.Camp lastCamp;
     private PlayerContoller.Camp currentCamp;
 
+    private int lastTurn;
+
     public int level1price = 10;
     public int level2price = 20;
     public int level3price = 40;
@@ -56,6 +58,31 @@ public class WeaponStoreButton : MonoBehaviour
             lastCamp = currentCamp;
             RefreshInformation();
         }
+
+        if (lastTurn != gameManager.TurnNumber)
+        {
+            lastTurn++;
+            RefreshInformation();
+        }
+
+        if (gameManager.activePiece != null)
+        {
+            if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
+            {
+                if (pieceWeapon == "Rocket Launcher")
+                {
+                    this.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    this.GetComponent<Button>().interactable = true;
+                }
+            }
+            else
+            {
+                this.GetComponent<Button>().interactable = true;
+            }
+        }
     }
 
     public void RefreshInformation()
@@ -83,25 +110,6 @@ public class WeaponStoreButton : MonoBehaviour
         }
         
         WeaponPlueMovement.text = weaponPlueMovement.ToString(); // ÃÓ»ÎŒ‰∆˜“∆∂Ø”∞œÏ
-
-        if (gameManager.activePiece!= null)
-        {
-            if (gameManager.activePiece.GetComponent<PieceProperties>().pieceProfession != PieceProperties.Profession.Engineer)
-            {
-                if (pieceWeapon == "Rocket Launcher")
-                {
-                    this.GetComponent<Button>().interactable = false;
-                }
-                else
-                {
-                    this.GetComponent<Button>().interactable = true;
-                }
-            }
-            else
-            {
-                this.GetComponent<Button>().interactable = true;
-            }
-        }
 
         weaponImage.sprite = Resources.Load<Sprite>("Images/shop/" + pieceWeapon + "" + weaponLevel);
     }

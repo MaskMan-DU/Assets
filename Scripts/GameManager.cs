@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject activePiece;
     public PlayerContoller.Camp activeCamp;
 
+    public int TurnNumber = 0;
+
     public bool group1HasAct = false;
     public bool group2HasAct = false;
 
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
         {
             // 掷骰子阶段
             case State.RollMoveDice:
+                TurnNumber++;
                 PieceActionMenu.SetActive(false);
 
                 RollMoveDice(); // 掷骰子来确定两组棋子的移动力
@@ -886,7 +889,14 @@ public class GameManager : MonoBehaviour
                 {
                     if (lastClickedEnemy != null)
                     {
-                        lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                        if (activePiece == null)
+                        {
+                            lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                        }
+                        else if (activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKSELECT && activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.MOVESELECT && activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.EQUIPMENTPOSITONSELECT)
+                        {
+                            lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                        }
                     }
 
                     lastClickedEnemy = clickedObject;
@@ -896,7 +906,7 @@ public class GameManager : MonoBehaviour
                     if (activePiece != null)
                     {
                         var activePieceScript = activePiece.GetComponent<PlayerContoller>();
-                        if (activePieceScript.state != PlayerContoller.State.ATTACKSELECT && activePieceScript.state != PlayerContoller.State.MOVESELECT)
+                        if (activePieceScript.state == PlayerContoller.State.IDLE)
                         {
                             enemy.ShowRange(enemy.attackRange, true);
                         }
@@ -910,8 +920,15 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     if (lastClickedEnemy != null)
-                    {
-                        lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                    {                 
+                        if (activePiece == null)
+                        {
+                            lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                        }
+                        else if (activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.ATTACKSELECT && activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.MOVESELECT && activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.EQUIPMENTPOSITONSELECT && activePiece.GetComponent<PlayerContoller>().state != PlayerContoller.State.MOVING)
+                        {
+                            lastClickedEnemy.GetComponent<EnemyController>().CleanRange(lastClickedEnemy.GetComponent<EnemyController>().attackRangeCellList);
+                        }
                     }
                 }
 

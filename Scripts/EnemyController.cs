@@ -209,7 +209,6 @@ public class EnemyController : MonoBehaviour
                 tgs.CellSetColor(targetRange[i], rangeOriginalColor[i]);
             }    
         }
-
     }
 
     public void Attack()
