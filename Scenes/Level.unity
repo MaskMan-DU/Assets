@@ -1375,37 +1375,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5387a77a1b6992f409e6f9f5030db072, type: 3}
---- !u!1 &407469658
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 407469659}
-  m_Layer: 5
-  m_Name: Surfaces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &407469659
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407469658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2349245250891015463}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &429980486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3106,7 +3075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578910191320545594, guid: 5a600a493ccc5d240be8f862f1e3f377, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3578910191320545595, guid: 5a600a493ccc5d240be8f862f1e3f377, type: 3}
       propertyPath: m_Pivot.x
@@ -7235,6 +7204,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5387a77a1b6992f409e6f9f5030db072, type: 3}
+--- !u!1 &1603007284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603007285}
+  m_Layer: 5
+  m_Name: Surfaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1603007285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603007284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2349245250891015463}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1612715578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11567,7 +11567,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 407469659}
+  - {fileID: 1603007285}
   m_Father: {fileID: 938491920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13678,7 +13678,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -13696,7 +13696,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -14254,7 +14254,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -14272,7 +14272,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.27350426, g: 0, b: 1, a: 0.7254902}
+    color: {r: 0.2735042, g: 0, b: 1, a: 0.7254902}
     textureIndex: 1
     tag: 0
     canCross: 0
@@ -14290,7 +14290,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -14866,7 +14866,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -14884,7 +14884,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -15928,7 +15928,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -15946,7 +15946,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16180,7 +16180,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16198,7 +16198,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16504,7 +16504,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16522,10 +16522,10 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.627451}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.627451}
     textureIndex: 1
     tag: 0
-    canCross: 1
+    canCross: 0
     crossCost: 0
     crossSidesCost:
     - 0
@@ -16540,7 +16540,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16756,7 +16756,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -16774,10 +16774,10 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.627451}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.627451}
     textureIndex: 1
     tag: 0
-    canCross: 1
+    canCross: 0
     crossCost: 0
     crossSidesCost:
     - 0
@@ -16792,7 +16792,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -17116,7 +17116,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -17134,7 +17134,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -17368,7 +17368,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -17386,7 +17386,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20662,7 +20662,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20680,7 +20680,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20806,7 +20806,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20824,7 +20824,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20950,7 +20950,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -20968,7 +20968,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21112,7 +21112,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.07450981, g: 1, b: 0.6509804, a: 0.42352942}
+    color: {r: 0.07450978, g: 1, b: 0.6509804, a: 0.42352942}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21238,7 +21238,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21256,7 +21256,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.27350426, g: 0, b: 1, a: 0.7254902}
+    color: {r: 0.2735042, g: 0, b: 1, a: 0.7254902}
     textureIndex: 1
     tag: 0
     canCross: 0
@@ -21274,7 +21274,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21382,7 +21382,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21400,7 +21400,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.5716596, b: 0, a: 1}
+    color: {r: 1, g: 0.5716595, b: 0, a: 1}
     textureIndex: 1
     tag: 0
     canCross: 0
@@ -21418,7 +21418,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21526,7 +21526,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21544,7 +21544,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.27350426, g: 0, b: 1, a: 0.7254902}
+    color: {r: 0.2735042, g: 0, b: 1, a: 0.7254902}
     textureIndex: 1
     tag: 0
     canCross: 0
@@ -21562,7 +21562,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21688,7 +21688,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.07488381, g: 1, b: 0.6509804, a: 0.42352942}
+    color: {r: 0.07488378, g: 1, b: 0.6509804, a: 0.42352942}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21850,7 +21850,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21868,7 +21868,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -21994,7 +21994,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -22012,7 +22012,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 1, g: 0.786793, b: 0, a: 0.654902}
+    color: {r: 1, g: 0.78679293, b: 0, a: 0.654902}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -22138,7 +22138,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -22156,7 +22156,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -25432,7 +25432,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -25450,7 +25450,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -25684,7 +25684,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -25702,7 +25702,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26008,7 +26008,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26026,10 +26026,10 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.627451}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.627451}
     textureIndex: 1
     tag: 0
-    canCross: 1
+    canCross: 0
     crossCost: 0
     crossSidesCost:
     - 0
@@ -26044,7 +26044,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26260,7 +26260,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26278,10 +26278,10 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.627451}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.627451}
     textureIndex: 1
     tag: 0
-    canCross: 1
+    canCross: 0
     crossCost: 0
     crossSidesCost:
     - 0
@@ -26296,7 +26296,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26620,7 +26620,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26638,7 +26638,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26872,7 +26872,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -26890,7 +26890,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0, g: 0.45882353, b: 1, a: 0.29411766}
+    color: {r: 0, g: 0.45882338, b: 1, a: 0.29411766}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -27934,7 +27934,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -27952,7 +27952,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -28510,7 +28510,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -28528,7 +28528,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.27350426, g: 0, b: 1, a: 0.7254902}
+    color: {r: 0.2735042, g: 0, b: 1, a: 0.7254902}
     textureIndex: 1
     tag: 0
     canCross: 0
@@ -28546,7 +28546,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -29122,7 +29122,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -29140,7 +29140,7 @@ MonoBehaviour:
     textureOffset: {x: 0, y: 0}
   - visible: 1
     territoryIndex: 0
-    color: {r: 0.45017883, g: 0.24213827, b: 1, a: 0.41568628}
+    color: {r: 0.45017868, g: 0.24213818, b: 1, a: 0.41568628}
     textureIndex: 1
     tag: 0
     canCross: 1
@@ -31511,7 +31511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694081556469643943, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 771489306375a874083cc6ce3ffc1ef2, type: 3}
@@ -31749,6 +31749,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1241476918}
     m_Modifications:
+    - target: {fileID: 686549506963445242, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 686549506963445242, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 686549506963445242, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1249239421913410029, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -31785,6 +31797,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6603774
       objectReference: {fileID: 0}
+    - target: {fileID: 2993390099579022927, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993390099579022927, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993390099579022927, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3394677460162844335, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -31792,6 +31816,18 @@ PrefabInstance:
     - target: {fileID: 3394677460162844335, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949462291118730444, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949462291118730444, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949462291118730444, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4369003534129202371, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.x
@@ -31808,6 +31844,18 @@ PrefabInstance:
     - target: {fileID: 5029795884659309669, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138133280735940575, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138133280735940575, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138133280735940575, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5462690270196592736, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.x
@@ -31844,6 +31892,18 @@ PrefabInstance:
     - target: {fileID: 5916052671851458307, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078276572239328418, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078276572239328418, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078276572239328418, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276852467354091819, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_Name
@@ -31876,6 +31936,18 @@ PrefabInstance:
     - target: {fileID: 7543092202724444111, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_Color.r
       value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766819848424567931, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766819848424567931, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766819848424567931, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7887100732983026619, guid: 6692811839ef1b144b2d9d72810fa384, type: 3}
       propertyPath: m_Pivot.x

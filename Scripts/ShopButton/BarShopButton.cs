@@ -218,6 +218,7 @@ public class BarShopButton : MonoBehaviour
 
                         gameManager.group1Coin -= cost;
 
+                        this.GetComponent<Button>().interactable = false;
                     }
                     break;
                 case PlayerContoller.Camp.Group2:
@@ -238,11 +239,12 @@ public class BarShopButton : MonoBehaviour
 
                         gameManager.group2Coin -= cost;
 
+                        this.GetComponent<Button>().interactable = false;
                     }
                     break;
             }
 
-            this.GetComponent<Button>().interactable = false;
+            
         }
        
     }

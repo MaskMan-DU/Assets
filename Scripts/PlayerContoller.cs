@@ -37,6 +37,7 @@ public class PlayerContoller : MonoBehaviour
     private PieceProperties pieceProperties;
     private TGSSetting tgsSetting;
     private ChangeWeapon changeWeapon;
+    public GameObject Indicator;
 
     public List<Color> rangeOriginalColor;
 
@@ -103,7 +104,14 @@ public class PlayerContoller : MonoBehaviour
 
         currentCellIndex = tgs.CellGetIndex(transform.position,true);  
 
-        
+        if (gameManager.activePiece == this.gameObject)
+        {
+            Indicator.SetActive(true);
+        }
+        else
+        {
+            Indicator.SetActive(false);
+        }
 
         switch (state)
         {
